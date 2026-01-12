@@ -1,8 +1,11 @@
 import asyncio
 import logging
+import unittest
+
+from core.factories import _create_llm_connector
+from config.config import get_settings
 from concurrent.futures.thread import ThreadPoolExecutor
 
-from connectors import GigaChatConnector
 
 token = "N2JmYTgwNDEtMTMzZi00NGExLWFlYTEtMmY1N2NmOTM4MTcxOjRlNzI3YjNhLWE1MGMtNDFmYi04ZjhlLWQ2ZDQ3MTUzMTA3ZQ=="
 prompt = """ЗАДАЧА: Анализ письма в конверте от Почты России и извлечение данных в JSON.
@@ -76,51 +79,57 @@ prompt = """ЗАДАЧА: Анализ письма в конверте от П�
 }
 
 """
+class TestGigaConnector(unittest.IsolatedAsyncioTestCase):
+    @classmethod
+    def setUpClass(cls):
+        """
+        Выполняется один раз перед всеми тестами в классе.
+        Подготавливает настройки и создаёт коннектор.
+        """
+        # Убедимся, что используем переменные окружения
+        cls.config = get_settings()
 
-async def example_workflow():
-    """Example showing concurrent file uploads and chat requests"""
+        # Создаём коннектор через фабрику
+        cls.connector = _create_llm_connector(cls.config)
+    async def test_workflow(self):
+        """Example showing concurrent file uploads and chat requests"""
+        # get_logger = logging.getLogger,
+        # model = "GigaChat-Max",
+        # scope = "GIGACHAT_API_B2B",
+        # verify_ssl = False,
+        # timeout = 30.0,
+        # base_url = "https://gigachat.devices.sberbank.ru",
+        # api_version = "api/v1",
+        # oauth_url = "https://ngw.devices.sberbank.ru:9443/api/v2/oauth"
+        try:
+            # Initialize connection
+            await self.connector.initialize()
+            with open("doc09531820250805115333.pdf", "rb") as f:
+                file_ids = await self.connector.upload_file(f)
+            print(f"Uploaded files: {file_ids}")
 
-    # Initialize connector
-    connector = GigaChatConnector(
-        get_logger=logging.getLogger,
-        auth_key=token,  # Base64(ClientID:ClientSecret)
-        model=GigaChatConnector.MODEL_GIGA_CHAT_MAX,
-        scope=GigaChatConnector.SCOPE_B2B,
-        verify_ssl=False,
-        timeout=30.0,
-    )
+            # Example 2: Chat with files
+            response = await self.connector.chat(
+                prompt=prompt,
+                file_ids=[file_ids],
+                temperature=0.1,
+            )
+            print(f"Chat response: {response['response']}")
+            print(f"Tokens used: {response['tokens_used']}")
 
-    try:
-        # Initialize connection
-        await connector.initialize()
-        with open("doc09531820250805115333.pdf", "rb") as f:
-            file_ids = await connector.upload_file(f)
-        print(f"Uploaded files: {file_ids}")
+            # Example 5: Health check
+            is_healthy = await self.connector.health_check()
+            print(f"\nAPI Health: {is_healthy}")
 
-        # Example 2: Chat with files
-        response = await connector.chat(
-            prompt=prompt,
-            file_ids=file_ids,
-            temperature=0.1,
-        )
-        print(f"Chat response: {response['response']}")
-        print(f"Tokens used: {response['tokens_used']}")
+            # Example 6: List and delete files
+            all_files = await self.connector.list_files()
+            print(f"\nTotal files in storage: {len(all_files)}")
 
-        # Example 5: Health check
-        is_healthy = await connector.health_check()
-        print(f"\nAPI Health: {is_healthy}")
+            if file_ids:
+                delete_results = await self.connector.delete_files_concurrent([file_ids])
+                print(f"Deletion results: {delete_results}")
 
-        # Example 6: List and delete files
-        all_files = await connector.list_files()
-        print(f"\nTotal files in storage: {len(all_files)}")
-
-        if file_ids:
-            delete_results = await connector.delete_files_concurrent([file_ids])
-            print(f"Deletion results: {delete_results}")
-
-    finally:
-        await connector.shutdown()
+        finally:
+            await self.connector.shutdown()
 
 
-if __name__ == "__main__":
-    asyncio.run(example_workflow())

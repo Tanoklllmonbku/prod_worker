@@ -4,27 +4,28 @@ LLM Interface - Strategy pattern implementation for LLM connectors.
 Allows switching between different LLM providers (GigaChat, OpenAI, etc.)
 while maintaining the same API.
 """
-from typing import Any, Dict, List, Optional, AsyncIterator
 
-from core.base_class.connectors import LLMConnector
-from core.base_class.observer import EventPublisher
-from interface.base import BaseInterface
+from typing import Any, AsyncIterator, Dict, List, Optional
+
+from core.base_class.base_interface import BaseInterface
+from core.base_class.protocols import ILLMConnector
+from utils.observer import EventPublisher
 
 
 class LLMInterface(BaseInterface):
     """
     High-level interface for LLM operations.
-    
+
     Implements Strategy pattern - can switch between different LLM providers
     (GigaChat, OpenAI, etc.) transparently.
     """
 
     def __init__(
         self,
-        worker: LLMConnector,
+        worker: ILLMConnector,
         name: Optional[str] = None,
         event_publisher: Optional[EventPublisher] = None,
-    ):
+    ) -> None:
         """
         Initialize LLM interface.
 
@@ -36,7 +37,7 @@ class LLMInterface(BaseInterface):
         super().__init__(worker, name, event_publisher)
 
     @property
-    def worker(self) -> LLMConnector:
+    def worker(self) -> ILLMConnector:
         """Get underlying LLM connector"""
         return self._worker
 
@@ -131,5 +132,18 @@ class LLMInterface(BaseInterface):
             "upload_files",
             self._worker.upload_files_concurrent,
             files,
+            timeout=timeout,
+        )
+
+    async def delete_file(
+        self,
+        file_id: str,
+        timeout: Optional[float] = None,
+    ) -> bool:
+        """Delete file from LLM service"""
+        return await self._execute_with_tracking(
+            "delete_file",
+            self._worker.delete_file,
+            file_id,
             timeout=timeout,
         )

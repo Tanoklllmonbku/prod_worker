@@ -1,0 +1,24 @@
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,917 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['GigaChat', 'Kafka', 'Minio', 'Postgres']
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,918 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] GigaChat::initialize
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,918 - gigachatAPI - [0;31mERROR[0m - Failed to initialize GigaChat: Invalid type for url.  Expected str or httpx.URL, got <class 'unittest.mock.MagicMock'>: <MagicMock name='mock.gigachat.base_url.rstrip()' id='6458826998544'>
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,919 - gigachatAPI - [0;31mERROR[0m - [operation_failed] GigaChat::initialize - FAILED (1.34ms) - Invalid type for url.  Expected str or httpx.URL, got <class 'unittest.mock.MagicMock'>: <MagicMock name='mock.gigachat.base_url.rstrip()' id='6458826998544'>
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,919 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface GigaChat: Invalid type for url.  Expected str or httpx.URL, got <class 'unittest.mock.MagicMock'>: <MagicMock name='mock.gigachat.base_url.rstrip()' id='6458826998544'>
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,919 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::initialize
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,925 - gigachatAPI - [0;31mERROR[0m - [operation_failed] Kafka::initialize - FAILED (6.02ms) - min() iterable argument is empty
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,926 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface Kafka: min() iterable argument is empty
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,926 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::initialize
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,930 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: '>' not supported between instances of 'MagicMock' and 'int'
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,930 - gigachatAPI - [0;31mERROR[0m - [operation_failed] Kafka::initialize - FAILED (3.78ms) - '>' not supported between instances of 'MagicMock' and 'int'
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,930 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface Minio: '>' not supported between instances of 'MagicMock' and 'int'
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,931 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Postgres::initialize
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,966 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "test_user"
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,967 - gigachatAPI - [0;31mERROR[0m - [operation_failed] Postgres::initialize - FAILED (36.32ms) - password authentication failed for user "test_user"
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,967 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface Postgres: password authentication failed for user "test_user"
+1.0.0 - Logger - _log - 2025-12-28 16:10:31,968 - gigachatAPI - [0;31mERROR[0m - Bootstrap failed: "LLM interface 'llm' not found"
+Traceback (most recent call last):
+  File "/home/progger/gigachatAPI/services/service.py", line 97, in bootstrap
+    self.llm = self.container.get_llm("llm")
+               ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/progger/gigachatAPI/core/service_container.py", line 193, in get_llm
+    raise KeyError(f"LLM interface '{name}' not found")
+KeyError: "LLM interface 'llm' not found"

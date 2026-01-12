@@ -3,8 +3,11 @@ Example usage of Registry-based DI container.
 
 This demonstrates the recommended way to use connectors in your application.
 """
+
 import asyncio
-from core.base_class import ServiceContainer
+
+from core.service_container import ServiceContainer
+from models.prompt_model import PromptService
 
 
 async def main():
@@ -16,14 +19,17 @@ async def main():
 
     # 2. Use connectors via container
     print("\n=== Using LLM Connector ===")
-    llm = container.get_llm("gigachat")
-    response = await llm.chat("Hello, what is 2+2?")
+    llm = container.get_llm("llm")
+    prompt = PromptService().get_prompt_by_id(3)
+    with open("doc09704620250910124751.pdf", "rb") as f:
+        file = await llm.upload_file(f)
+    response = await llm.chat(prompt=prompt, file_ids=[file])
     print(f"LLM Response: {response}")
 
     # 3. Use database connector (if enabled)
     if container.config.enable_database:
         print("\n=== Using DB Connector ===")
-        db = container.get_db("postgres")
+        db = container.get_db("db")
         # Example query
         # users = await db.load("SELECT id, name FROM users LIMIT 5")
         # print(f"Found {len(users)} users")
@@ -31,7 +37,7 @@ async def main():
     # 4. Use storage connector (if enabled)
     if container.config.enable_minio:
         print("\n=== Using Storage Connector ===")
-        storage = container.get_storage("minio")
+        storage = container.get_storage("storage")
         # Example download
         # data = await storage.download("my-file.pdf")
         # print(f"Downloaded {len(data)} bytes")
@@ -39,7 +45,7 @@ async def main():
     # 5. Use queue connector (if enabled)
     if container.config.enable_kafka:
         print("\n=== Using Queue Connector ===")
-        queue = container.get_queue("kafka")
+        queue = container.get_queue("queue")
         # Example publish
         # await queue.publish(
         #     topic="events",
@@ -64,8 +70,8 @@ async def main():
 async def advanced_example():
     """Example: Manual registration and initialization"""
 
-    from core.base_class import ServiceContainer, ConnectorType
-    from core.config import get_config
+    from config.config import get_config
+    from core.service_container import ServiceContainer
 
     config = get_config()
     container = ServiceContainer(config)
@@ -89,4 +95,3 @@ async def advanced_example():
 
 if __name__ == "__main__":
     asyncio.run(main())
-

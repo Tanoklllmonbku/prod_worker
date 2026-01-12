@@ -1,0 +1,8 @@
+pydantic-settings
+pydantic
+httpx
+keyring
+aiokafka
+minio
+asyncpg
+psycopg2-binary

@@ -3,9 +3,10 @@ Protocol-based type definitions for connectors.
 These provide structural typing (duck typing) without inheritance overhead.
 Useful for type checking and IDE support while keeping flexibility.
 """
+
 from __future__ import annotations
 
-from typing import Protocol, Optional, List, Dict, Any, AsyncIterator
+from typing import Any, Dict, List, Optional, Protocol
 
 
 class ILLMConnector(Protocol):
@@ -62,6 +63,14 @@ class ILLMConnector(Protocol):
         timeout: Optional[float] = None,
     ) -> List[str]:
         """Upload multiple files concurrently"""
+        ...
+
+    async def delete_file(
+        self,
+        file_id: str,
+        timeout: Optional[float] = None,
+    ) -> bool:
+        """Delete file from LLM service"""
         ...
 
 
@@ -195,4 +204,3 @@ class IDBConnector(Protocol):
     async def execute(self, query: str, *args: Any) -> Any:
         """Execute DML (INSERT/UPDATE/DELETE)"""
         ...
-

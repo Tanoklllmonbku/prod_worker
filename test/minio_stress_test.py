@@ -5,7 +5,7 @@ import os
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from typing import List, Optional
-from statistics import mean, stdev
+from statistics import mean
 from io import BytesIO
 from connectors import MinIOConnector
 
@@ -58,7 +58,6 @@ def generate_large_file(size_bytes: int) -> BytesIO:
 async def upload_large_file_to_minio():
     """Загружает большой файл в MinIO (выполняется один раз)"""
     from minio import Minio
-    from minio.error import S3Error
 
     client = Minio(
         MINIO_ENDPOINT,

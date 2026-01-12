@@ -2,13 +2,16 @@
 
 ## Конфигурация
 
-Логирование настраивается через переменные окружения в `core/config.py`:
+Логирование настраивается через переменные окружения в `config/config.py`:
 
 ```bash
 # Уровень логирования (DEBUG, INFO, WARNING, ERROR, CRITICAL)
 LOG_LEVEL=INFO
 
-# Путь к файлу логов
+# Формат логов (json или text)
+LOG_FORMAT=json
+
+# Путь к файлу логов (в Docker обычно не используется)
 LOG_FILE=logs/system.log
 
 # Включить DEBUG логи (переопределяет LOG_LEVEL, устанавливает DEBUG)
@@ -22,7 +25,7 @@ LOG_ENABLE_DEBUG=false
 Коннекторы получают logger через фабрики:
 
 ```python
-# В factories.py автоматически используется
+# В connector_factories.py автоматически используется
 logger = get_logger_from_config(config)
 connector = GigaChatConnector(get_logger=lambda: logger, ...)
 ```
@@ -40,10 +43,10 @@ container = await ServiceContainer.from_config()
 ### Прямое использование
 
 ```python
-from core.logging import get_logger_from_config
-from core.config import get_config
+from utils.logging import get_logger_from_config
+from config.config import get_settings
 
-config = get_config()
+config = get_settings()
 logger = get_logger_from_config(config)
 
 logger.info("Info message")
@@ -82,6 +85,12 @@ LOG_ENABLE_DEBUG=true
 LOG_LEVEL=DEBUG   # DEBUG, INFO, WARNING, ERROR, CRITICAL
 ```
 
+### Изменить формат логов (для Docker рекомендуется JSON)
+
+```bash
+LOG_FORMAT=json   # json или text
+```
+
 ### Изменить файл логов
 
 ```bash
@@ -90,7 +99,22 @@ LOG_FILE=logs/my_app.log
 
 ## Структура логов
 
-### Формат
+### JSON формат (по умолчанию в Docker)
+
+```json
+{
+  "version": "1.0.0",
+  "class": "ServiceContainer",
+  "function": "initialize_all",
+  "timestamp": "2024-01-15T10:30:45.123456",
+  "logger_name": "gigachatAPI",
+  "level": "INFO",
+  "message": "Initialized interface: llm",
+  "trace_id": "abc-123"
+}
+```
+
+### Текстовый формат
 
 ```
 {version} - {class} - {function} - {timestamp} - {logger_name} - {level} - {message}
@@ -98,15 +122,15 @@ LOG_FILE=logs/my_app.log
 
 ### Примеры
 
-**INFO уровень:**
-```
-1.0.0 - ServiceContainer - initialize_all - 2024-01-15 10:30:45 - gigachatAPI - INFO - Initialized interface: llm
+**INFO уровень (JSON):**
+```json
+{"version": "1.0.0", "class": "ServiceContainer", "function": "initialize_all", "timestamp": "2024-01-15T10:30:45.123456", "logger_name": "gigachatAPI", "level": "INFO", "message": "Initialized interface: llm", "trace_id": "abc-123"}
 ```
 
 **DEBUG уровень (дополнительно):**
-```
-1.0.0 - LLMInterface - chat - 2024-01-15 10:30:46 - gigachatAPI - DEBUG - [operation_started] llm::chat
-1.0.0 - LLMInterface - chat - 2024-01-15 10:30:47 - gigachatAPI - INFO - [operation_completed] llm::chat - OK (1234.56ms)
+```json
+{"version": "1.0.0", "class": "LLMInterface", "function": "chat", "timestamp": "2024-01-15T10:30:46.123456", "logger_name": "gigachatAPI", "level": "DEBUG", "message": "[operation_started] llm::chat", "trace_id": "abc-123"}
+{"version": "1.0.0", "class": "LLMInterface", "function": "chat", "timestamp": "2024-01-15T10:30:47.123456", "logger_name": "gigachatAPI", "level": "INFO", "message": "[operation_completed] llm::chat - OK (1234.56ms)", "trace_id": "abc-123", "duration_ms": 1234.56}
 ```
 
 ## Логирование через Observer
@@ -137,4 +161,69 @@ Observer pattern автоматически логирует:
 - WARNING: желтый
 - ERROR: красный
 - CRITICAL: ярко-красный
+
+## Особенности Docker
+
+### Логирование в Docker
+
+В Docker рекомендуется использовать JSON формат для логов:
+
+```bash
+# В .env файле
+LOG_FORMAT=json
+LOG_FILE=          # Пустое значение - логи в stdout
+```
+
+### Docker Compose логирование
+
+```yaml
+version: '3.8'
+
+services:
+  worker:
+    image: gigachat-worker:latest
+    environment:
+      - LOG_FORMAT=json
+      - LOG_LEVEL=INFO
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+```
+
+### Просмотр логов в Docker
+
+```bash
+# Просмотр логов контейнера
+docker logs <container_name>
+
+# Просмотр логов с фильтрацией
+docker logs <container_name> | grep ERROR
+
+# Прослушивание логов в реальном времени
+docker logs -f <container_name>
+
+# Просмотр логов с JSON форматированием
+docker logs <container_name> | jq .
+```
+
+### Логирование в Kubernetes
+
+Для Kubernetes логи должны быть в JSON формате для совместимости с ELK/Fluentd:
+
+```bash
+# В production
+LOG_FORMAT=json
+LOG_LEVEL=INFO
+LOG_FILE=    # Логи в stdout/stderr для Kubernetes
+```
+
+## Логирование операций в БД
+
+Кроме логов в stdout, все операции также логируются в PostgreSQL:
+
+- Таблица `operation_logs`
+- Содержит `task_id`, `trace_id`, `operation`, `metadata`, `timestamp`
+- Используется для аудита и анализа
 

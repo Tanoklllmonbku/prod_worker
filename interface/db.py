@@ -4,27 +4,28 @@ Database Interface - Strategy pattern implementation for DB connectors.
 Allows switching between different database providers (PostgreSQL, MySQL, etc.)
 while maintaining the same API.
 """
+
 from typing import Any, Dict, List, Optional
 
-from core.base_class.connectors import DBConnector
-from core.base_class.observer import EventPublisher
-from interface.base import BaseInterface
+from utils.observer import EventPublisher
+from core.base_class.protocols import IDBConnector
+from core.base_class.base_interface import BaseInterface
 
 
 class DBInterface(BaseInterface):
     """
     High-level interface for database operations.
-    
+
     Implements Strategy pattern - can switch between different DB providers
     (PostgreSQL, MySQL, etc.) transparently.
     """
 
     def __init__(
         self,
-        worker: DBConnector,
+        worker: IDBConnector,
         name: Optional[str] = None,
         event_publisher: Optional[EventPublisher] = None,
-    ):
+    ) -> None:
         """
         Initialize DB interface.
 
@@ -36,7 +37,7 @@ class DBInterface(BaseInterface):
         super().__init__(worker, name, event_publisher)
 
     @property
-    def worker(self) -> DBConnector:
+    def worker(self) -> IDBConnector:
         """Get underlying DB connector"""
         return self._worker
 
@@ -56,7 +57,7 @@ class DBInterface(BaseInterface):
             self._worker.load,
             query,
             *args,
-            metadata={"query": query[:100]},  # Log first 100 chars
+            metadata={"query": query[:100]},
         )
 
     async def select_one(self, query: str, *args: Any) -> Optional[Dict[str, Any]]:

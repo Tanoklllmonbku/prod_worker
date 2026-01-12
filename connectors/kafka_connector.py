@@ -1,141 +1,71 @@
+"""
+Async Kafka Connector - Pure async implementation using aiokafka for no-GIL
+"""
 import asyncio
 import json
 import logging
-from dataclasses import dataclass
-from datetime import datetime
-from enum import Enum
-from threading import Thread, Event
 from typing import Any, Dict, List, Optional
 
-from kafka import KafkaProducer, KafkaConsumer
+from aiokafka import AIOKafkaProducer, AIOKafkaConsumer
 
-from core.base_class.connectors import QueueConnector
-
-
-class SerializationFormat(str, Enum):
-    JSON = "json"
-    MSGPACK = "msgpack"
-
-
-class Serializer:
-    def __init__(self, fmt: SerializationFormat):
-        self.fmt = fmt
-
-    def serialize(self, data: Dict[str, Any]) -> bytes:
-        if self.fmt == SerializationFormat.JSON:
-            return json.dumps(data).encode("utf-8")
-        elif self.fmt == SerializationFormat.MSGPACK:
-            try:
-                import msgspec
-            except ImportError:
-                raise ImportError("msgspec required for msgpack: pip install msgspec")
-            return msgspec.json.encode(data)
-        else:
-            raise ValueError(f"Unsupported format: {self.fmt}")
-
-    def deserialize(self, data: bytes) -> Dict[str, Any]:
-        if self.fmt == SerializationFormat.JSON:
-            return json.loads(data.decode("utf-8"))
-        elif self.fmt == SerializationFormat.MSGPACK:
-            try:
-                import msgspec
-            except ImportError:
-                raise ImportError("msgspec required for msgpack: pip install msgspec")
-            return msgspec.json.decode(data)
-        else:
-            raise ValueError(f"Unsupported format: {self.fmt}")
-
-
-@dataclass
-class DatagramEnvelope:
-    datagram_id: str
-    data: Dict[str, Any]
-    format: str
-    timestamp: str
-    key: Optional[str] = None
-    partition: Optional[int] = None
-    offset: Optional[int] = None
-
-    def to_dict(self) -> Dict[str, Any]:
-        return {
-            "datagram_id": self.datagram_id,
-            "data": self.data,
-            "format": self.format,
-            "timestamp": self.timestamp,
-            "key": self.key,
-            "partition": self.partition,
-            "offset": self.offset,
-        }
+from core.base_class.base_connectors import QueueConnector
 
 
 class KafkaConnector(QueueConnector):
     """
-    Asyncio-friendly Kafka connector on top of kafka-python.
-    Thread-safe:
-      - Producer: используется из event loop (по сути один поток).
-      - Consumer: отдельный поток, сообщения прокидываются в asyncio.Queue.
+    Native asyncio-friendly Kafka connector using aiokafka.
+    Pure async implementation without threading.
     """
 
     def __init__(
         self,
         bootstrap_servers: List[str],
+        group_id: Optional[str] = None,
+        auto_offset_reset: Optional[str] = None,
         logger: Optional[logging.Logger] = None,
-        default_format: SerializationFormat = SerializationFormat.JSON,
         consumer_poll_timeout: float = 1.0,
     ) -> None:
         super().__init__(name="kafka")
         self.bootstrap_servers = bootstrap_servers
         self.logger = logger or logging.getLogger(__name__)
-        self.default_format = default_format
         self.consumer_poll_timeout = consumer_poll_timeout
 
-        self._producer: Optional[KafkaProducer] = None
-
-        # consumer управляется отдельным потоком
-        self._consumer_thread: Optional[Thread] = None
-        self._consumer_stop_event = Event()
-        self._consumer: Optional[KafkaConsumer] = None
-
-        # Очередь сообщений для asyncio-части
-        self._message_queue: asyncio.Queue[DatagramEnvelope] = asyncio.Queue()
+        self._producer: Optional[AIOKafkaProducer] = None
+        self._consumer: Optional[AIOKafkaConsumer] = None
 
         # Флаг и топики для подписки
         self._subscribed_topics: List[str] = []
-        self._group_id: Optional[str] = None
+        self._group_id = group_id
         self._consumer_running = False
-        self._loop: Optional[asyncio.AbstractEventLoop] = None
+        self._auto_offset_reset = auto_offset_reset or "earliest"
+
+        # Async queue для сообщений
+        self._message_queue: asyncio.Queue[Dict[str, Any]] = asyncio.Queue()
 
     # ----------------- Инициализация / shutdown -----------------
 
     async def initialize(self) -> None:
-        """Создать KafkaProducer (в event loop, но он блокирующий внутри)."""
-        loop = asyncio.get_running_loop()
-        self._loop = asyncio.get_running_loop()
-        def _create_producer() -> KafkaProducer:
-            return KafkaProducer(
-                bootstrap_servers=self.bootstrap_servers,
-                value_serializer=lambda v: v,  # уже bytes
-                key_serializer=lambda k: k.encode("utf-8") if k is not None else None,
-            )
-
-        self._producer = await loop.run_in_executor(None, _create_producer)
+        """Создать асинхронные Kafka клиенты."""
+        self._producer = AIOKafkaProducer(
+            bootstrap_servers=self.bootstrap_servers,
+            value_serializer=lambda v: v.encode("utf-8")
+            if isinstance(v, str)
+            else json.dumps(v, ensure_ascii=False).encode("utf-8"),
+            key_serializer=lambda k: k.encode("utf-8") if k is not None else None,
+        )
+        await self._producer.start()
         self.logger.info("Kafka producer initialized")
 
     async def shutdown(self) -> None:
-        """Остановить producer и consumer-поток."""
-        # Остановка consumer
-        if self._consumer_running:
-            self._consumer_stop_event.set()
-            if self._consumer_thread:
-                self._consumer_thread.join(timeout=5)
+        """Остановить producer и consumer."""
+        if self._consumer_running and self._consumer:
+            await self._consumer.stop()
             self._consumer_running = False
-            self.logger.info("Kafka consumer thread stopped")
+            self.logger.info("Kafka consumer stopped")
 
-        # Закрыть producer
         if self._producer is not None:
-            loop = asyncio.get_running_loop()
-            await loop.run_in_executor(None, self._producer.flush)
-            await loop.run_in_executor(None, self._producer.close)
+            await self._producer.stop()
+            self._producer = None
             self.logger.info("Kafka producer closed")
 
     # ----------------- Публикация -----------------
@@ -145,81 +75,76 @@ class KafkaConnector(QueueConnector):
         topic: str,
         datagram_id: str,
         data: Dict[str, Any],
-        format_type: Optional[SerializationFormat] = None,
+        format_type: Optional[str] = None,
         key: Optional[str] = None,
+        headers: Optional[Dict[str, str]] = None,
         **_: Any,
     ) -> None:
         """
-        Асинхронная публикация сообщения.
+        Асинхронная публикация JSON-сообщения.
+        data - ваш словарь, который будет отправлен как есть.
+        headers - заголовки сообщения Kafka (опционально)
         """
         if self._producer is None:
             raise RuntimeError("Kafka producer not initialized")
 
-        fmt = format_type or self.default_format
-        serializer = Serializer(fmt)
+        # Подготовим заголовки для отправки в Kafka
+        kafka_headers = None
+        if headers:
+            kafka_headers = [(k, str(v).encode("utf-8")) for k, v in headers.items()]
 
-        envelope = {
-            "datagram_id": datagram_id,
-            "data": data,
-            "format": fmt.value,
-            "timestamp": datetime.utcnow().isoformat() + "Z",
-        }
-
-        payload = serializer.serialize(envelope)
-
-        loop = asyncio.get_running_loop()
-
-        def _send() -> None:
-            assert self._producer is not None
-            fut = self._producer.send(topic, value=payload, key=key)
-            # Можно повесить callback при желании
-            try:
-                fut.get(timeout=10)
-            except Exception as e:
-                self.logger.error(f"Error sending to Kafka: {e}", exc_info=True)
-                raise
-
-        await loop.run_in_executor(None, _send)
+        await self._producer.send_and_wait(
+            topic,
+            value=data,  # Передаем данные напрямую, сериализация произойдет через value_serializer
+            key=key,
+            headers=kafka_headers
+        )
 
     async def batch_publish(
         self,
         topic: str,
-        messages: List[tuple],  # (datagram_id, data, key, format_type?)
-        default_format: Optional[SerializationFormat] = None,
+        messages: List[
+            tuple
+        ],  # (datagram_id, data_dict, key, headers) или (data_dict, key, headers) или (data_dict, key)
+        default_format: Optional[str] = None,
         **_: Any,
     ) -> None:
         """
-        Батч-отправка. format_type можно прокинуть в каждом сообщении, если нужно.
+        Батч-отправка JSON-сообщений.
         """
         if self._producer is None:
             raise RuntimeError("Kafka producer not initialized")
 
-        loop = asyncio.get_running_loop()
-
-        def _send_batch() -> None:
-            for item in messages:
-                if len(item) == 4:
-                    datagram_id, data, key, fmt = item
-                    fmt = fmt or default_format or self.default_format
-                else:
+        for item in messages:
+            if len(item) == 4:
+                datagram_id, data, key, headers = item
+            elif len(item) == 3:
+                if isinstance(item[2], dict):  # headers
+                    data, key, headers = item
+                    datagram_id = None
+                else:  # (datagram_id, data, key)
                     datagram_id, data, key = item
-                    fmt = default_format or self.default_format
+                    headers = None
+            elif len(item) == 2:
+                data, key = item
+                datagram_id = None
+                headers = None
+            else:
+                raise ValueError(
+                    "Each message tuple must be (data, key), (data, key, headers), (datagram_id, data, key), or (datagram_id, data, key, headers)"
+                )
 
-                serializer = Serializer(fmt)
-                envelope = {
-                    "datagram_id": datagram_id,
-                    "data": data,
-                    "format": fmt.value,
-                    "timestamp": datetime.utcnow().isoformat() + "Z",
-                }
-                payload = serializer.serialize(envelope)
+            # Подготовим заголовки для отправки в Kafka
+            kafka_headers = None
+            if headers:
+                kafka_headers = [(k, str(v).encode("utf-8")) for k, v in headers.items()]
 
-                assert self._producer is not None
-                fut = self._producer.send(topic, value=payload, key=key)
-                fut.get(timeout=10)
-            self._producer.flush()
-
-        await loop.run_in_executor(None, _send_batch)
+            await self._producer.send_and_wait(
+                topic,
+                value=data,  # Передаем данные напрямую, сериализация произойдет через value_serializer
+                key=key,
+                headers=kafka_headers
+            )
 
     # ----------------- Подписка / Consumer -----------------
 
@@ -227,13 +152,13 @@ class KafkaConnector(QueueConnector):
         self,
         topics: List[str],
         group_id: str,
-        format_type: Optional[SerializationFormat] = None,
+        format_type: Optional[str] = None,
         auto_offset_reset: str = "earliest",
         **_: Any,
     ) -> None:
         """
-        Запустить consumer в отдельном потоке.
-        Сообщения будут приходить в self._message_queue.
+        Запустить асинхронный consumer.
+        Сообщения будут приходить в self._message_queue как Dict.
         """
         if self._consumer_running:
             raise RuntimeError("Consumer already running")
@@ -241,74 +166,157 @@ class KafkaConnector(QueueConnector):
         self._subscribed_topics = topics
         self._group_id = group_id
 
-        fmt = format_type or self.default_format
-        serializer = Serializer(fmt)
+        self._consumer = AIOKafkaConsumer(
+            bootstrap_servers=self.bootstrap_servers,
+            group_id=group_id,
+            auto_offset_reset=auto_offset_reset,
+            enable_auto_commit=False,  # Отключаем авто-подтверждение
+            value_deserializer=lambda v: json.loads(v.decode("utf-8"))
+            if v is not None
+            else None,
+            key_deserializer=lambda k: k.decode("utf-8") if k is not None else None,
+        )
 
-        def _consumer_loop() -> None:
-            self.logger.info(f"Kafka consumer thread started: topics={topics}, group={group_id}")
-            consumer = KafkaConsumer(
-                *topics,
-                bootstrap_servers=self.bootstrap_servers,
-                group_id=group_id,
-                auto_offset_reset=auto_offset_reset,
-                enable_auto_commit=True,
-                value_deserializer=lambda v: v,  # bytes
-                key_deserializer=lambda k: k.decode("utf-8") if k is not None else None,
-            )
-            self._consumer = consumer
+        # Подписываемся на топики до старта consumer
+        self._consumer.subscribe(topics=topics)
 
-            try:
-                while not self._consumer_stop_event.is_set():
-                    records = consumer.poll(timeout_ms=int(self.consumer_poll_timeout * 1000))
-                    for tp, batch in records.items():
-                        for msg in batch:
-                            try:
-                                env_dict = serializer.deserialize(msg.value)
-                                envelope = DatagramEnvelope(
-                                    datagram_id=env_dict.get("datagram_id", ""),
-                                    data=env_dict.get("data", {}),
-                                    format=env_dict.get("format", fmt.value),
-                                    timestamp=env_dict.get("timestamp", ""),
-                                    key=msg.key,
-                                    partition=msg.partition,
-                                    offset=msg.offset,
-                                )
-                                asyncio.run_coroutine_threadsafe(
-                                    self._message_queue.put(envelope),
-                                    self._loop,  # ← тут
-                                )
-                            except Exception as e:
-                                self.logger.error(f"Error decoding message: {e}", exc_info=True)
-            finally:
-                consumer.close()
+        await self._consumer.start()
 
-        # Поднимаем поток
-        self._consumer_stop_event.clear()
         self._consumer_running = True
-        self._consumer_thread = Thread(target=_consumer_loop, daemon=True)
-        self._consumer_thread.start()
 
-    async def consume(self) -> DatagramEnvelope:
+        # Запускаем внутренний цикл обработки сообщений
+        asyncio.create_task(self._consumer_loop())
+
+    async def _consumer_loop(self) -> None:
+        """Внутренний асинхронный цикл получения сообщений"""
+        self.logger.info(
+            f"Kafka consumer started: topics={self._subscribed_topics}, group={self._group_id}"
+        )
+
+        try:
+            while self._consumer_running:
+                # Проверяем, что consumer действительно запущен и готов к работе
+                if not self._consumer or not self._consumer._client or not self._consumer._coordinator:
+                    self.logger.warning("Consumer is not properly initialized, skipping poll cycle")
+                    await asyncio.sleep(1)
+                    continue
+
+                # Получаем сообщения
+                msg_batch = await self._consumer.getmany(
+                    timeout_ms=int(self.consumer_poll_timeout * 1000),
+                    max_records=10  # Ограничиваем количество сообщений за раз
+                )
+
+                for tp, messages in msg_batch.items():
+                    for msg in messages:
+                        try:
+                            # msg.value теперь уже Dict[str, Any] благодаря value_deserializer
+                            raw_message_dict = msg.value
+
+                            # Извлекаем заголовки из сообщения Kafka
+                            headers_dict = {}
+                            if msg.headers:
+                                for header_key, header_value in msg.headers:
+                                    # Декодируем байты в строку, если нужно
+                                    if isinstance(header_value, bytes):
+                                        try:
+                                            headers_dict[header_key] = (
+                                                header_value.decode("utf-8")
+                                            )
+                                        except UnicodeDecodeError:
+                                            # Если не удается декодировать, сохраняем как base64
+                                            import base64
+
+                                            headers_dict[header_key] = (
+                                                base64.b64encode(
+                                                    header_value
+                                                ).decode("utf-8")
+                                            )
+                                    else:
+                                        headers_dict[header_key] = header_value
+
+                            # Добавляем метаданные Kafka
+                            message_with_meta = {
+                                "payload": raw_message_dict,
+                                "kafka_key": msg.key,
+                                "kafka_topic": tp.topic,  # Добавляем информацию о топике
+                                "kafka_partition": msg.partition,
+                                "kafka_offset": msg.offset,
+                                "kafka_headers": headers_dict,  # Добавляем заголовки
+                                "kafka_timestamp": msg.timestamp,
+                                "kafka_timestamp_type": msg.timestamp_type,
+                            }
+
+                            await self._message_queue.put(message_with_meta)
+                        except Exception as e:
+                            self.logger.error(
+                                f"Error processing message: {e}", exc_info=True
+                            )
+        except Exception as e:
+            self.logger.error(f"Error in consumer loop: {e}", exc_info=True)
+        finally:
+            if self._consumer:
+                try:
+                    await self._consumer.stop()
+                except Exception as e:
+                    self.logger.error(f"Error stopping consumer: {e}")
+
+    async def consume(self) -> Dict[str, Any]:
         """
         Асинхронно получить следующее сообщение (из очереди).
         Блокирует до появления сообщения.
+        Возвращает словарь с 'payload' и метаданными Kafka.
         """
-        envelope = await self._message_queue.get()
-        return envelope
+        message_with_meta = await self._message_queue.get()
+        self.logger.debug(f"Got kafka message: \n{message_with_meta}")
+        return message_with_meta
+
+    async def commit(self, message: Dict[str, Any], **kwargs: Any) -> None:
+        """
+        Commit specific message to Kafka.
+        message - сообщение, которое нужно подтвердить
+        """
+        from aiokafka.structs import TopicPartition
+
+        if not self._consumer:
+            raise RuntimeError("Kafka consumer not initialized")
+
+        # Получаем partition и offset из сообщения
+        partition = message.get("kafka_partition")
+        offset = message.get("kafka_offset")
+        topic = message.get("kafka_topic")  # Получаем топик из сообщения
+
+        if partition is None or offset is None:
+            self.logger.warning("Cannot commit message: missing partition or offset")
+            return
+
+        if not topic:
+            # Если топик не указан в сообщении, используем первый из подписанных
+            topic = self._subscribed_topics[0] if self._subscribed_topics else None
+            if not topic:
+                self.logger.warning("Cannot commit message: no subscribed topics")
+                return
+
+        # Создаем TopicPartition объект
+        tp = TopicPartition(topic, partition)
+
+        # Подтверждаем конкретный offset
+        await self._consumer.commit({tp: offset + 1})
+        self.logger.debug(
+            f"Committed offset {offset + 1} for topic {topic}, partition {partition}"
+        )
 
     async def health_check(self) -> bool:
         """
         Простейшая проверка доступности брокера:
         - продюсер должен быть инициализирован
-        - пытаемся получить метаданные по топикам (если уже есть подписка)
+        - пытаемся отправить ping
         """
         try:
             if not self._producer:
                 return False
-
-            # Лёгкая проверка: запрос метаданных
-            future = self._producer.send("health-check-topic", b"ping")
-            future.get(timeout=5)
+            # Лёгкая проверка: отправляем пустое сообщение
+            await self._producer.send_and_wait("health-check-topic", "ping")
             self._set_health(True)
             return True
         except Exception as exc:

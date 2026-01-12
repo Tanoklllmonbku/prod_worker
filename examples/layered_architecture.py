@@ -8,8 +8,10 @@ Demonstrates:
 4. Container - Manages interfaces with observer pattern ✅
 5. Factories - Create everything from config ✅
 """
+
 import asyncio
-from core.base_class import ServiceContainer
+
+from core.service_container import ServiceContainer
 
 
 async def main():
@@ -106,11 +108,10 @@ async def strategy_pattern_example():
     Example: Strategy pattern in action
     Shows how interfaces allow switching between different worker implementations
     """
-    from core.base_class import ServiceContainer
-    from interface.llm import LLMInterface
-    from connectors.gigachat_connector import GigaChatConnector
-    from core.base_class.factories import create_llm_connector
-    from core.config import get_config
+    from core.base_class.connector_factories import create_llm_connector
+
+    from config.config import get_config
+    from core.service_container import ServiceContainer
 
     config = get_config()
     container = await ServiceContainer.from_config(auto_initialize=False)
@@ -133,4 +134,3 @@ async def strategy_pattern_example():
 
 if __name__ == "__main__":
     asyncio.run(main())
-

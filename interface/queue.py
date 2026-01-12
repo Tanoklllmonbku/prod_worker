@@ -4,27 +4,29 @@ Queue Interface - Strategy pattern implementation for message queue connectors.
 Allows switching between different queue providers (Kafka, RabbitMQ, Redis, etc.)
 while maintaining the same API.
 """
-from typing import Any, Dict, List
 
-from core.base_class.connectors import QueueConnector
-from core.base_class.observer import EventPublisher
-from interface.base import BaseInterface
+import uuid
+from typing import Any, Dict, List, Optional
+
+from core.base_class.base_interface import BaseInterface
+from core.base_class.protocols import IQueueConnector
+from utils.observer import EventPublisher
 
 
 class QueueInterface(BaseInterface):
     """
     High-level interface for message queue operations.
-    
+
     Implements Strategy pattern - can switch between different queue providers
     (Kafka, RabbitMQ, Redis, etc.) transparently.
     """
 
     def __init__(
         self,
-        worker: QueueConnector,
+        worker: IQueueConnector,
         name: Optional[str] = None,
         event_publisher: Optional[EventPublisher] = None,
-    ):
+    ) -> None:
         """
         Initialize Queue interface.
 
@@ -36,35 +38,51 @@ class QueueInterface(BaseInterface):
         super().__init__(worker, name, event_publisher)
 
     @property
-    def worker(self) -> QueueConnector:
+    def worker(self) -> IQueueConnector:
         """Get underlying queue connector"""
         return self._worker
 
     async def publish(
         self,
         topic: str,
-        datagram_id: str,
-        data: Dict[str, Any],
+        key: Optional[str] = None,
+        headers: Optional[Dict[str, Any]] = None,
+        data: Optional[Dict[str, Any]] = None,
+        timeout: Optional[float] = None,
         **kwargs: Any,
     ) -> None:
         """
-        Publish message to queue.
-
-        Args:
-            topic: Topic/queue name
-            datagram_id: Unique message ID
-            data: Message data
-            **kwargs: Additional arguments
+        Publish message to queue (совместимо с documents_service).
         """
+        # Подготовим сообщение для worker
+        message_data = data or {}
+
+        # Используем key как datagram_id
+        datagram_id = key or str(uuid.uuid4())
+
         await self._execute_with_tracking(
             "publish",
             self._worker.publish,
             topic,
             datagram_id,
-            data,
+            message_data,
+            key=key,
+            headers=headers,
             **kwargs,
-            metadata={"topic": topic, "datagram_id": datagram_id},
+            metadata={"topic": topic, "key": key},
         )
+
+    async def commit(self, message: Dict[str, Any]) -> None:
+        """Commit consumed message"""
+        if hasattr(self._worker, "commit"):
+            await self._execute_with_tracking(
+                "commit",
+                self._worker.commit,
+                message,
+                metadata={
+                    "consumer_group": getattr(self._worker, "group_id", "unknown")
+                },
+            )
 
     async def batch_publish(
         self,

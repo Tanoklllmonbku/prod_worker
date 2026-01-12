@@ -8,6 +8,7 @@
 - ✅ **Keyring** - безопасное хранение токенов/паролей
 - ✅ **Типизированные конфиги** - dataclass конфиги для каждого типа коннектора
 - ✅ **Обратная совместимость** - legacy параметры продолжают работать
+- ✅ **Docker env vars** - поддержка переменных окружения в контейнерах
 
 ## Структура
 
@@ -31,33 +32,30 @@
 
 ### 2. Классы конфигурации
 
-Все конфиги определены в `core/connector_configs.py`:
+Все конфиги определены в `config/config.py`:
 
-- `CommonConnectorConfig` - общие параметры для всех коннекторов
-- `LLMConnectorConfig` - конфиг для LLM коннекторов
-- `DBConnectorConfig` - конфиг для БД коннекторов
-- `QueueConnectorConfig` - конфиг для очередей
-- `StorageConnectorConfig` - конфиг для хранилищ
-- `ConnectorsConfig` - контейнер для всех конфигов
+- `Settings` - основной класс конфигурации с Pydantic
+- Поддерживает валидацию и типизацию
+- Автоматически читает из .env файла
 
 ### 3. Загрузка конфигурации
 
 ```python
-from core.config import get_config
-from core.connector_configs import load_connectors_config
+from config.config import get_settings
 
 # Загрузка полного конфига
-config = get_config()
+config = get_settings()
 
-# Доступ к конфигам коннекторов
-if config.connectors_config:
-    llm_config = config.connectors_config.llm
-    db_config = config.connectors_config.db
+# Доступ к различным частям конфига
+llm_config = config.gigachat
+db_config = config.postgres
+queue_config = config.kafka
+storage_config = config.minio
 ```
 
 ## Общие параметры
 
-Все коннекторы поддерживают общие параметры из `CommonConnectorConfig`:
+Все коннекторы поддерживают общие параметры из `Settings`:
 
 ```json
 {
@@ -75,86 +73,141 @@ if config.connectors_config:
 
 ```json
 {
-  "llm": {
-    "model": "GigaChat-Max",
-    "scope": "GIGACHAT_API_B2B",
-    "verify_ssl": false,
-    "timeout": 30.0,
-    "max_connections": 100,
-    "retry_count": 3,
-    "retry_delay": 1.0
-  }
+  "gigachat_access_token": "...",
+  "gigachat_model": "GigaChat-Max",
+  "gigachat_scope": "GIGACHAT_API_B2B",
+  "gigachat_verify_ssl": false,
+  "gigachat_request_timeout_seconds": 30,
+  "gigachat_max_connections": 100
 }
 ```
 
-**Важно:** `auth_key` должен быть в keyring:
+**Важно:** `gigachat_access_token` должен быть в переменной окружения или keyring:
 
 ```bash
-keyring set_password myapp gigachat_token YOUR_TOKEN
+# В .env файле
+GIGACHAT_ACCESS_TOKEN=your_token_here
 ```
 
 ### DB Connector
 
 ```json
 {
-  "db": {
-    "host": "localhost",
-    "port": 5432,
-    "database": "gigachat_db",
-    "user": "postgres",
-    "password": "password",
-    "min_pool_size": 1,
-    "max_pool_size": 20,
-    "timeout": 30.0
-  }
+  "postgres_host": "localhost",
+  "postgres_port": 5432,
+  "postgres_database": "gigachat_db",
+  "postgres_user": "postgres",
+  "postgres_password": "password",
+  "postgres_pool_min_size": 1,
+  "postgres_pool_max_size": 20
 }
+```
+
+**Для Docker:** используйте имя сервиса контейнера:
+
+```bash
+# В Docker Compose
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
 ```
 
 ### Queue Connector
 
 ```json
 {
-  "queue": {
-    "bootstrap_servers": ["localhost:9092", "localhost:9093"],
-    "default_format": "json",
-    "consumer_poll_timeout": 1.0,
-    "auto_offset_reset": "earliest",
-    "timeout": 30.0
-  }
+  "kafka_bootstrap_servers": "localhost:9092",
+  "kafka_group_id": "llm-worker-group",
+  "kafka_auto_offset_reset": "earliest",
+  "kafka_consumer_poll_timeout": 1.0
 }
+```
+
+**Для Docker:** используйте имя сервиса контейнера:
+
+```bash
+# В Docker Compose
+KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 ```
 
 ### Storage Connector
 
 ```json
 {
-  "storage": {
-    "endpoint": "localhost:9000",
-    "access_key": "minioadmin",
-    "secret_key": "minioadmin",
-    "bucket": "gigachat-files",
-    "use_ssl": false,
-    "timeout": 30.0
-  }
+  "minio_endpoint": "localhost:9000",
+  "minio_access_key": "minioadmin",
+  "minio_secret_key": "minioadmin",
+  "minio_bucket_name": "gigachat-files",
+  "minio_use_ssl": false
 }
+```
+
+**Для Docker:** используйте имя сервиса контейнера:
+
+```bash
+# В Docker Compose
+MINIO_ENDPOINT=minio:9000
+```
+
+## Использование в Docker
+
+### 1. .env файл
+
+Создайте `.env` файл с конфигурацией:
+
+```bash
+# GigaChat
+GIGACHAT_ACCESS_TOKEN=your_token_here
+GIGACHAT_MODEL=GigaChat-Max
+
+# Kafka (имена сервисов Docker)
+KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+KAFKA_GROUP_ID=llm-worker-group
+
+# PostgreSQL (имя сервиса Docker)
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DATABASE=worker_db
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+
+# MinIO (имя сервиса Docker)
+MINIO_ENDPOINT=minio:9000
+MINIO_BUCKET_NAME=documents
+```
+
+### 2. Docker Compose override
+
+Для production можно использовать `docker-compose.override.yml`:
+
+```yaml
+version: '3.8'
+
+services:
+  worker:
+    environment:
+      - GIGACHAT_ACCESS_TOKEN=${GIGACHAT_ACCESS_TOKEN}
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - POSTGRES_HOST=postgres:5432
+      - MINIO_ENDPOINT=minio:9000
+    env_file:
+      - .env
 ```
 
 ## Использование в фабриках
 
-Фабрики автоматически используют конфиги из `config.connectors_config`:
+Фабрики автоматически используют конфиги из `get_settings()`:
 
 ```python
-# Автоматически использует config.connectors_config.llm
+from config.config import get_settings
+
+config = get_settings()
+
+# Автоматически использует переменные окружения
 llm_connector = create_llm_connector(config)
 
-# Или можно передать конфиг явно
-from core.connector_configs import LLMConnectorConfig
-
-custom_config = LLMConnectorConfig(
-    model="GigaChat-Pro",
-    timeout=60.0,
-)
-llm_connector = create_llm_connector(config, connector_config=custom_config)
+# Или через ServiceContainer
+container = await ServiceContainer.from_config(config=config)
+llm = container.get_llm()
 ```
 
 ## Переопределение через переменные окружения
@@ -166,76 +219,82 @@ llm_connector = create_llm_connector(config, connector_config=custom_config)
 export LOG_LEVEL=DEBUG
 export LOG_ENABLE_DEBUG=true
 
-# База данных
-export DB_HOST=production-db.example.com
-export DB_PORT=5432
-export DB_PASSWORD=secret_password
+# База данных (в Docker используйте имя сервиса)
+export POSTGRES_HOST=postgres
+export POSTGRES_PORT=5432
+export POSTGRES_PASSWORD=secret_password
 
-# И т.д.
+# Kafka (в Docker используйте имя сервиса)
+export KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+
+# MinIO (в Docker используйте имя сервиса)
+export MINIO_ENDPOINT=minio:9000
 ```
 
 ## Безопасность
 
 ### ✅ DO (Делать)
 
-- Хранить токены в keyring
-- Использовать переменные окружения для паролей
-- Коммитить только `.example` файлы
-- Использовать разные конфиги для dev/prod
+- Хранить токены в переменных окружения
+- Использовать .env файлы (не коммитить их!)
+- Использовать разные .env файлы для dev/prod
+- В Docker использовать secrets для production
 
 ### ❌ DON'T (Не делать)
 
 - Хранить пароли/токены в JSON файлах
-- Коммитить `config.json` с секретами в git
+- Коммитить .env файлы в git
 - Использовать одинаковые пароли в dev/prod
 
 ## Примеры
 
-### Создание конфига программно
+### Загрузка конфига в Docker
 
 ```python
-from core.connector_configs import (
-    ConnectorsConfig,
-    LLMConnectorConfig,
-    DBConnectorConfig,
-)
+from config.config import get_settings
 
-# Создание конфига
-connectors_config = ConnectorsConfig(
-    llm=LLMConnectorConfig(
-        model="GigaChat-Max",
-        timeout=30.0,
-    ),
-    db=DBConnectorConfig(
-        host="localhost",
-        port=5432,
-        database="mydb",
-    ),
-)
+# Автоматически читает из .env и переменных окружения
+config = get_settings()
 
-# Использование
-config.connectors_config = connectors_config
-llm = create_llm_connector(config)
+# В Docker контейнере:
+# - Kafka будет доступна как 'kafka:9092'
+# - PostgreSQL как 'postgres:5432'
+# - MinIO как 'minio:9000'
 ```
 
-### Загрузка из JSON
+### Проверка конфига
 
 ```python
-from core.connector_configs import ConnectorsConfig
+from config.config import print_settings
 
-# Загрузка из файла
-config = ConnectorsConfig.from_json_file("config/connectors.json")
-
-# Или через Config
-from core.config import get_config
-config = get_config()  # Автоматически загружает из config/config.json
+# Вывести текущие настройки (полезно для дебага в Docker)
+print_settings()
 ```
 
 ## Приоритет конфигурации
 
 1. **Переменные окружения** (высший приоритет)
-2. **JSON файл** (`config/config.json`)
+2. **.env файл** (если указан)
 3. **Значения по умолчанию** (lowest priority)
+
+## Docker специфичные особенности
+
+### Сетевые адреса
+
+В Docker Compose сервисы доступны по именам:
+
+- `kafka:9092` вместо `localhost:9092`
+- `postgres:5432` вместо `localhost:5432`
+- `minio:9000` вместо `localhost:9000`
+
+### Health checks
+
+Конфигурация поддерживает health checks для Docker:
+
+```bash
+# Проверить готовность сервиса
+curl http://worker:8000/health  # когда будет добавлен endpoint
+```
 
 ## Миграция с legacy конфигов
 
@@ -243,12 +302,12 @@ config = get_config()  # Автоматически загружает из conf
 
 ```python
 # Старый способ (все еще работает)
-config = get_config()
+config = get_settings()
 llm = create_llm_connector(config)  # Использует config.gigachat_model, etc.
 
-# Новый способ (рекомендуется)
-# Просто создайте config/config.json с нужными параметрами
-config = get_config()
-llm = create_llm_connector(config)  # Автоматически использует config.connectors_config.llm
+# Новый способ (рекомендуется для Docker)
+# Просто убедитесь, что переменные окружения установлены
+config = get_settings()
+llm = create_llm_connector(config)  # Автоматически использует env vars
 ```
 

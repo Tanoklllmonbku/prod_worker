@@ -1,5 +1,5 @@
 import asyncpg
-from asyncpg import Connection, Pool
+from asyncpg import Pool
 import asyncio
 import io
 from typing import Optional, AsyncGenerator, List, Dict, Any
@@ -8,7 +8,7 @@ from threading import Lock
 from functools import partial
 import logging
 
-from core.base_class.connectors import DBConnector
+from core.base_class.base_connectors import DBConnector
 
 
 class PGConnector(DBConnector):
@@ -63,6 +63,7 @@ class PGConnector(DBConnector):
                 password=self.password,
                 min_size=self.min_pool_size,
                 max_size=self.max_pool_size,
+                ssl=False,
             )
             self.logger.info(
                 f"PostgreSQL pool initialized: {self.min_pool_size}-{self.max_pool_size} connections"
@@ -193,22 +194,20 @@ class PGConnector(DBConnector):
             self.logger.error(f"Error streaming data: {e}")
             raise
 
-    async def execute(self, query: str, *args) -> str:
-        """
-        Execute INSERT/UPDATE/DELETE query
-
-        Args:
-            query: SQL DML query
-            *args: Query parameters
-
-        Returns:
-            Command result (e.g., "UPDATE 5")
-        """
+    async def execute(self, query: str, *args, **kwargs) -> str:
+        """Execute INSERT/UPDATE/DELETE query (поддержка %s параметров)"""
         if not self._pool:
             raise RuntimeError("Connection pool not initialized")
 
         try:
             async with self._pool.acquire() as connection:
+                # asyncpg использует $1, $2... а не %s
+                # Преобразуем %s -> $1, $2... для совместимости
+                if '%' in query and args:
+                    import re
+                    param_count = len(args)
+                    query = re.sub(r'%s', lambda m: f'${m.start() // 2 + 1}', query)
+
                 result = await connection.execute(query, *args)
                 self.logger.info(f"Executed query: {result}")
                 return result

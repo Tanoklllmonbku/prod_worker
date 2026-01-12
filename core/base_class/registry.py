@@ -10,10 +10,10 @@ Supports:
 """
 from __future__ import annotations
 
-from typing import Any, Dict, TypeVar, Generic, Optional, List, Set
+from typing import Dict, TypeVar, Generic, Optional, List, Set
 from enum import Enum
 
-from .connectors import BaseConnector
+from .base_connectors import BaseConnector
 
 
 T = TypeVar("T", bound=BaseConnector)

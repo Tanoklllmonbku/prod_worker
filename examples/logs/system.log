@@ -1,0 +1,922 @@
+1.0.0 - Logger - _log - 2025-12-22 19:09:16,871 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 19:09:18,434 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 19:09:18,434 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 19:09:18,434 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1562.89ms)
+1.0.0 - Logger - _log - 2025-12-22 19:09:18,434 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 19:09:20,437 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.35ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:09:20,438 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:09:20,552 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839569CC05BEB8, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:09:20,553 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (114.51ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839569CC05BEB8, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:09:20,553 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839569CC05BEB8, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:09:20,659 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:09:20,659 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (106.58ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:09:20,660 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:10:34,001 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 19:10:35,383 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 19:10:35,384 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 19:10:35,384 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1382.77ms)
+1.0.0 - Logger - _log - 2025-12-22 19:10:35,384 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 19:10:37,386 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.21ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:10:37,386 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:10:37,393 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883957BB3E34E4B, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:10:37,393 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.55ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883957BB3E34E4B, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:10:37,393 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883957BB3E34E4B, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:10:37,454 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:10:37,454 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (60.52ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:10:37,454 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:13:48,709 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 19:13:50,023 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 19:13:50,024 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 19:13:50,024 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1314.82ms)
+1.0.0 - Logger - _log - 2025-12-22 19:13:50,024 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 19:13:52,027 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.52ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:13:52,027 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:13:52,034 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188395A9056C648D, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:13:52,034 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.75ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188395A9056C648D, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:13:52,034 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188395A9056C648D, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:13:52,096 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:13:52,096 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (61.80ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:13:52,097 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:15:13,741 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 19:15:14,875 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 19:15:14,875 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 19:15:14,875 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1133.45ms)
+1.0.0 - Logger - _log - 2025-12-22 19:15:14,875 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 19:15:16,878 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.12ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:15:16,878 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:15:16,884 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188395BCC6DF316B, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:15:16,885 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.38ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188395BCC6DF316B, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:15:16,885 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188395BCC6DF316B, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:15:16,947 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:15:16,948 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (62.72ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:15:16,948 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:15:18,826 - gigachatAPI - [0;32mINFO[0m - Chat completed: completion_tokens=10, files=0
+1.0.0 - Logger - _log - 2025-12-22 19:15:18,827 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::chat - OK (1878.78ms)
+1.0.0 - Logger - _log - 2025-12-22 19:16:43,891 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 19:16:44,962 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 19:16:44,962 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 19:16:44,962 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1071.23ms)
+1.0.0 - Logger - _log - 2025-12-22 19:16:44,963 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 19:16:46,965 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.04ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:16:46,965 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:16:46,972 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188395D1C07AF8BC, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:16:46,972 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.82ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188395D1C07AF8BC, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:16:46,972 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188395D1C07AF8BC, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:16:47,033 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:16:47,033 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (60.50ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:16:47,033 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:16:59,269 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 19:17:00,510 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 19:17:00,510 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 19:17:00,511 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1241.54ms)
+1.0.0 - Logger - _log - 2025-12-22 19:17:00,511 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 19:17:02,513 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.04ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:17:02,513 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:17:02,519 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188395D55F3B8F29, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:17:02,519 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.10ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188395D55F3B8F29, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:17:02,520 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188395D55F3B8F29, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:17:02,581 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:17:02,582 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (61.78ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:17:02,582 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:20:12,958 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 19:20:14,347 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 19:20:14,347 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 19:20:14,347 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1389.10ms)
+1.0.0 - Logger - _log - 2025-12-22 19:20:14,347 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 19:20:16,350 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.36ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:20:16,350 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:20:16,358 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883960280CDB9D3, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:20:16,358 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (7.28ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883960280CDB9D3, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:20:16,358 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883960280CDB9D3, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:20:16,419 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:20:16,419 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (61.26ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:20:16,420 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:28:03,993 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 19:28:05,340 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 19:28:05,341 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 19:28:05,341 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1347.23ms)
+1.0.0 - Logger - _log - 2025-12-22 19:28:05,341 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 19:28:07,344 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.20ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:28:07,344 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:28:07,350 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188396702A3E2652, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:28:07,350 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.36ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188396702A3E2652, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:28:07,351 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188396702A3E2652, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:28:07,411 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:28:07,412 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (60.83ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:28:07,412 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:29:50,122 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 19:29:51,502 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 19:29:51,502 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 19:29:51,503 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1379.71ms)
+1.0.0 - Logger - _log - 2025-12-22 19:29:51,503 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 19:29:53,505 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.08ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:29:53,505 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:29:53,512 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839688E1ECE7B4, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:29:53,512 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.30ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839688E1ECE7B4, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:29:53,512 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839688E1ECE7B4, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:29:53,574 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:29:53,574 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (62.21ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:29:53,575 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:29:55,220 - gigachatAPI - [0;32mINFO[0m - Chat completed: completion_tokens=10, files=0
+1.0.0 - Logger - _log - 2025-12-22 19:29:55,221 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::chat - OK (1645.71ms)
+1.0.0 - Logger - _log - 2025-12-22 19:29:55,471 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::health_check - OK (249.94ms)
+1.0.0 - Logger - _log - 2025-12-22 19:29:55,471 - gigachatAPI - [0;32mINFO[0m - [operation_completed] queue::health_check - OK (0.04ms)
+1.0.0 - Logger - _log - 2025-12-22 19:29:55,477 - gigachatAPI - [0;33mWARNING[0m - MinIO health check failed: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883968956F2D952, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:29:55,477 - gigachatAPI - [0;32mINFO[0m - [operation_completed] storage::health_check - OK (5.54ms)
+1.0.0 - Logger - _log - 2025-12-22 19:29:55,477 - gigachatAPI - [0;33mWARNING[0m - Health check failed: 'NoneType' object has no attribute 'acquire'
+1.0.0 - Logger - _log - 2025-12-22 19:29:55,477 - gigachatAPI - [0;32mINFO[0m - [operation_completed] db::health_check - OK (0.33ms)
+1.0.0 - Logger - _log - 2025-12-22 19:32:31,048 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 19:32:32,424 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 19:32:32,424 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 19:32:32,425 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1376.03ms)
+1.0.0 - Logger - _log - 2025-12-22 19:32:32,425 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 19:32:34,427 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2001.73ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:32:34,427 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 19:32:34,433 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188396AE5998CE63, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:32:34,434 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.54ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188396AE5998CE63, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:32:34,434 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188396AE5998CE63, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:32:34,495 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:32:34,496 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (61.70ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:32:34,496 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,144 - gigachatAPI - [0;32mINFO[0m - Chat completed: completion_tokens=10, files=0
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,145 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::chat - OK (1648.68ms)
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,394 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::health_check - OK (248.22ms)
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,394 - gigachatAPI - [0;32mINFO[0m - [operation_completed] queue::health_check - OK (0.04ms)
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,398 - gigachatAPI - [0;33mWARNING[0m - MinIO health check failed: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 188396AECEAF267F, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,398 - gigachatAPI - [0;32mINFO[0m - [operation_completed] storage::health_check - OK (3.76ms)
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,398 - gigachatAPI - [0;33mWARNING[0m - Health check failed: 'NoneType' object has no attribute 'acquire'
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,398 - gigachatAPI - [0;32mINFO[0m - [operation_completed] db::health_check - OK (0.17ms)
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,399 - gigachatAPI - [0;32mINFO[0m - GigaChat HTTP client closed
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,399 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::shutdown - OK (0.46ms)
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,399 - gigachatAPI - [0;32mINFO[0m - Shutdown interface: llm
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,399 - gigachatAPI - [0;32mINFO[0m - [operation_completed] queue::shutdown - OK (0.03ms)
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,399 - gigachatAPI - [0;32mINFO[0m - Shutdown interface: queue
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,399 - gigachatAPI - [0;32mINFO[0m - MinIO client closed
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,400 - gigachatAPI - [0;32mINFO[0m - [operation_completed] storage::shutdown - OK (0.12ms)
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,400 - gigachatAPI - [0;32mINFO[0m - Shutdown interface: storage
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,400 - gigachatAPI - [0;32mINFO[0m - [operation_completed] db::shutdown - OK (0.03ms)
+1.0.0 - Logger - _log - 2025-12-22 19:32:36,400 - gigachatAPI - [0;32mINFO[0m - Shutdown interface: db
+1.0.0 - Logger - _log - 2025-12-22 21:11:44,674 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 21:11:46,110 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 21:11:46,110 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 21:11:46,111 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1434.17ms)
+1.0.0 - Logger - _log - 2025-12-22 21:11:46,112 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 21:11:48,114 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.31ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:11:48,114 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:11:48,244 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C18908688ED, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:11:48,244 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (129.55ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C18908688ED, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:11:48,244 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C18908688ED, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:11:48,363 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:11:48,363 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (118.75ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:11:48,363 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:12:18,375 - gigachatAPI - [0;31mERROR[0m - Upload timeout after 30.0s
+1.0.0 - Logger - _log - 2025-12-22 21:12:18,376 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::upload_file - FAILED (30011.93ms) - Upload exceeded 30.0 seconds
+1.0.0 - Logger - _log - 2025-12-22 21:12:26,471 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 21:12:27,932 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 21:12:27,932 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 21:12:27,933 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1461.71ms)
+1.0.0 - Logger - _log - 2025-12-22 21:12:27,933 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 21:12:29,937 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2004.18ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:12:29,937 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:12:29,944 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C2249E89D3A, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:12:29,945 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.94ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C2249E89D3A, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:12:29,945 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C2249E89D3A, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:12:30,007 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:12:30,007 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (62.02ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:12:30,007 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:13:00,042 - gigachatAPI - [0;31mERROR[0m - Upload timeout after 30.0s
+1.0.0 - Logger - _log - 2025-12-22 21:13:00,043 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::upload_file - FAILED (30035.69ms) - Upload exceeded 30.0 seconds
+1.0.0 - Logger - _log - 2025-12-22 21:13:10,799 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 21:13:12,208 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 21:13:12,209 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 21:13:12,209 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1409.15ms)
+1.0.0 - Logger - _log - 2025-12-22 21:13:12,209 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 21:13:14,212 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.12ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:13:14,212 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:13:14,220 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C2C98D5CD58, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:13:14,220 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (7.97ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C2C98D5CD58, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:13:14,220 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C2C98D5CD58, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:13:14,284 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:13:14,284 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (63.89ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:13:14,284 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:13:17,063 - gigachatAPI - [0;32mINFO[0m - File uploaded successfully: b987012a-ebc8-4f46-8fcd-a888dd4ed64e
+1.0.0 - Logger - _log - 2025-12-22 21:13:17,063 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::upload_file - OK (2778.69ms)
+1.0.0 - Logger - _log - 2025-12-22 21:13:17,215 - gigachatAPI - [0;31mERROR[0m - Chat response status=400 body: {"status":400,"message":"Your request contains invalid JSON syntax."}
+
+1.0.0 - Logger - _log - 2025-12-22 21:13:17,215 - gigachatAPI - [0;31mERROR[0m - 400 Bad Request - Invalid JSON syntax detected
+1.0.0 - Logger - _log - 2025-12-22 21:13:17,215 - gigachatAPI - [0;31mERROR[0m - Payload was:
+{
+  "model": "GigaChat-Max",
+  "messages": [
+    {
+      "role": "user",
+      "content": "None",
+      "attachments": "b987012a-ebc8-4f46-8fcd-a888dd4ed64e"
+    }
+  ],
+  "temperature": 0.1,
+  "stream": false
+}
+1.0.0 - Logger - _log - 2025-12-22 21:13:17,215 - gigachatAPI - [0;31mERROR[0m - Error in chat: Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+Traceback (most recent call last):
+  File "/home/progger/gigachatAPI/connectors/gigachat_connector.py", line 477, in _chat_complete
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/progger/gigachatAPI/.venv/lib/python3.14t/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+1.0.0 - Logger - _log - 2025-12-22 21:13:17,218 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::chat - FAILED (154.77ms) - Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+1.0.0 - Logger - _log - 2025-12-22 21:14:44,790 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 21:14:45,781 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 21:14:45,781 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 21:14:45,782 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (991.82ms)
+1.0.0 - Logger - _log - 2025-12-22 21:14:45,782 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 21:14:47,785 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2003.25ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:14:47,786 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:14:47,793 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C42626146CE, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:14:47,793 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (7.64ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C42626146CE, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:14:47,794 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C42626146CE, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:14:47,854 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:14:47,855 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (60.98ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:14:47,855 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:15:17,861 - gigachatAPI - [0;31mERROR[0m - Upload timeout after 30.0s
+1.0.0 - Logger - _log - 2025-12-22 21:15:17,861 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::upload_file - FAILED (30005.64ms) - Upload exceeded 30.0 seconds
+1.0.0 - Logger - _log - 2025-12-22 21:15:27,939 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 21:15:28,996 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 21:15:28,996 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 21:15:28,996 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1057.04ms)
+1.0.0 - Logger - _log - 2025-12-22 21:15:28,996 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 21:15:30,999 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.38ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:15:30,999 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:15:31,005 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C4C71FF3373, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:15:31,005 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (5.93ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C4C71FF3373, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:15:31,005 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C4C71FF3373, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:15:31,067 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:15:31,068 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (62.19ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:15:31,068 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:16:01,082 - gigachatAPI - [0;31mERROR[0m - Upload timeout after 30.0s
+1.0.0 - Logger - _log - 2025-12-22 21:16:01,083 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::upload_file - FAILED (30014.68ms) - Upload exceeded 30.0 seconds
+1.0.0 - Logger - _log - 2025-12-22 21:16:23,347 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 21:16:23,439 - gigachatAPI - [0;31mERROR[0m - Failed to refresh access token: [Errno -3] Temporary failure in name resolution
+1.0.0 - Logger - _log - 2025-12-22 21:16:23,440 - gigachatAPI - [0;31mERROR[0m - Failed to initialize GigaChat: [Errno -3] Temporary failure in name resolution
+1.0.0 - Logger - _log - 2025-12-22 21:16:23,440 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::initialize - FAILED (92.17ms) - [Errno -3] Temporary failure in name resolution
+1.0.0 - Logger - _log - 2025-12-22 21:16:23,440 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface llm: [Errno -3] Temporary failure in name resolution
+1.0.0 - Logger - _log - 2025-12-22 21:16:25,442 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2001.97ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:16:25,443 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:16:25,448 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C591F163B4F, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:16:25,449 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (5.83ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C591F163B4F, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:16:25,449 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C591F163B4F, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:16:25,511 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:16:25,512 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (62.62ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:16:25,512 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:16:25,512 - gigachatAPI - [0;31mERROR[0m - Error uploading file: No access token available
+Traceback (most recent call last):
+  File "/home/progger/gigachatAPI/connectors/gigachat_connector.py", line 286, in upload_file
+    await self._ensure_valid_token()
+  File "/home/progger/gigachatAPI/connectors/gigachat_connector.py", line 249, in _ensure_valid_token
+    raise ValueError("No access token available")
+ValueError: No access token available
+1.0.0 - Logger - _log - 2025-12-22 21:16:25,513 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::upload_file - FAILED (1.26ms) - No access token available
+1.0.0 - Logger - _log - 2025-12-22 21:16:36,227 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 21:16:36,643 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 21:16:36,643 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 21:16:36,643 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (415.23ms)
+1.0.0 - Logger - _log - 2025-12-22 21:16:36,643 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 21:16:38,646 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.33ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:16:38,646 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:16:38,654 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C5C3214168E, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:16:38,654 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (7.40ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C5C3214168E, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:16:38,654 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C5C3214168E, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:16:38,719 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:16:38,719 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (65.39ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:16:38,720 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:16:40,557 - gigachatAPI - [0;32mINFO[0m - File uploaded successfully: 63fedf55-41f8-49a7-b8b9-0025c349b3b3
+1.0.0 - Logger - _log - 2025-12-22 21:16:40,557 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::upload_file - OK (1837.11ms)
+1.0.0 - Logger - _log - 2025-12-22 21:17:12,003 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 21:17:12,381 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 21:17:12,381 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 21:17:12,382 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (377.81ms)
+1.0.0 - Logger - _log - 2025-12-22 21:17:12,382 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 21:17:14,384 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.38ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:17:14,385 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:17:14,392 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C648440F143, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:17:14,392 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (7.26ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C648440F143, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:17:14,392 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C648440F143, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:17:14,454 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:17:14,454 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (62.07ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:17:14,455 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:17:31,148 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 21:17:31,534 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 21:17:31,535 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 21:17:31,535 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (386.68ms)
+1.0.0 - Logger - _log - 2025-12-22 21:17:31,535 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 21:17:33,537 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.01ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:17:33,537 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:17:33,543 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C68F9D61806, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:17:33,544 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.09ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C68F9D61806, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:17:33,544 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C68F9D61806, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:17:33,605 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:17:33,606 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (61.39ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:17:33,606 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:18:03,637 - gigachatAPI - [0;31mERROR[0m - Upload timeout after 30.0s
+1.0.0 - Logger - _log - 2025-12-22 21:18:03,638 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::upload_file - FAILED (30031.75ms) - Upload exceeded 30.0 seconds
+1.0.0 - Logger - _log - 2025-12-22 21:18:08,329 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 21:18:08,686 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 21:18:08,686 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 21:18:08,686 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (357.23ms)
+1.0.0 - Logger - _log - 2025-12-22 21:18:08,686 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 21:18:10,689 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.29ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:18:10,689 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:18:10,695 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C71A043F195, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:18:10,695 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (5.82ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C71A043F195, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:18:10,695 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C71A043F195, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:18:10,754 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:18:10,754 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (58.63ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:18:10,754 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:18:23,681 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 21:18:24,055 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 21:18:24,055 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 21:18:24,055 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (373.45ms)
+1.0.0 - Logger - _log - 2025-12-22 21:18:24,055 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 21:18:26,058 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.60ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:18:26,058 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:18:26,064 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C753456A150, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:18:26,064 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (5.87ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C753456A150, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:18:26,064 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C753456A150, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:18:26,128 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:18:26,128 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (63.28ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:18:26,128 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:18:58,748 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-22 21:18:59,189 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-22 21:18:59,190 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-22 21:18:59,190 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (441.36ms)
+1.0.0 - Logger - _log - 2025-12-22 21:18:59,190 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-22 21:19:01,196 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2005.75ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:19:01,196 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-22 21:19:01,204 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C7D62D00C9A, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:19:01,204 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (7.38ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C7D62D00C9A, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:19:01,204 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 18839C7D62D00C9A, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-22 21:19:01,286 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:19:01,287 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (82.22ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:19:01,287 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-22 21:19:03,235 - gigachatAPI - [0;32mINFO[0m - File uploaded successfully: e209bdbc-ace3-4ec2-a8ea-703d133ee642
+1.0.0 - Logger - _log - 2025-12-22 21:19:03,235 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::upload_file - OK (1947.93ms)
+1.0.0 - Logger - _log - 2025-12-22 21:19:03,334 - gigachatAPI - [0;31mERROR[0m - Chat response status=400 body: {"status":400,"message":"Your request contains invalid JSON syntax."}
+
+1.0.0 - Logger - _log - 2025-12-22 21:19:03,335 - gigachatAPI - [0;31mERROR[0m - 400 Bad Request - Invalid JSON syntax detected
+1.0.0 - Logger - _log - 2025-12-22 21:19:03,335 - gigachatAPI - [0;31mERROR[0m - Payload was:
+{
+  "model": "GigaChat-Max",
+  "messages": [
+    {
+      "role": "user",
+      "content": null,
+      "attachments": "e209bdbc-ace3-4ec2-a8ea-703d133ee642"
+    }
+  ],
+  "temperature": 0.1,
+  "stream": false
+}
+1.0.0 - Logger - _log - 2025-12-22 21:19:03,335 - gigachatAPI - [0;31mERROR[0m - Error in chat: Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+Traceback (most recent call last):
+  File "/home/progger/gigachatAPI/connectors/gigachat_connector.py", line 477, in _chat_complete
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/progger/gigachatAPI/.venv/lib/python3.14t/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+1.0.0 - Logger - _log - 2025-12-22 21:19:03,337 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::chat - FAILED (101.14ms) - Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+1.0.0 - Logger - _log - 2025-12-23 12:00:02,730 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:00:03,887 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 12:00:03,887 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 12:00:03,888 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1156.25ms)
+1.0.0 - Logger - _log - 2025-12-23 12:00:03,888 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 12:00:05,891 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.42ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:00:05,891 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:00:05,981 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CC91EA574E95, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:00:05,981 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (89.88ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CC91EA574E95, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:00:05,981 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CC91EA574E95, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:00:06,091 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:00:06,091 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (110.02ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:00:06,092 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:00:08,407 - gigachatAPI - [0;32mINFO[0m - File uploaded successfully: 8437d030-eef6-4003-9aa0-bd92c951a527
+1.0.0 - Logger - _log - 2025-12-23 12:00:08,408 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::upload_file - OK (2315.93ms)
+1.0.0 - Logger - _log - 2025-12-23 12:00:08,584 - gigachatAPI - [0;31mERROR[0m - Chat response status=400 body: {"status":400,"message":"Your request contains invalid JSON syntax."}
+
+1.0.0 - Logger - _log - 2025-12-23 12:00:08,584 - gigachatAPI - [0;31mERROR[0m - 400 Bad Request - Invalid JSON syntax detected
+1.0.0 - Logger - _log - 2025-12-23 12:00:08,584 - gigachatAPI - [0;31mERROR[0m - Payload was:
+{
+  "model": "GigaChat-Max",
+  "messages": [
+    {
+      "role": "user",
+      "content": null,
+      "attachments": "8437d030-eef6-4003-9aa0-bd92c951a527"
+    }
+  ],
+  "temperature": 0.1,
+  "stream": false
+}
+1.0.0 - Logger - _log - 2025-12-23 12:00:08,584 - gigachatAPI - [0;31mERROR[0m - Error in chat: Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+Traceback (most recent call last):
+  File "/home/progger/gigachatAPI/connectors/gigachat_connector.py", line 477, in _chat_complete
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/progger/gigachatAPI/.venv/lib/python3.14t/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+1.0.0 - Logger - _log - 2025-12-23 12:00:08,588 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::chat - FAILED (179.58ms) - Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+1.0.0 - Logger - _log - 2025-12-23 12:04:25,246 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:04:26,250 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 12:04:26,250 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 12:04:26,251 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1004.54ms)
+1.0.0 - Logger - _log - 2025-12-23 12:04:26,251 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 12:04:28,255 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2003.93ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:04:28,255 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:04:28,265 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CCCEFE560054, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:04:28,265 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (9.83ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CCCEFE560054, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:04:28,265 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CCCEFE560054, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:04:28,344 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:04:28,345 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (79.13ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:04:28,345 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:05:10,481 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:05:11,459 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 12:05:11,459 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 12:05:11,459 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (977.96ms)
+1.0.0 - Logger - _log - 2025-12-23 12:05:11,459 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 12:05:13,462 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.27ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:05:13,462 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:05:13,470 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CCD984D58715, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:05:13,470 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (7.48ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CCD984D58715, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:05:13,470 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CCD984D58715, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:05:13,532 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:05:13,532 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (62.24ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:05:13,533 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:05:29,380 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:05:30,348 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 12:05:30,348 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 12:05:30,348 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (968.17ms)
+1.0.0 - Logger - _log - 2025-12-23 12:05:30,348 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 12:05:32,351 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.16ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:05:32,351 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:05:32,357 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CCDDEAA2405A, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:05:32,357 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (5.86ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CCDDEAA2405A, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:05:32,357 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CCDDEAA2405A, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:05:32,420 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:05:32,420 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (62.97ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:05:32,421 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:06:02,430 - gigachatAPI - [0;31mERROR[0m - Upload timeout after 30.0s
+1.0.0 - Logger - _log - 2025-12-23 12:06:02,430 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::upload_file - FAILED (30008.18ms) - Upload exceeded 30.0 seconds
+1.0.0 - Logger - _log - 2025-12-23 12:06:17,132 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:06:18,051 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 12:06:18,051 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 12:06:18,052 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (919.36ms)
+1.0.0 - Logger - _log - 2025-12-23 12:06:18,052 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 12:06:20,056 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2003.23ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:06:20,056 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:06:20,063 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CCE9061AA10F, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:06:20,063 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (7.37ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CCE9061AA10F, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:06:20,064 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CCE9061AA10F, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:06:20,127 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:06:20,127 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (63.03ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:06:20,127 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:06:22,330 - gigachatAPI - [0;32mINFO[0m - File uploaded successfully: e3d3be8a-9dea-46a4-b640-e71754bd890a
+1.0.0 - Logger - _log - 2025-12-23 12:06:22,331 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::upload_file - OK (2202.83ms)
+1.0.0 - Logger - _log - 2025-12-23 12:06:22,500 - gigachatAPI - [0;31mERROR[0m - Chat response status=400 body: {"status":400,"message":"Your request contains invalid JSON syntax."}
+
+1.0.0 - Logger - _log - 2025-12-23 12:06:22,500 - gigachatAPI - [0;31mERROR[0m - 400 Bad Request - Invalid JSON syntax detected
+1.0.0 - Logger - _log - 2025-12-23 12:06:22,500 - gigachatAPI - [0;31mERROR[0m - Payload was:
+{
+  "model": "GigaChat-Max",
+  "messages": [
+    {
+      "role": "user",
+      "content": "ЗАДАЧА: Анализ письма в конверте от Почты России и извлечение данных в JSON.\n\nТвоя задача — проанализировать изображение, содержащее конверт и вложенные документы, выделить данные и вернуть ответ СТРОГО в формате JSON.\n\nЭТАП 1: АНАЛИЗ ИСТОЧНИКОВ (ГДЕ ИСКАТЬ ДАННЫЕ)\n\n1. КОНВЕРТ (Приоритет для полей \"*Конверта\" и \"НомерКонверта\"):\n   - Найди область отправителя на конверте. Извлеки: Наименование отправителя и полный Адрес.\n   - Штрих-код Почты России (14 цифр) или трек-номер. Это - \"НомерКонверта\". Если более 1 штрих-кода на одной из сторон конверта - верни пустую строку.\n\n2. ПИСЬМО/ДОКУМЕНТ (Приоритет для остальных полей):\n   - ОтправительДокумента: Определи по шапке/бланку письма (НЕ по конверту).\n   - Адрес и Город: Извлеки из реквизитов в шапке письма. \"ГородОтправителя\" — только название города (без \"г.\").\n   - Получатель: Ищи организацию-получателя. В приоритете ищи: \"ТрансТехСервис\", \"УК ТрансТехСервис\", \"ТТС\".\n   - Даты и Номера: Ищи \"Исх. №\", \"Дата\". Дата должна быть в формате ГГГГММДД.\n   - ИНН/КПП: Ищи в шапке или подвале документа.\n   - Содержание: Кратко (1-2 предложения) сформулируй суть требований/просьбы.\n   - VIN: Просканируй текст на наличие VIN-номеров (17 знаков, латиница+цифры). Собери их в массив.\n   - ИдентификаторВидаДокумента: Перед заполнением поля \"ИдентификаторВидаДокумента\" важно учесть, какой вид организации отправил документ и какая содержится информация. Используйте следующую схему для выбора значения поля:\n\n        Если ОтправительДокумента является организацией судебной системы (суд, прокуратура, следственный комитет, министерство юстиции, ФАС, Роспотребнадзор, комитеты защиты прав потребителей, департамент защиты прав потребителей и т.п.), выберите значение \"Судебные\".\n        Исключения:\n        Если организация связана с нарушениями ПДД (ГИБДД, ФССП, административная комиссия), проверьте содержание письма. Если письмо касается штрафов за нарушение ПДД, присвоите значение \"Штрафы ГИБДД\", иначе оставьте \"Судебные\".\n        Если ОтправительДокумента связан с ФССП, СФР, и письмо касается задолженности по зарплате, по алиментам, по кредиту, категория - \"Зарплатные\".\n        Если ОтправительДокумента связан с государственными органами финансовой сферы (налоговая служба, государственная статистика, фонд пенсионного и соцстрахования, минфин), присваивайте значение \"Бухгалтерские\".\n        Если ОтправительДокумента — государственный орган кадровой направленности (военкомат, Минобороны, Минтруд), выбирайте категорию \"Кадровые\".\n        Если ОтправительДокумента — коммунальный ресурсоснабжающая организация (электроэнергия, газ, вода), установите \"Коммунальные\".\n        Если ОтправительДокумента — оператор связи (Мегафон, Билайн, МТС, Таттелеком), используйте значение \"Связь\".\n        Если ОтправительДокумента — страховая компания, выберите \"Страховые\".\n        Если ОтправительДокумента представляет коммерческое предприятие и письмо содержит коммерческое предложение, рекламу или приглашение на событие, выбирайте \"Коммерческие\".\n        Если ОтправительДокумента неизвестен или сообщение носит иной характер, внимательно проанализируйте текст письма:\n        Если письмо содержит договоры, приложения, акты выполненных работ, накладные, счета-фактуры, поручения, доверенности и прочие хозяйственно-правовые документы, ставьте \"Первичные\".\n        Если письмо содержит информацию об участи в тендере - определите как \"Тендерное\".\n        Если письмо несёт иную неясную цель, определите его как \"Неопределённое\".\n\n3. ПРОВЕРКА НА ОШИБКИ:\n   - Если внутри конверта документы от разных контрагентов или разным адресатам — верни JSON со статусом \"Ошибка\".\n\nЭТАП 2: ФОРМИРОВАНИЕ ОТВЕТА\n\nВерни ответ ТОЛЬКО в формате JSON. Не добавляй пояснений.\nЕсли данных нет — оставляй пустую строку \"\" (для VIN — пустой массив []).\n\nСТРУКТУРА JSON:\n{\n  \"Статус\": \"Успешно\",\n  \"ДатаДокумента\": \"ГГГГММДД\",\n  \"НомерДокумента\": \"строка\",\n  \"ВидДокумента\": \"вид документа (без привязки к перечню, своими словами)\",\n  \"ИдентификаторВидаДокумента\": \"ИдентификаторВидаДокумента\",\n  \"ОтправительДокумента\": \"строка (по бланку)\",\n  \"ОтправительКонверта\": \"строка (с конверта)\",\n  \"АдресОтправителя\": \"строка (из документа)\",\n  \"АдресОтправителяКонверта\": \"строка (с конверта)\",\n  \"ИННОтправителя\": \"строка\",\n  \"ГородОтправителя\": \"название города (например: Казань)\",\n  \"ОрганизацияПолучатель\": \"строка (приоритет ТТС)\",\n  \"ИННПолучателя\": \"строка\",\n  \"КПППолучателя\": \"строка\",\n  \"VIN\": [\"VIN1\", \"VIN2\"],\n  \"Содержание\": \"краткое изложение требований\",\n  \"НомерКонверта\": \"штрихкод конверта\"\n}\n\nЕсли обнаружена критическая ошибка (разные адресаты/отправители), верни:\n{\n  \"Статус\": \"Ошибка\",\n  \"Причина\": \"описание причины\"\n}",
+      "attachments": "e3d3be8a-9dea-46a4-b640-e71754bd890a"
+    }
+  ],
+  "temperature": 0.1,
+  "stream": false
+}
+1.0.0 - Logger - _log - 2025-12-23 12:06:22,501 - gigachatAPI - [0;31mERROR[0m - Error in chat: Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+Traceback (most recent call last):
+  File "/home/progger/gigachatAPI/connectors/gigachat_connector.py", line 477, in _chat_complete
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/progger/gigachatAPI/.venv/lib/python3.14t/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+1.0.0 - Logger - _log - 2025-12-23 12:06:22,502 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::chat - FAILED (171.49ms) - Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+1.0.0 - Logger - _log - 2025-12-23 12:14:04,607 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:14:05,602 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 12:14:05,602 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 12:14:05,602 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (995.40ms)
+1.0.0 - Logger - _log - 2025-12-23 12:14:05,602 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 12:14:07,606 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2003.64ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:14:07,606 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:14:07,613 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CD55E2477491, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:14:07,613 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.78ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CD55E2477491, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:14:07,614 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CD55E2477491, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:14:07,674 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:14:07,674 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (60.66ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:14:07,675 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:14:09,958 - gigachatAPI - [0;32mINFO[0m - File uploaded successfully: 9739c89a-56c2-4510-a2f3-6fcb624c87c9
+1.0.0 - Logger - _log - 2025-12-23 12:14:09,958 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::upload_file - OK (2282.74ms)
+1.0.0 - Logger - _log - 2025-12-23 12:14:10,110 - gigachatAPI - [0;31mERROR[0m - Chat response status=400 body: {"status":400,"message":"Your request contains invalid JSON syntax."}
+
+1.0.0 - Logger - _log - 2025-12-23 12:14:10,110 - gigachatAPI - [0;31mERROR[0m - 400 Bad Request - Invalid JSON syntax detected
+1.0.0 - Logger - _log - 2025-12-23 12:14:10,110 - gigachatAPI - [0;31mERROR[0m - Payload was:
+{
+  "model": "GigaChat-Max",
+  "messages": [
+    {
+      "role": "user",
+      "content": "ЗАДАЧА: Анализ письма в конверте от Почты России и извлечение данных в JSON.\n\nТвоя задача — проанализировать изображение, содержащее конверт и вложенные документы, выделить данные и вернуть ответ СТРОГО в формате JSON.\n\nЭТАП 1: АНАЛИЗ ИСТОЧНИКОВ (ГДЕ ИСКАТЬ ДАННЫЕ)\n\n1. КОНВЕРТ (Приоритет для полей \"*Конверта\" и \"НомерКонверта\"):\n   - Найди область отправителя на конверте. Извлеки: Наименование отправителя и полный Адрес.\n   - Штрих-код Почты России (14 цифр) или трек-номер. Это - \"НомерКонверта\". Если более 1 штрих-кода на одной из сторон конверта - верни пустую строку.\n\n2. ПИСЬМО/ДОКУМЕНТ (Приоритет для остальных полей):\n   - ОтправительДокумента: Определи по шапке/бланку письма (НЕ по конверту).\n   - Адрес и Город: Извлеки из реквизитов в шапке письма. \"ГородОтправителя\" — только название города (без \"г.\").\n   - Получатель: Ищи организацию-получателя. В приоритете ищи: \"ТрансТехСервис\", \"УК ТрансТехСервис\", \"ТТС\".\n   - Даты и Номера: Ищи \"Исх. №\", \"Дата\". Дата должна быть в формате ГГГГММДД.\n   - ИНН/КПП: Ищи в шапке или подвале документа.\n   - Содержание: Кратко (1-2 предложения) сформулируй суть требований/просьбы.\n   - VIN: Просканируй текст на наличие VIN-номеров (17 знаков, латиница+цифры). Собери их в массив.\n   - ИдентификаторВидаДокумента: Перед заполнением поля \"ИдентификаторВидаДокумента\" важно учесть, какой вид организации отправил документ и какая содержится информация. Используйте следующую схему для выбора значения поля:\n\n        Если ОтправительДокумента является организацией судебной системы (суд, прокуратура, следственный комитет, министерство юстиции, ФАС, Роспотребнадзор, комитеты защиты прав потребителей, департамент защиты прав потребителей и т.п.), выберите значение \"Судебные\".\n        Исключения:\n        Если организация связана с нарушениями ПДД (ГИБДД, ФССП, административная комиссия), проверьте содержание письма. Если письмо касается штрафов за нарушение ПДД, присвоите значение \"Штрафы ГИБДД\", иначе оставьте \"Судебные\".\n        Если ОтправительДокумента связан с ФССП, СФР, и письмо касается задолженности по зарплате, по алиментам, по кредиту, категория - \"Зарплатные\".\n        Если ОтправительДокумента связан с государственными органами финансовой сферы (налоговая служба, государственная статистика, фонд пенсионного и соцстрахования, минфин), присваивайте значение \"Бухгалтерские\".\n        Если ОтправительДокумента — государственный орган кадровой направленности (военкомат, Минобороны, Минтруд), выбирайте категорию \"Кадровые\".\n        Если ОтправительДокумента — коммунальный ресурсоснабжающая организация (электроэнергия, газ, вода), установите \"Коммунальные\".\n        Если ОтправительДокумента — оператор связи (Мегафон, Билайн, МТС, Таттелеком), используйте значение \"Связь\".\n        Если ОтправительДокумента — страховая компания, выберите \"Страховые\".\n        Если ОтправительДокумента представляет коммерческое предприятие и письмо содержит коммерческое предложение, рекламу или приглашение на событие, выбирайте \"Коммерческие\".\n        Если ОтправительДокумента неизвестен или сообщение носит иной характер, внимательно проанализируйте текст письма:\n        Если письмо содержит договоры, приложения, акты выполненных работ, накладные, счета-фактуры, поручения, доверенности и прочие хозяйственно-правовые документы, ставьте \"Первичные\".\n        Если письмо содержит информацию об участи в тендере - определите как \"Тендерное\".\n        Если письмо несёт иную неясную цель, определите его как \"Неопределённое\".\n\n3. ПРОВЕРКА НА ОШИБКИ:\n   - Если внутри конверта документы от разных контрагентов или разным адресатам — верни JSON со статусом \"Ошибка\".\n\nЭТАП 2: ФОРМИРОВАНИЕ ОТВЕТА\n\nВерни ответ ТОЛЬКО в формате JSON. Не добавляй пояснений.\nЕсли данных нет — оставляй пустую строку \"\" (для VIN — пустой массив []).\n\nСТРУКТУРА JSON:\n{\n  \"Статус\": \"Успешно\",\n  \"ДатаДокумента\": \"ГГГГММДД\",\n  \"НомерДокумента\": \"строка\",\n  \"ВидДокумента\": \"вид документа (без привязки к перечню, своими словами)\",\n  \"ИдентификаторВидаДокумента\": \"ИдентификаторВидаДокумента\",\n  \"ОтправительДокумента\": \"строка (по бланку)\",\n  \"ОтправительКонверта\": \"строка (с конверта)\",\n  \"АдресОтправителя\": \"строка (из документа)\",\n  \"АдресОтправителяКонверта\": \"строка (с конверта)\",\n  \"ИННОтправителя\": \"строка\",\n  \"ГородОтправителя\": \"название города (например: Казань)\",\n  \"ОрганизацияПолучатель\": \"строка (приоритет ТТС)\",\n  \"ИННПолучателя\": \"строка\",\n  \"КПППолучателя\": \"строка\",\n  \"VIN\": [\"VIN1\", \"VIN2\"],\n  \"Содержание\": \"краткое изложение требований\",\n  \"НомерКонверта\": \"штрихкод конверта\"\n}\n\nЕсли обнаружена критическая ошибка (разные адресаты/отправители), верни:\n{\n  \"Статус\": \"Ошибка\",\n  \"Причина\": \"описание причины\"\n}",
+      "attachments": "9739c89a-56c2-4510-a2f3-6fcb624c87c9"
+    }
+  ],
+  "temperature": 0.1,
+  "stream": false
+}
+1.0.0 - Logger - _log - 2025-12-23 12:14:10,111 - gigachatAPI - [0;31mERROR[0m - Error in chat: Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+Traceback (most recent call last):
+  File "/home/progger/gigachatAPI/connectors/gigachat_connector.py", line 477, in _chat_complete
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/progger/gigachatAPI/.venv/lib/python3.14t/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+1.0.0 - Logger - _log - 2025-12-23 12:14:10,112 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::chat - FAILED (154.20ms) - Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+1.0.0 - Logger - _log - 2025-12-23 12:22:05,964 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:22:06,949 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 12:22:06,950 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 12:22:06,950 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (985.03ms)
+1.0.0 - Logger - _log - 2025-12-23 12:22:06,950 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 12:22:08,952 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.42ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:22:08,953 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:22:08,959 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CDC5F4BFF54C, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:22:08,960 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.78ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CDC5F4BFF54C, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:22:08,960 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CDC5F4BFF54C, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:22:09,022 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:22:09,022 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (62.01ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:22:09,022 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:22:39,030 - gigachatAPI - [0;31mERROR[0m - Upload timeout after 30.0s
+1.0.0 - Logger - _log - 2025-12-23 12:22:39,030 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::upload_file - FAILED (30007.38ms) - Upload exceeded 30.0 seconds
+1.0.0 - Logger - _log - 2025-12-23 12:22:47,083 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:22:47,995 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 12:22:47,995 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 12:22:47,996 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (911.79ms)
+1.0.0 - Logger - _log - 2025-12-23 12:22:47,996 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 12:22:49,998 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.25ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:22:49,998 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:22:50,004 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CDCF83377954, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:22:50,004 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (5.74ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CDCF83377954, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:22:50,005 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CDCF83377954, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:22:50,065 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:22:50,066 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (60.79ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:22:50,066 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:22:52,221 - gigachatAPI - [0;32mINFO[0m - File uploaded successfully: a9113844-b088-41e6-a9b8-1ab9739053e2
+1.0.0 - Logger - _log - 2025-12-23 12:22:52,222 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::upload_file - OK (2155.18ms)
+1.0.0 - Logger - _log - 2025-12-23 12:22:52,388 - gigachatAPI - [0;31mERROR[0m - Chat response status=400 body: {"status":400,"message":"Your request contains invalid JSON syntax."}
+
+1.0.0 - Logger - _log - 2025-12-23 12:22:52,388 - gigachatAPI - [0;31mERROR[0m - 400 Bad Request - Invalid JSON syntax detected
+1.0.0 - Logger - _log - 2025-12-23 12:22:52,388 - gigachatAPI - [0;31mERROR[0m - Payload was:
+{
+  "model": "GigaChat-Max",
+  "messages": [
+    {
+      "role": "user",
+      "content": "ЗАДАЧА: Анализ письма в конверте от Почты России и извлечение данных в JSON. Твоя задача — проанализировать изображение, содержащее конверт и вложенные документы, выделить данные и вернуть ответ СТРОГО в формате JSON. ЭТАП 1: АНАЛИЗ ИСТОЧНИКОВ (ГДЕ ИСКАТЬ ДАННЫЕ) 1. КОНВЕРТ (Приоритет для полей *Конверта и НомерКонверта): - Найди область отправителя на конверте. Извлеки: Наименование отправителя и полный Адрес. - Штрих-код Почты России (14 цифр) или трек-номер. Это - НомерКонверта. Если более 1 штрих-кода на одной из сторон конверта - верни пустую строку. 2. ПИСЬМО/ДОКУМЕНТ (Приоритет для остальных полей): - ОтправительДокумента: Определи по шапке/бланку письма (НЕ по конверту). - Адрес и Город: Извлеки из реквизитов в шапке письма. ГородОтправителя — только название города (без г.). - Получатель: Ищи организацию-получателя. В приоритете ищи: ТрансТехСервис, УК ТрансТехСервис, ТТС.   - Даты и Номера: Ищи Исх. №, Дата. Дата должна быть в формате ГГГГММДД. - ИНН/КПП: Ищи в шапке или подвале документа. - Содержание: Кратко (1-2 предложения) сформулируй суть требований/просьбы. - VIN: Просканируй текст на наличие VIN-номеров (17 знаков, латиница+цифры). Собери их в массив. - ИдентификаторВидаДокумента: Перед заполнением поля ИдентификаторВидаДокумента важно учесть, какой вид организации отправил документ и какая содержится информация. Используйте следующую схему для выбора значения поля: Если ОтправительДокумента является организацией судебной системы (суд, прокуратура, следственный комитет, министерство юстиции, ФАС, Роспотребнадзор, комитеты защиты прав потребителей, департамент защиты прав потребителей и т.п.), выберите значение Судебные. Исключения: Если организация связана с нарушениями ПДД (ГИБДД, ФССП, административная комиссия), проверьте содержание письма. Если письмо касается штрафов за нарушение ПДД, присвоите значение Штрафы ГИБДД, иначе оставьте Судебные. Если ОтправительДокумента связан с ФССП, СФР, и письмо касается задолженности по зарплате, по алиментам, по кредиту, категория - Зарплатные. Если ОтправительДокумента связан с государственными органами финансовой сферы (налоговая служба, государственная статистика, фонд пенсионного и соцстрахования, минфин), присваивайте значение Бухгалтерские. Если ОтправительДокумента — государственный орган кадровой направленности (военкомат, Минобороны, Минтруд), выбирайте категорию Кадровые. Если ОтправительДокумента — коммунальный ресурсоснабжающая организация (электроэнергия, газ, вода), установите Коммунальные. Если ОтправительДокумента — оператор связи (Мегафон, Билайн, МТС, Таттелеком), используйте значение Связь. Если ОтправительДокумента — страховая компания, выберите Страховые. Если ОтправительДокумента представляет коммерческое предприятие и письмо содержит коммерческое предложение, рекламу или приглашение на событие, выбирайте Коммерческие. Если ОтправительДокумента неизвестен или сообщение носит иной характер, внимательно проанализируйте текст письма: Если письмо содержит договоры, приложения, акты выполненных работ, накладные, счета-фактуры, поручения, доверенности и прочие хозяйственно-правовые документы, ставьте Первичные. Если письмо содержит информацию об участи в тендере - определите как Тендерное. Если письмо несёт иную неясную цель, определите его как Неопределённое. 3. ПРОВЕРКА НА ОШИБКИ: - Если внутри конверта документы от разных контрагентов или разным адресатам — верни JSON со статусом Ошибка . ЭТАП 2: ФОРМИРОВАНИЕ ОТВЕТА Верни ответ ТОЛЬКО в формате JSON. Не добавляй пояснений.Если данных нет — оставляй пустую строку (для VIN — пустой массив []). СТРУКТУРА JSON:{  \"Статус\": \"Успешно\",\n  \"ДатаДокумента\": \"ГГГГММДД\",\n  \"НомерДокумента\": \"строка\",\n  \"ВидДокумента\": \"вид документа (без привязки к перечню, своими словами)\",\n  \"ИдентификаторВидаДокумента\": \"ИдентификаторВидаДокумента\",\n  \"ОтправительДокумента\": \"строка (по бланку)\",\n  \"ОтправительКонверта\": \"строка (с конверта)\",\n  \"АдресОтправителя\": \"строка (из документа)\",\n  \"АдресОтправителяКонверта\": \"строка (с конверта)\",\n  \"ИННОтправителя\": \"строка\",\n  \"ГородОтправителя\": \"название города (например: Казань)\",\n  \"ОрганизацияПолучатель\": \"строка (приоритет ТТС)\",\n  \"ИННПолучателя\": \"строка\",\n  \"КПППолучателя\": \"строка\",\n  \"VIN\": [\"VIN1\", \"VIN2\"],\n  \"Содержание\": \"краткое изложение требований\",\n  \"НомерКонверта\": \"штрихкод конверта\"\n}\n\nЕсли обнаружена критическая ошибка (разные адресаты/отправители), верни:\n{\n  \"Статус\": \"Ошибка\",\n  \"Причина\": \"описание причины\"\n}",
+      "attachments": "a9113844-b088-41e6-a9b8-1ab9739053e2"
+    }
+  ],
+  "temperature": 0.1,
+  "stream": false
+}
+1.0.0 - Logger - _log - 2025-12-23 12:22:52,388 - gigachatAPI - [0;31mERROR[0m - Error in chat: Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+Traceback (most recent call last):
+  File "/home/progger/gigachatAPI/connectors/gigachat_connector.py", line 477, in _chat_complete
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/progger/gigachatAPI/.venv/lib/python3.14t/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+1.0.0 - Logger - _log - 2025-12-23 12:22:52,390 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::chat - FAILED (168.17ms) - Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+1.0.0 - Logger - _log - 2025-12-23 12:24:54,702 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:25:02,903 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 12:25:02,903 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 12:25:02,904 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (8200.98ms)
+1.0.0 - Logger - _log - 2025-12-23 12:25:02,904 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 12:25:04,907 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.55ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:25:04,907 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:25:04,914 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CDEEEC7C1863, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:25:04,915 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (7.44ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CDEEEC7C1863, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:25:04,915 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CDEEEC7C1863, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:25:04,978 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:25:04,978 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (63.07ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:25:04,978 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:25:33,236 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:25:55,968 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:25:56,897 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 12:25:56,898 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 12:25:56,898 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (929.37ms)
+1.0.0 - Logger - _log - 2025-12-23 12:25:56,898 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 12:25:58,901 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.20ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:25:58,901 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:25:58,907 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CDFB7EB4C0C9, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:25:58,907 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.03ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CDFB7EB4C0C9, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:25:58,907 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CDFB7EB4C0C9, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:25:58,968 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:25:58,968 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (60.79ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:25:58,969 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:26:00,829 - gigachatAPI - [0;32mINFO[0m - Chat completed: completion_tokens=31, files=0
+1.0.0 - Logger - _log - 2025-12-23 12:26:00,829 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::chat - OK (1859.67ms)
+1.0.0 - Logger - _log - 2025-12-23 12:26:00,980 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::health_check - OK (150.52ms)
+1.0.0 - Logger - _log - 2025-12-23 12:26:00,980 - gigachatAPI - [0;32mINFO[0m - [operation_completed] queue::health_check - OK (0.03ms)
+1.0.0 - Logger - _log - 2025-12-23 12:26:00,983 - gigachatAPI - [0;33mWARNING[0m - MinIO health check failed: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CDFBFA78EC33, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:26:00,983 - gigachatAPI - [0;32mINFO[0m - [operation_completed] storage::health_check - OK (2.98ms)
+1.0.0 - Logger - _log - 2025-12-23 12:26:00,984 - gigachatAPI - [0;33mWARNING[0m - Health check failed: 'NoneType' object has no attribute 'acquire'
+1.0.0 - Logger - _log - 2025-12-23 12:26:00,984 - gigachatAPI - [0;32mINFO[0m - [operation_completed] db::health_check - OK (0.13ms)
+1.0.0 - Logger - _log - 2025-12-23 12:26:31,304 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:26:32,278 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 12:26:32,279 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 12:26:32,279 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (974.58ms)
+1.0.0 - Logger - _log - 2025-12-23 12:26:32,279 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 12:26:34,281 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.36ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:26:34,282 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:26:34,289 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE03BB9410CD, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:26:34,289 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.94ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE03BB9410CD, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:26:34,289 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE03BB9410CD, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:26:34,350 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:26:34,350 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (61.08ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:26:34,350 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:26:36,403 - gigachatAPI - [0;32mINFO[0m - File uploaded successfully: c219d688-4e72-436c-ab40-25c542d878a9
+1.0.0 - Logger - _log - 2025-12-23 12:26:36,403 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::upload_file - OK (2051.73ms)
+1.0.0 - Logger - _log - 2025-12-23 12:26:36,575 - gigachatAPI - [0;31mERROR[0m - Chat response status=400 body: {"status":400,"message":"Your request contains invalid JSON syntax."}
+
+1.0.0 - Logger - _log - 2025-12-23 12:26:36,575 - gigachatAPI - [0;31mERROR[0m - 400 Bad Request - Invalid JSON syntax detected
+1.0.0 - Logger - _log - 2025-12-23 12:26:36,576 - gigachatAPI - [0;31mERROR[0m - Payload was:
+{
+  "model": "GigaChat-Max",
+  "messages": [
+    {
+      "role": "user",
+      "content": "ЗАДАЧА: Анализ письма в конверте от Почты России и извлечение данных в JSON.\n\nТвоя задача — проанализировать изображение, содержащее конверт и вложенные документы, выделить данные и вернуть ответ СТРОГО в формате JSON.\n\nЭТАП 1: АНАЛИЗ ИСТОЧНИКОВ (ГДЕ ИСКАТЬ ДАННЫЕ)\n\n1. КОНВЕРТ (Приоритет для полей \"*Конверта\" и \"НомерКонверта\"):\n   - Найди область отправителя на конверте. Извлеки: Наименование отправителя и полный Адрес.\n   - Штрих-код Почты России (14 цифр) или трек-номер. Это - \"НомерКонверта\". Если более 1 штрих-кода на одной из сторон конверта - верни пустую строку.\n\n2. ПИСЬМО/ДОКУМЕНТ (Приоритет для остальных полей):\n   - ОтправительДокумента: Определи по шапке/бланку письма (НЕ по конверту).\n   - Адрес и Город: Извлеки из реквизитов в шапке письма. \"ГородОтправителя\" — только название города (без \"г.\").\n   - Получатель: Ищи организацию-получателя. В приоритете ищи: \"ТрансТехСервис\", \"УК ТрансТехСервис\", \"ТТС\".\n   - Даты и Номера: Ищи \"Исх. №\", \"Дата\". Дата должна быть в формате ГГГГММДД.\n   - ИНН/КПП: Ищи в шапке или подвале документа.\n   - Содержание: Кратко (1-2 предложения) сформулируй суть требований/просьбы.\n   - VIN: Просканируй текст на наличие VIN-номеров (17 знаков, латиница+цифры). Собери их в массив.\n   - ИдентификаторВидаДокумента: Перед заполнением поля \"ИдентификаторВидаДокумента\" важно учесть, какой вид организации отправил документ и какая содержится информация. Используйте следующую схему для выбора значения поля:\n\n        Если ОтправительДокумента является организацией судебной системы (суд, прокуратура, следственный комитет, министерство юстиции, ФАС, Роспотребнадзор, комитеты защиты прав потребителей, департамент защиты прав потребителей и т.п.), выберите значение \"Судебные\".\n        Исключения:  \n        Если организация связана с нарушениями ПДД (ГИБДД, ФССП, административная комиссия), проверьте содержание письма. Если письмо касается штрафов за нарушение ПДД, присвоите значение \"Штрафы ГИБДД\", иначе оставьте \"Судебные\".\n        Если ОтправительДокумента связан с ФССП, СФР, и письмо касается задолженности по зарплате, по алиментам, по кредиту, категория - \"Зарплатные\".\n        Если ОтправительДокумента связан с государственными органами финансовой сферы (налоговая служба, государственная статистика, фонд пенсионного и соцстрахования, минфин), присваивайте значение \"Бухгалтерские\".\n        Если ОтправительДокумента — государственный орган кадровой направленности (военкомат, Минобороны, Минтруд), выбирайте категорию \"Кадровые\".\n        Если ОтправительДокумента — коммунальный ресурсоснабжающая организация (электроэнергия, газ, вода), установите \"Коммунальные\".\n        Если ОтправительДокумента — оператор связи (Мегафон, Билайн, МТС, Таттелеком), используйте значение \"Связь\".\n        Если ОтправительДокумента — страховая компания, выберите \"Страховые\".\n        Если ОтправительДокумента представляет коммерческое предприятие и письмо содержит коммерческое предложение, рекламу или приглашение на событие, выбирайте \"Коммерческие\".\n        Если ОтправительДокумента неизвестен или сообщение носит иной характер, внимательно проанализируйте текст письма:\n        Если письмо содержит договоры, приложения, акты выполненных работ, накладные, счета-фактуры, поручения, доверенности и прочие хозяйственно-правовые документы, ставьте \"Первичные\".\n        Если письмо содержит информацию об участи в тендере - определите как \"Тендерное\".\n        Если письмо несёт иную неясную цель, определите его как \"Неопределённое\".\n\n3. ПРОВЕРКА НА ОШИБКИ:\n   - Если внутри конверта документы от разных контрагентов или разным адресатам — верни JSON со статусом \"Ошибка\".\n\nЭТАП 2: ФОРМИРОВАНИЕ ОТВЕТА\n\nВерни ответ ТОЛЬКО в формате JSON. Не добавляй пояснений.\nЕсли данных нет — оставляй пустую строку \"\" (для VIN — пустой массив []).\n\nСТРУКТУРА JSON:\n{\n  \"Статус\": \"Успешно\",\n  \"ДатаДокумента\": \"ГГГГММДД\",\n  \"НомерДокумента\": \"строка\",\n  \"ВидДокумента\": \"вид документа (без привязки к перечню, своими словами)\",\n  \"ИдентификаторВидаДокумента\": \"ИдентификаторВидаДокумента\",\n  \"ОтправительДокумента\": \"строка (по бланку)\",\n  \"ОтправительКонверта\": \"строка (с конверта)\",\n  \"АдресОтправителя\": \"строка (из документа)\",\n  \"АдресОтправителяКонверта\": \"строка (с конверта)\",\n  \"ИННОтправителя\": \"строка\",\n  \"ГородОтправителя\": \"название города (например: Казань)\",\n  \"ОрганизацияПолучатель\": \"строка (приоритет ТТС)\",\n  \"ИННПолучателя\": \"строка\",\n  \"КПППолучателя\": \"строка\",\n  \"VIN\": [\"VIN1\", \"VIN2\"],\n  \"Содержание\": \"краткое изложение требований\",\n  \"НомерКонверта\": \"штрихкод конверта\"\n}\n\nЕсли обнаружена критическая ошибка (разные адресаты/отправители), верни:\n{\n  \"Статус\": \"Ошибка\",\n  \"Причина\": \"описание причины\"\n}",
+      "attachments": "c219d688-4e72-436c-ab40-25c542d878a9"
+    }
+  ],
+  "temperature": 0.1,
+  "stream": false
+}
+1.0.0 - Logger - _log - 2025-12-23 12:26:36,576 - gigachatAPI - [0;31mERROR[0m - Error in chat: Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+Traceback (most recent call last):
+  File "/home/progger/gigachatAPI/connectors/gigachat_connector.py", line 477, in _chat_complete
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/progger/gigachatAPI/.venv/lib/python3.14t/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+1.0.0 - Logger - _log - 2025-12-23 12:26:36,578 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::chat - FAILED (174.29ms) - Client error '400 Bad Request' for url 'https://gigachat.devices.sberbank.ru/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400
+1.0.0 - Logger - _log - 2025-12-23 12:27:35,052 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:27:35,988 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 12:27:35,988 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 12:27:35,988 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (935.76ms)
+1.0.0 - Logger - _log - 2025-12-23 12:27:35,989 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 12:27:37,991 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2001.91ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:27:37,991 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:27:37,998 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE1290F43201, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:27:37,998 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.96ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE1290F43201, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:27:37,998 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE1290F43201, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:27:38,067 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:27:38,067 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (68.74ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:27:38,068 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:27:59,092 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:28:00,015 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 12:28:00,015 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 12:28:00,016 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (923.66ms)
+1.0.0 - Logger - _log - 2025-12-23 12:28:00,016 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 12:28:02,019 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2003.21ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:28:02,019 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:28:02,028 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE18292A6C58, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:28:02,028 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (8.56ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE18292A6C58, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:28:02,028 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE18292A6C58, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:28:02,090 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:28:02,090 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (61.53ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:28:02,090 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:28:04,424 - gigachatAPI - [0;32mINFO[0m - File uploaded successfully: 5ee0a1b6-10dc-403c-806a-533c9ccca6d0
+1.0.0 - Logger - _log - 2025-12-23 12:28:04,424 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::upload_file - OK (2332.94ms)
+1.0.0 - Logger - _log - 2025-12-23 12:28:23,888 - gigachatAPI - [0;32mINFO[0m - Chat completed: completion_tokens=245, files=1
+1.0.0 - Logger - _log - 2025-12-23 12:28:23,888 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::chat - OK (19463.93ms)
+1.0.0 - Logger - _log - 2025-12-23 12:28:24,043 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::health_check - OK (154.92ms)
+1.0.0 - Logger - _log - 2025-12-23 12:28:24,044 - gigachatAPI - [0;32mINFO[0m - [operation_completed] queue::health_check - OK (0.03ms)
+1.0.0 - Logger - _log - 2025-12-23 12:28:24,046 - gigachatAPI - [0;33mWARNING[0m - MinIO health check failed: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE1D49B34D5B, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:28:24,046 - gigachatAPI - [0;32mINFO[0m - [operation_completed] storage::health_check - OK (2.71ms)
+1.0.0 - Logger - _log - 2025-12-23 12:28:24,047 - gigachatAPI - [0;33mWARNING[0m - Health check failed: 'NoneType' object has no attribute 'acquire'
+1.0.0 - Logger - _log - 2025-12-23 12:28:24,047 - gigachatAPI - [0;32mINFO[0m - [operation_completed] db::health_check - OK (0.13ms)
+1.0.0 - Logger - _log - 2025-12-23 12:32:20,264 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:32:21,270 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 12:32:21,270 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 12:32:21,270 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (1005.54ms)
+1.0.0 - Logger - _log - 2025-12-23 12:32:21,270 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 12:32:23,275 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2004.31ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:32:23,275 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:32:23,283 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE54FD462441, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:32:23,283 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (7.34ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE54FD462441, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:32:23,283 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE54FD462441, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:32:23,348 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:32:23,348 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (65.08ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:32:23,348 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:32:53,364 - gigachatAPI - [0;31mERROR[0m - Upload timeout after 30.0s
+1.0.0 - Logger - _log - 2025-12-23 12:32:53,364 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::upload_file - FAILED (30014.96ms) - Upload exceeded 30.0 seconds
+1.0.0 - Logger - _log - 2025-12-23 12:32:58,212 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:32:59,152 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 12:32:59,153 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 12:32:59,153 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (940.82ms)
+1.0.0 - Logger - _log - 2025-12-23 12:32:59,153 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 12:33:01,155 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.43ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:33:01,156 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:33:01,162 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE5DCF0A3904, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:33:01,162 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (5.87ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE5DCF0A3904, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:33:01,162 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE5DCF0A3904, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:33:01,222 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:33:01,222 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (59.64ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:33:01,222 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:33:31,255 - gigachatAPI - [0;31mERROR[0m - Upload timeout after 30.0s
+1.0.0 - Logger - _log - 2025-12-23 12:33:31,255 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::upload_file - FAILED (30032.44ms) - Upload exceeded 30.0 seconds
+1.0.0 - Logger - _log - 2025-12-23 12:33:42,403 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 12:33:43,327 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 12:33:43,328 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 12:33:43,328 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (923.62ms)
+1.0.0 - Logger - _log - 2025-12-23 12:33:43,328 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 12:33:45,330 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.51ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:33:45,331 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 12:33:45,338 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE6818120FA5, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:33:45,339 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (7.81ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE6818120FA5, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:33:45,339 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE6818120FA5, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:33:45,400 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:33:45,400 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (61.12ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:33:45,400 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 12:33:47,850 - gigachatAPI - [0;32mINFO[0m - File uploaded successfully: 7ba150e0-ae9f-4bc8-b6b6-3004782d7087
+1.0.0 - Logger - _log - 2025-12-23 12:33:47,851 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::upload_file - OK (2449.65ms)
+1.0.0 - Logger - _log - 2025-12-23 12:34:06,419 - gigachatAPI - [0;32mINFO[0m - Chat completed: completion_tokens=263, files=1
+1.0.0 - Logger - _log - 2025-12-23 12:34:06,419 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::chat - OK (18568.13ms)
+1.0.0 - Logger - _log - 2025-12-23 12:34:06,572 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::health_check - OK (152.42ms)
+1.0.0 - Logger - _log - 2025-12-23 12:34:06,572 - gigachatAPI - [0;32mINFO[0m - [operation_completed] queue::health_check - OK (0.03ms)
+1.0.0 - Logger - _log - 2025-12-23 12:34:06,575 - gigachatAPI - [0;33mWARNING[0m - MinIO health check failed: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883CE6D09FB47E1, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 12:34:06,575 - gigachatAPI - [0;32mINFO[0m - [operation_completed] storage::health_check - OK (2.73ms)
+1.0.0 - Logger - _log - 2025-12-23 12:34:06,575 - gigachatAPI - [0;33mWARNING[0m - Health check failed: 'NoneType' object has no attribute 'acquire'
+1.0.0 - Logger - _log - 2025-12-23 12:34:06,575 - gigachatAPI - [0;32mINFO[0m - [operation_completed] db::health_check - OK (0.13ms)
+1.0.0 - Logger - _log - 2025-12-23 13:31:54,551 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 13:31:54,973 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 13:31:54,973 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 13:31:54,974 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (422.34ms)
+1.0.0 - Logger - _log - 2025-12-23 13:31:54,974 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 13:31:56,977 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.27ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 13:31:56,977 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 13:31:57,068 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D19510B024BF, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:31:57,068 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (90.96ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D19510B024BF, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:31:57,068 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D19510B024BF, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:31:57,180 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:31:57,180 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (112.11ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:31:57,181 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:31:58,469 - gigachatAPI - [0;32mINFO[0m - File uploaded successfully: ecc808ba-24b2-4df2-a499-b98911c24bc1
+1.0.0 - Logger - _log - 2025-12-23 13:31:58,469 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::upload_file - OK (1288.33ms)
+1.0.0 - Logger - _log - 2025-12-23 13:32:23,995 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 13:32:24,363 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 13:32:24,363 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 13:32:24,363 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (367.55ms)
+1.0.0 - Logger - _log - 2025-12-23 13:32:24,363 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 13:32:26,365 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2001.75ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 13:32:26,366 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 13:32:26,374 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D19BE644DA07, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:32:26,374 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (8.67ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D19BE644DA07, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:32:26,374 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D19BE644DA07, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:32:26,436 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:32:26,436 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (61.11ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:32:26,436 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:32:56,469 - gigachatAPI - [0;31mERROR[0m - Upload timeout after 30.0s
+1.0.0 - Logger - _log - 2025-12-23 13:32:56,469 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::upload_file - FAILED (30032.59ms) - Upload exceeded 30.0 seconds
+1.0.0 - Logger - _log - 2025-12-23 13:32:59,579 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 13:32:59,977 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 13:32:59,977 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 13:32:59,977 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (398.05ms)
+1.0.0 - Logger - _log - 2025-12-23 13:32:59,977 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 13:33:01,981 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.98ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 13:33:01,981 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 13:33:01,988 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D1A43104DF6D, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:33:01,988 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (7.10ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D1A43104DF6D, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:33:01,988 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D1A43104DF6D, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:33:02,049 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:33:02,049 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (60.79ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:33:02,049 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:33:03,705 - gigachatAPI - [0;32mINFO[0m - File uploaded successfully: a21301f2-c0a5-4127-8e2f-9d5192c829aa
+1.0.0 - Logger - _log - 2025-12-23 13:33:03,705 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::upload_file - OK (1655.11ms)
+1.0.0 - Logger - _log - 2025-12-23 13:33:19,655 - gigachatAPI - [0;32mINFO[0m - Chat completed: completion_tokens=287, files=1
+1.0.0 - Logger - _log - 2025-12-23 13:33:19,655 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::chat - OK (15950.02ms)
+1.0.0 - Logger - _log - 2025-12-23 13:33:19,752 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::health_check - OK (96.87ms)
+1.0.0 - Logger - _log - 2025-12-23 13:33:19,753 - gigachatAPI - [0;32mINFO[0m - [operation_completed] queue::health_check - OK (0.03ms)
+1.0.0 - Logger - _log - 2025-12-23 13:33:19,756 - gigachatAPI - [0;33mWARNING[0m - MinIO health check failed: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D1A8540C9B0D, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:33:19,756 - gigachatAPI - [0;32mINFO[0m - [operation_completed] storage::health_check - OK (3.32ms)
+1.0.0 - Logger - _log - 2025-12-23 13:33:19,756 - gigachatAPI - [0;33mWARNING[0m - Health check failed: 'NoneType' object has no attribute 'acquire'
+1.0.0 - Logger - _log - 2025-12-23 13:33:19,756 - gigachatAPI - [0;32mINFO[0m - [operation_completed] db::health_check - OK (0.13ms)
+1.0.0 - Logger - _log - 2025-12-23 13:39:43,580 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 13:39:43,989 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 13:39:43,989 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 13:39:43,989 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (408.52ms)
+1.0.0 - Logger - _log - 2025-12-23 13:39:43,989 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 13:39:45,992 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.17ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 13:39:45,992 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 13:39:45,998 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D20241E305F0, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:39:45,999 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.31ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D20241E305F0, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:39:45,999 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D20241E305F0, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:39:46,057 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:39:46,057 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (58.68ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:39:46,058 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:39:47,906 - gigachatAPI - [0;32mINFO[0m - File uploaded successfully: fae6215d-2d09-4f81-aa76-2824e2346ea9
+1.0.0 - Logger - _log - 2025-12-23 13:39:47,906 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::upload_file - OK (1848.33ms)
+1.0.0 - Logger - _log - 2025-12-23 13:40:00,663 - gigachatAPI - [0;32mINFO[0m - Chat completed: completion_tokens=275, files=1
+1.0.0 - Logger - _log - 2025-12-23 13:40:00,664 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::chat - OK (12757.24ms)
+1.0.0 - Logger - _log - 2025-12-23 13:40:00,785 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::health_check - OK (121.09ms)
+1.0.0 - Logger - _log - 2025-12-23 13:40:00,785 - gigachatAPI - [0;32mINFO[0m - [operation_completed] queue::health_check - OK (0.03ms)
+1.0.0 - Logger - _log - 2025-12-23 13:40:00,790 - gigachatAPI - [0;33mWARNING[0m - MinIO health check failed: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D205B389FDD9, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:40:00,790 - gigachatAPI - [0;32mINFO[0m - [operation_completed] storage::health_check - OK (4.43ms)
+1.0.0 - Logger - _log - 2025-12-23 13:40:00,790 - gigachatAPI - [0;33mWARNING[0m - Health check failed: 'NoneType' object has no attribute 'acquire'
+1.0.0 - Logger - _log - 2025-12-23 13:40:00,790 - gigachatAPI - [0;32mINFO[0m - [operation_completed] db::health_check - OK (0.15ms)
+1.0.0 - Logger - _log - 2025-12-23 13:53:26,757 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 13:53:29,163 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 13:53:29,163 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 13:53:29,164 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (2406.18ms)
+1.0.0 - Logger - _log - 2025-12-23 13:53:29,164 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 13:53:31,166 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2001.84ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 13:53:31,166 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 13:53:31,174 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D2C262223A82, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:53:31,174 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (7.45ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D2C262223A82, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:53:31,174 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D2C262223A82, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:53:31,236 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:53:31,236 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (61.99ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:53:31,236 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:53:43,687 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 13:53:43,756 - gigachatAPI - [0;31mERROR[0m - Failed to refresh access token: [Errno -3] Temporary failure in name resolution
+1.0.0 - Logger - _log - 2025-12-23 13:53:43,757 - gigachatAPI - [0;31mERROR[0m - Failed to initialize GigaChat: [Errno -3] Temporary failure in name resolution
+1.0.0 - Logger - _log - 2025-12-23 13:53:43,757 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::initialize - FAILED (69.06ms) - [Errno -3] Temporary failure in name resolution
+1.0.0 - Logger - _log - 2025-12-23 13:53:43,757 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface llm: [Errno -3] Temporary failure in name resolution
+1.0.0 - Logger - _log - 2025-12-23 13:53:45,759 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.36ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 13:53:45,760 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 13:53:45,766 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D2C5C7F2612F, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:53:45,767 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.79ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D2C5C7F2612F, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:53:45,767 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D2C5C7F2612F, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:53:45,828 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:53:45,828 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (60.83ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:53:45,828 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:53:45,828 - gigachatAPI - [0;31mERROR[0m - Error uploading file: No access token available
+Traceback (most recent call last):
+  File "/home/progger/gigachatAPI/connectors/gigachat_connector.py", line 286, in upload_file
+    await self._ensure_valid_token()
+  File "/home/progger/gigachatAPI/connectors/gigachat_connector.py", line 249, in _ensure_valid_token
+    raise ValueError("No access token available")
+ValueError: No access token available
+1.0.0 - Logger - _log - 2025-12-23 13:53:45,829 - gigachatAPI - [0;31mERROR[0m - [operation_failed] llm::upload_file - FAILED (1.18ms) - No access token available
+1.0.0 - Logger - _log - 2025-12-23 13:53:49,837 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['llm', 'queue', 'storage', 'db']
+1.0.0 - Logger - _log - 2025-12-23 13:53:51,949 - gigachatAPI - [0;32mINFO[0m - Access token refreshed, expires in 1800s
+1.0.0 - Logger - _log - 2025-12-23 13:53:51,949 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2025-12-23 13:53:51,949 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::initialize - OK (2111.32ms)
+1.0.0 - Logger - _log - 2025-12-23 13:53:51,949 - gigachatAPI - [0;32mINFO[0m - Initialized interface: llm
+1.0.0 - Logger - _log - 2025-12-23 13:53:53,952 - gigachatAPI - [0;31mERROR[0m - [operation_failed] queue::initialize - FAILED (2002.96ms) - NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 13:53:53,953 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface queue: NoBrokersAvailable
+1.0.0 - Logger - _log - 2025-12-23 13:53:53,959 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D2C7B04761B9, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:53:53,959 - gigachatAPI - [0;31mERROR[0m - [operation_failed] storage::initialize - FAILED (6.00ms) - S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D2C7B04761B9, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:53:53,959 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface storage: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D2C7B04761B9, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:53:54,020 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:53:54,020 - gigachatAPI - [0;31mERROR[0m - [operation_failed] db::initialize - FAILED (60.44ms) - password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:53:54,020 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface db: password authentication failed for user "postgres"
+1.0.0 - Logger - _log - 2025-12-23 13:53:58,231 - gigachatAPI - [0;32mINFO[0m - File uploaded successfully: db76f632-dc44-44d8-a232-90ab9f3fe3b6
+1.0.0 - Logger - _log - 2025-12-23 13:53:58,231 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::upload_file - OK (4211.19ms)
+1.0.0 - Logger - _log - 2025-12-23 13:54:15,159 - gigachatAPI - [0;32mINFO[0m - Chat completed: completion_tokens=291, files=1
+1.0.0 - Logger - _log - 2025-12-23 13:54:15,160 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::chat - OK (16928.11ms)
+1.0.0 - Logger - _log - 2025-12-23 13:54:15,290 - gigachatAPI - [0;32mINFO[0m - [operation_completed] llm::health_check - OK (130.16ms)
+1.0.0 - Logger - _log - 2025-12-23 13:54:15,290 - gigachatAPI - [0;32mINFO[0m - [operation_completed] queue::health_check - OK (0.03ms)
+1.0.0 - Logger - _log - 2025-12-23 13:54:15,294 - gigachatAPI - [0;33mWARNING[0m - MinIO health check failed: S3 operation failed; code: InvalidAccessKeyId, message: The Access Key Id you provided does not exist in our records., resource: /gigachat-files, request_id: 1883D2CCA7F16E53, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: gigachat-files
+1.0.0 - Logger - _log - 2025-12-23 13:54:15,294 - gigachatAPI - [0;32mINFO[0m - [operation_completed] storage::health_check - OK (3.77ms)
+1.0.0 - Logger - _log - 2025-12-23 13:54:15,295 - gigachatAPI - [0;33mWARNING[0m - Health check failed: 'NoneType' object has no attribute 'acquire'
+1.0.0 - Logger - _log - 2025-12-23 13:54:15,295 - gigachatAPI - [0;32mINFO[0m - [operation_completed] db::health_check - OK (0.17ms)

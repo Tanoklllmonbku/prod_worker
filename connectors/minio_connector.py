@@ -2,18 +2,15 @@
 MinIO Connector - Thread-safe for no-GIL Python
 Unified download method with configurable parameters
 """
-
-import logging
 import asyncio
 import io
-from typing import Optional, AsyncGenerator, Any
+from typing import Optional, Any, AsyncIterable
 from concurrent.futures import ThreadPoolExecutor
 from threading import Lock
 from minio import Minio
 from minio.error import S3Error
-import ctypes
 
-from core.base_class.connectors import FileStorageConnector
+from core.base_class.base_connectors import FileStorageConnector
 
 
 class MinIOConnector(FileStorageConnector):
@@ -281,7 +278,7 @@ class MinIOConnector(FileStorageConnector):
         object_name: str,
         chunk_size: int,
         timeout: Optional[float],
-    ) -> AsyncGenerator:
+    ) -> AsyncIterable:
         """
         Stream download in chunks (returns async generator)
         Thread-safe: lock protects MinIO client access
@@ -376,3 +373,26 @@ class MinIOConnector(FileStorageConnector):
             self._set_health(False)
         return False
 
+    async def upload(self, object_name: str, data: bytes, *, timeout: float = 30.0, **kwargs) -> None:
+        """Upload bytes to MinIO bucket"""
+        try:
+            await asyncio.wait_for(
+                self._upload_binary(object_name, data),
+                timeout=timeout
+            )
+        except asyncio.TimeoutError:
+            raise RuntimeError(f"Upload timeout for {object_name}")
+
+    async def _upload_binary(self, object_name: str, data: bytes) -> None:
+        """Blocking upload in thread pool"""
+        loop = asyncio.get_running_loop()
+        await loop.run_in_executor(
+            None,
+            self._blocking_upload_binary,
+            object_name,
+            data
+        )
+
+    def _blocking_upload_binary(self, object_name: str, data: bytes) -> None:
+        """Synchronous upload implementation"""
+        self.client.put_object(self.bucket, object_name, io.BytesIO(data), len(data))

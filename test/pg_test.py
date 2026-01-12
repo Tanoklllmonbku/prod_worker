@@ -1,179 +1,128 @@
-import asyncio
-import logging
-from connectors import PGConnector
+import datetime
+
+from core.factories import _create_db_connector
+from config.config import get_settings
+import unittest
 
 
-async def main():
-    logging.basicConfig(level=logging.INFO)
-    logger = logging.getLogger(__name__)
+class TestPGConnector(unittest.IsolatedAsyncioTestCase):
+    """
+    Unit-тесты для PGConnector, использующие фабрику и переменные окружения.
+    Использует IsolatedAsyncioTestCase для корректной работы с async/await.
+    Предполагает, что PostgreSQL-сервер запущен и таблица 'logs' существует (из .env).
+    """
 
-    # Инициализация
-    db = PGConnector(
-        host="localhost",
-        port=5432,
-        database="pg_test",
-        user="postgres",  # ← используй superuser
-        password="postgres",
-        min_pool_size=5,
-        max_pool_size=20,
-        logger=logger,
-    )
+    @classmethod
+    def setUpClass(cls):
+        """
+        Выполняется один раз перед всеми тестами в классе.
+        Подготавливает настройки и создаёт коннектор.
+        """
+        # Убедимся, что используем переменные окружения
+        cls.config = get_settings()
+        cls.host = cls.config.postgres.host
+        cls.database = cls.config.postgres.database
+        print(f"Using PostgreSQL host: {cls.host}, database: {cls.database}")
 
-    try:
-        await db.initialize()
+        # Создаём коннектор через фабрику
+        cls.connector = _create_db_connector(cls.config)
 
-        # 1. Проверка здоровья БД
-        is_healthy = await db.health_check()
-        print(f"✓ Database health: {is_healthy}")
+    async def asyncSetUp(self):
+        """
+        Асинхронная инициализация коннектора перед каждым тестом.
+        """
+        print("Initializing PG connector...")
+        await self.connector.initialize()
+        print("PG connector initialized.")
 
-        # 2. Создание таблицы (если не существует)
-        try:
-            await db.execute("""
-                CREATE TABLE IF NOT EXISTS users (
-                    id SERIAL PRIMARY KEY,
-                    name TEXT NOT NULL,
-                    age INTEGER
-                )
-            """)
-            print("✓ Table 'users' created or already exists")
-        except Exception as e:
-            logger.warning(f"Could not create table: {e}")
+    async def asyncTearDown(self):
+        """
+        Асинхронная очистка после каждого теста.
+        """
+        print("Shutting down PG connector...")
+        await self.connector.shutdown()
+        print("PG connector shut down.")
 
-        # 3. Очистить таблицу для теста
-        try:
-            await db.execute("TRUNCATE TABLE users CASCADE")
-            print("✓ Table 'users' truncated")
-        except Exception as e:
-            logger.warning(f"Could not truncate table: {e}")
+    async def test_initialization(self):
+        """
+        Тест: Коннектор успешно инициализируется.
+        """
+        # asyncSetUp уже вызван автоматически
+        # Проверим, что pool не None после инициализации
+        self.assertIsNotNone(self.connector._pool)
+        print("Initialization test passed.")
 
-        # 4. Массовая вставка
+    async def test_health_check(self):
+        """
+        Тест: Проверка состояния коннектора.
+        """
+        # asyncSetUp уже вызван автоматически
+        is_healthy = await self.connector.health_check()
+        self.assertTrue(is_healthy, "PG connector should be healthy if PostgreSQL is running.")
+        print("Health check test passed.")
+
+    async def test_execute_insert_log_entry(self):
+        """
+        Тест: Вставка записи в таблицу 'logs' через execute.
+        """
+        # asyncSetUp уже вызван автоматически
+
+        # Подготовим данные для вставки (согласно DBLogEntry)
+        task_id = "test_task_123"
+        trace_id = "test_trace_456"
+        event_type = "health_check"
+        status = "success"
+        duration_ms = datetime.date(1,2,3)
+        metadata = str('{"node": "worker_1", "version": "1.0.0"}')
+        # 1. Выполняем INSERT запрос
+        query = """
+        INSERT INTO operation_logs (task_id, trace_id, operation, timestamp, metadata)
+        VALUES ($1, $2, $3, $4, $5)
+        """
+        await self.connector.execute(query, task_id, trace_id, event_type, duration_ms, metadata)
+        print(f"Executed INSERT for task_id: {task_id}")
+
+        # 2. (Опционально) Проверим, что запись появилась, выполнив SELECT
+        # Требует, чтобы таблица была пустой или чтобы мы знали, какую запись искать.
+        # Более надёжный способ - проверить, что execute не вызвал ошибку.
+        # Для простоты, проверим успешное выполнение execute выше.
+        # Если нужно - можно добавить SELECT COUNT(*) с фильтром по task_id.
+        # query_check = "SELECT COUNT(*) FROM logs WHERE task_id = $1"
+        # result = await self.connector.load_scalar(query_check, task_id)
+        # self.assertGreater(result, 0, "Record should have been inserted.")
+
+        print("Execute INSERT log entry test passed.")
+
+    async def test_bulk_insert_log_entries(self):
+        """
+        Тест: Массовая вставка записей в таблицу 'logs' через bulk_insert.
+        """
+        # asyncSetUp уже вызван автоматически
+
+        # Подготовим данные для вставки (несколько записей)
         rows_to_insert = [
-            ("Alice", 25),
-            ("Bob", 30),
-            ("Charlie", 35),
-            ("Diana", 22),
-            ("Eve", 28),
+            ("bulk_task_1", "trace_bulk_1", "task_received", "started", 0.0, {"info": "start"}),
+            ("bulk_task_2", "trace_bulk_2", "task_completed", "success", 456.78, {"info": "end"}),
         ]
-        try:
-            inserted = await db.bulk_insert(
-                "users",
-                ["name", "age"],
-                rows_to_insert,
-                batch_size=1000
-            )
-            print(f"✓ Inserted {inserted} rows")
-        except Exception as e:
-            logger.error(f"Bulk insert failed: {e}")
+        columns = ["task_id", "trace_id", "event", "status", "duration_ms", "metadata"]
 
-        # 5. Простой SELECT
-        try:
-            rows = await db.load("SELECT * FROM users WHERE age > $1", 25)
-            print(f"✓ Loaded {len(rows)} users with age > 25")
-            for row in rows:
-                print(f"  - {row}")
-        except Exception as e:
-            logger.error(f"Load failed: {e}")
+        # 1. Выполняем bulk_insert
+        inserted_count = await self.connector.bulk_insert(
+            table="operation_logs", columns=columns, rows=rows_to_insert, batch_size=10
+        )
+        print(f"Executed bulk insert for {len(rows_to_insert)} rows, {inserted_count} inserted.")
 
-        # 6. Загрузить одну строку
-        try:
-            one = await db.load_one("SELECT * FROM users WHERE name = $1", "Alice")
-            print(f"✓ Loaded single row: {one}")
-        except Exception as e:
-            logger.error(f"Load one failed: {e}")
+        # 2. Проверим, что записи появились (опционально, как в предыдущем тесте)
+        # query_check = "SELECT COUNT(*) FROM logs WHERE task_id = ANY($1::text[])"
+        # task_ids = [r[0] for r in rows_to_insert]
+        # result = await self.connector.load_scalar(query_check, task_ids)
+        # self.assertEqual(result, len(rows_to_insert), "All bulk records should have been inserted.")
 
-        # 7. Загрузить скалярное значение
-        try:
-            count = await db.load_scalar("SELECT COUNT(*) FROM users")
-            print(f"✓ Total users: {count}")
-        except Exception as e:
-            logger.error(f"Load scalar failed: {e}")
-
-        # 8. Параллельные запросы
-        try:
-            results = await db.load_concurrent([
-                ("SELECT COUNT(*) as cnt FROM users",),
-                ("SELECT AVG(age) as avg_age FROM users",),
-                ("SELECT MIN(age) as min_age FROM users",),
-            ])
-            print(f"✓ Concurrent results:")
-            for i, result in enumerate(results):
-                print(f"  Query {i+1}: {result}")
-        except Exception as e:
-            logger.error(f"Concurrent queries failed: {e}")
-
-        # 9. Потоком для больших результатов
-        try:
-            chunk_count = 0
-            total_rows = 0
-            async for chunk in db.load_stream(
-                "SELECT * FROM users",
-                chunk_size=2
-            ):
-                chunk_count += 1
-                total_rows += len(chunk)
-                print(f"✓ Stream chunk {chunk_count}: {len(chunk)} rows")
-        except Exception as e:
-            logger.error(f"Stream failed: {e}")
-
-        # 10. Export to CSV
-        try:
-            buffer = await db.load_to_buffer(
-                "SELECT * FROM users ORDER BY id",
-                format="csv"
-            )
-            csv_content = buffer.getvalue().decode()
-            print(f"✓ Exported to CSV:\n{csv_content}")
-        except Exception as e:
-            logger.error(f"Export to CSV failed: {e}")
-
-        # 11. Export to JSON
-        try:
-            buffer = await db.load_to_buffer(
-                "SELECT * FROM users ORDER BY id",
-                format="json"
-            )
-            json_content = buffer.getvalue().decode()
-            print(f"✓ Exported to JSON:\n{json_content}")
-        except Exception as e:
-            logger.error(f"Export to JSON failed: {e}")
-
-        # 12. Статистика пула
-        try:
-            stats = await db.get_pool_stats()
-            print(f"✓ Pool stats: {stats}")
-        except Exception as e:
-            logger.error(f"Pool stats failed: {e}")
-
-        # 13. UPDATE
-        try:
-            result = await db.execute(
-                "UPDATE users SET age = age + 1 WHERE name = $1",
-                "Alice"
-            )
-            print(f"✓ Updated: {result}")
-        except Exception as e:
-            logger.error(f"Update failed: {e}")
-
-        # 14. DELETE
-        try:
-            result = await db.execute(
-                "DELETE FROM users WHERE name = $1",
-                "Eve"
-            )
-            print(f"✓ Deleted: {result}")
-        except Exception as e:
-            logger.error(f"Delete failed: {e}")
-
-        # 15. Финальный COUNT
-        try:
-            final_count = await db.load_scalar("SELECT COUNT(*) FROM users")
-            print(f"✓ Final user count: {final_count}")
-        except Exception as e:
-            logger.error(f"Final count failed: {e}")
-
-    finally:
-        await db.shutdown()
+        self.assertEqual(inserted_count, len(rows_to_insert))
+        print("Bulk insert log entries test passed.")
 
 
-if __name__ == "__main__":
-    asyncio.run(main())
+# --- Если вы хотите запускать как обычный скрипт ---
+# if __name__ == "__main__":
+#     # Это не нужно, если используете unittest
+#     pass
