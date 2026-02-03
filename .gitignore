@@ -1,6 +1,257 @@
-*.log
-*.pdf
-*.mp3
-*.idea
-*.venv
+# ================================
+# ОСОБЫЕ ФАЙЛЫ
+# ================================
+
+# Файлы, специфичные для операционных систем
+.DS_Store           # macOS
+Thumbs.db           # Windows
+desktop.ini         # Windows
+
+# Резервные копии и временные файлы
+*~
+*.swp
+*.swo
+*.bak
+*.backup
+*.tmp
+*.temp
+
+# ================================
+# ИДЕИ / РЕДАКТОРЫ КОДА
+# ================================
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# JetBrains IDE (WebStorm, PHPStorm, PyCharm, etc.)
+.idea/
+*.iml
+
+# Sublime Text
+*.sublime-*
+sublime-text.*
+
+# Vim
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+
+# ================================
+# ЯЗЫКИ ПРОГРАММИРОВАНИЯ
+# ================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+.coverage.*
+*.cover
+.hypothesis/
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Node.js / JavaScript
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+lerna-debug.log*
+.DS_Store
+*.tgz
+.yarn-integrity
+.next/
+.nuxt/
+dist/
 build/
+.cache/
+.serverless/
+.fusebox/
+.dynamodb/
+.tern-port
+.storybook/dist
+.out/
+.next
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+target/
+build/
+.gradle/
+.apt_generated/
+
+# PHP
+vendor/
+composer.lock
+.env
+.phpunit.result.cache
+.phan/
+
+# Ruby
+/.bundle/
+/vendor/bundle
+*.gem
+/.ruby-version
+
+# Go
+vendor/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+/bin/
+
+# Rust
+/target/
+**/*.rs.bk
+
+# C/C++
+*.o
+*.obj
+*.out
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+*.dSYM/
+
+# .NET
+*.swp
+*.swo
+*~
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.pyc
+.nuget/
+packages/
+*.nupkg
+*.ncrunchsolution
+*.ncrunchproject
+
+# ================================
+# СИСТЕМЫ СБОРКИ
+# ================================
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# ================================
+# БАЗЫ ДАННЫХ
+# ================================
+
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.frm
+*.myd
+*.myi
+*.ibd
+dump.sql
+
+# ================================
+# ОКРУЖЕНИЕ / КОНФИГУРАЦИЯ
+# ================================
+
+# Файлы окружения
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Настройки IDE и редакторов
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+
+# ================================
+# СБОРОЧНЫЕ АРТЕФАКТЫ
+# ================================
+
+# Папки сборки
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+# Статические сайты
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# ================================
+# РАЗНОЕ
+# ================================
+
+# Файлы с приватными ключами
+*.pem
+*.key
+*.crt
+*.cert
+
+# Файлы журналов и дампов
+*.log
+*.dump
+*.heapdump
+*.pid
+
+# Файлы тестового покрытия
+coverage/
+.nyc_output/
+
+# Файлы профилирования
+*.prof
+*.profraw
+
+# Файлы конфигурации ОС
+*.lnk
