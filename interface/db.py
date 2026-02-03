@@ -97,3 +97,82 @@ class DBInterface(BaseInterface):
             *args,
             metadata={"query": query[:100]},
         )
+
+    async def execute_many(self, query: str, args_list: List[tuple]) -> str:
+        """
+        Execute query multiple times with different parameters.
+
+        Args:
+            query: SQL query to execute
+            args_list: List of parameter tuples
+
+        Returns:
+            Command result
+        """
+        return await self._execute_with_tracking(
+            "execute_many",
+            self._worker.execute_many,
+            query,
+            args_list,
+            metadata={"query": query[:100], "count": len(args_list)},
+        )
+
+    async def bulk_insert(
+        self,
+        table: str,
+        columns: List[str],
+        rows: List[tuple],
+        batch_size: int = 1000
+    ) -> int:
+        """
+        Perform bulk insert with batching.
+
+        Args:
+            table: Target table name
+            columns: Column names
+            rows: List of row tuples to insert
+            batch_size: Number of rows per batch
+
+        Returns:
+            Total number of inserted rows
+        """
+        return await self._execute_with_tracking(
+            "bulk_insert",
+            self._worker.bulk_insert,
+            table,
+            columns,
+            rows,
+            batch_size,
+            metadata={
+                "table": table,
+                "columns_count": len(columns),
+                "rows_count": len(rows),
+                "batch_size": batch_size
+            },
+        )
+
+    async def health_check(self) -> bool:
+        """
+        Check database connectivity.
+
+        Returns:
+            True if database is accessible, False otherwise
+        """
+        return await self._execute_with_tracking(
+            "health_check",
+            self._worker.health_check,
+            metadata={"check_type": "db_connectivity"},
+        )
+
+    async def get_pool_stats(self) -> Dict[str, Any]:
+        """
+        Get connection pool statistics.
+
+        Returns:
+            Dictionary with pool statistics
+        """
+        return await self._execute_with_tracking(
+            "get_pool_stats",
+            self._worker.get_pool_stats,
+            metadata={"info_type": "pool_stats"},
+        )

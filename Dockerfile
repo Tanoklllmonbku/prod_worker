@@ -8,6 +8,8 @@ RUN apt-get update && apt-get install -y \
     gcc \
     g++ \
     build-essential \
+    libpq-dev \
+    postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
 # Устанавливаем PyInstaller для создания бинарника
@@ -16,7 +18,7 @@ RUN pip install pyinstaller
 # Устанавливаем зависимости проекта
 WORKDIR /build
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Копируем исходный код
 COPY . .

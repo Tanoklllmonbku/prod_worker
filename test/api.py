@@ -1,7 +1,9 @@
+import sys
 from gigachat import GigaChat
 import keyring
 import requests
 from typing import Optional
+import os
 
 files_url = "https://gigachat.devices.sberbank.ru/api/v1/files"
 
@@ -94,12 +96,6 @@ def chat_with_file(giga: GigaChat, prompt: str, file_id: str) -> str:
         }
     )
     return result.choices[0].message.content
-
-giga = get_giga_obj()
-print('Init')
-
-with open("doc09531820250805115333.pdf", "rb") as f:
-    file = giga.upload_file(f).id_
 
 prompt = """ЗАДАЧА: Анализ письма в конверте от Почты России и извлечение данных в JSON.
 
@@ -244,45 +240,88 @@ prompt2 = """ЗАДАЧА - оценка профессиональных нав
 Выведи 10 навыков и умений в формате json, каждый критерий - отдельная категория с своими подкритериями, Weihgt (Вес, влияние на результат) в процентах.
 Ответ: только итоговый json.
 """
-print("Saved file")
-result = giga.chat(
-    {
-        "function_call": "auto",
-        "messages": [
-            {
-                "role": "user",
-                "content": prompt,
-                "attachments": [file]
-            }
-        ],
-        "temperature": 0.1
-    },
-)
-# В новых версиях SDK может быть напрямую доступно
-if hasattr(result, 'usage'):
-    print(f"Потрачено токенов: {result.usage}")
-elif hasattr(result, 'choices') and result.choices:
-    # Ищем в первом сообщении
-    message = result.choices[0].message
-    if hasattr(message, 'usage'):
-        print(f"Потрачено токенов: {message.usage.prompt_tokens}, {message.usage.completion_tokens}")
-# Альтернативно: просто выведем ответ как есть
-response_text = result.choices[0].message.content
 
-# Разделим на секции по заголовкам
-import re
+prompt3 = """ЗАДАЧА - оценка профессиональных навыков и умений, приведших к успешной продаже автомобиля.
+Контекст: навыки и их веса, полученные при анализе успешных разговоров наиболее результативных продажников с клиентами, которые привели к продаже автомобиля.
+На основе предоставленного файла в формате JSON, выяви наиболее значимые критерии оценки лучших работников, которые привели к успеху.
+Выведи навыки, которые встречаются в большинстве случаев - более 50 процентов записей, а так же сформулируй для них веса по их значимости и частоте появленияв.
+Ответ: только итоговый json.
+"""
+def worker():
+    giga = get_giga_obj()
+    print('Init')
+    with open("doc09704620250910124751.pdf", "rb") as f:
+                print(f)
+                file = giga.upload_file(f).id_
+    result = giga.chat(
+                {
+                    "function_call": "auto",
+                    "messages": [
+                        {
+                            "role": "user",
+                            "content": prompt3,
+                            "attachments": [file]
+                        }
+                    ],
+                    "temperature": 0.1
+                },
+            )
+    print(result)
+    
+    
+    #try:
+    #    open("data.txt", "x").close
+    #except Exception:
+    #    pass
 
-# Ищем все заголовки
-sections = re.split(r'\n(?=[А-Я][А-Я\s]+:)', response_text)
+    # directory = "/home/progger/proj/prod_worker/test/"
+    # mp3_files = []
 
-for section in sections:
-    if section.strip():
-        lines = section.strip().split('\n')
-        if lines:
-            # Выделяем заголовок
-            header = lines[0]
-            print(f"{header}")
-            # Выводим содержимое
-            for line in lines[1:]:
-                if line.strip():
-                    print(f"  {line.strip()}")
+    # try:
+    #     for entry in os.listdir(directory):
+    #         full_path = os.path.join(directory, entry)
+    #         if os.path.isfile(full_path) and entry.lower().endswith('.mp3'):
+    #             mp3_files.append(full_path)
+    # except OSError as e:
+    #     print(f"Ошибка при чтении каталога '{directory}': {e}", file=sys.stderr)
+
+    #print(len(mp3_files))
+    #for file in mp3_files:
+#    try:
+#            with open("data.txt", "rb") as f:
+#                print(f)
+#                file = giga.upload_file(f).id_
+#                
+#            print("Saved file")
+#            result = giga.chat(
+#                {
+#                    "function_call": "auto",
+#                    "messages": [
+#                        {
+#                            "role": "user",
+#                            "content": prompt3,
+#                            "attachments": [file]
+#                        }
+#                    ],
+#                    "temperature": 0.1
+#                },
+#            )
+#            # В новых версиях SDK может быть напрямую доступно
+#            if hasattr(result, 'usage'):
+#                print(f"Потрачено токенов: {result.usage}")
+#            elif hasattr(result, 'choices') and result.choices:
+#                # Ищем в первом сообщении
+#                message = result.choices[0].message
+#                if hasattr(message, 'usage'):
+#                    print(f"Потрачено токенов: {message.usage.prompt_tokens}, {message.usage.completion_tokens}")
+#            # Альтернативно: просто выведем ответ как есть
+#            response_text = result.choices[0].message.content
+#            print(response_text + "\n")
+#            
+#            with open("data.txt", "a") as f:
+#                f.write(response_text)
+#            
+#    except Exception as e:
+#        print(e)
+#            
+worker()

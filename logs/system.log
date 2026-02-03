@@ -15781,3 +15781,225 @@ aiokafka.errors.ConsumerStoppedError
 1.0.0 - Logger - _log - 2026-01-12 07:25:19,804 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::consume
 1.0.0 - Logger - _log - 2026-01-12 07:25:20,804 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::consume
 1.0.0 - Logger - _log - 2026-01-12 07:25:21,806 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::consume
+1.0.0 - Logger - _log - 2026-02-03 21:18:17,530 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['GigaChat', 'Kafka', 'Minio', 'Postgres']
+1.0.0 - Logger - _log - 2026-02-03 21:18:17,531 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] GigaChat::initialize
+1.0.0 - Logger - _log - 2026-02-03 21:18:17,991 - gigachatAPI - [0;32mINFO[0m - ✅ Access token refreshed
+1.0.0 - Logger - _log - 2026-02-03 21:18:17,992 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2026-02-03 21:18:17,992 - gigachatAPI - [0;32mINFO[0m - [operation_completed] GigaChat::initialize - OK (460.89ms)
+1.0.0 - Logger - _log - 2026-02-03 21:18:17,992 - gigachatAPI - [0;32mINFO[0m - Initialized interface: GigaChat
+1.0.0 - Logger - _log - 2026-02-03 21:18:17,992 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::initialize
+1.0.0 - Logger - _log - 2026-02-03 21:18:17,993 - gigachatAPI - [0;31mERROR[0m - [operation_failed] Kafka::initialize - FAILED (1.08ms) - KafkaConnectionError: Unable to bootstrap from [('localhost', 9092, <AddressFamily.AF_UNSPEC: 0>)]
+1.0.0 - Logger - _log - 2026-02-03 21:18:17,993 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface Kafka: KafkaConnectionError: Unable to bootstrap from [('localhost', 9092, <AddressFamily.AF_UNSPEC: 0>)]
+1.0.0 - Logger - _log - 2026-02-03 21:18:17,993 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::initialize
+1.0.0 - Logger - _log - 2026-02-03 21:18:23,999 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: HTTPConnectionPool(host='localhost', port=9000): Max retries exceeded with url: /documents?location= (Caused by NewConnectionError("HTTPConnection(host='localhost', port=9000): Failed to establish a new connection: [Errno 111] Connection refused"))
+1.0.0 - Logger - _log - 2026-02-03 21:18:23,999 - gigachatAPI - [0;31mERROR[0m - [operation_failed] Kafka::initialize - FAILED (6005.68ms) - HTTPConnectionPool(host='localhost', port=9000): Max retries exceeded with url: /documents?location= (Caused by NewConnectionError("HTTPConnection(host='localhost', port=9000): Failed to establish a new connection: [Errno 111] Connection refused"))
+1.0.0 - Logger - _log - 2026-02-03 21:18:23,999 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface Minio: HTTPConnectionPool(host='localhost', port=9000): Max retries exceeded with url: /documents?location= (Caused by NewConnectionError("HTTPConnection(host='localhost', port=9000): Failed to establish a new connection: [Errno 111] Connection refused"))
+1.0.0 - Logger - _log - 2026-02-03 21:18:23,999 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Postgres::initialize
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,552 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: [Errno -2] Name or service not known
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,552 - gigachatAPI - [0;31mERROR[0m - [operation_failed] Postgres::initialize - FAILED (3552.95ms) - [Errno -2] Name or service not known
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,552 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface Postgres: [Errno -2] Name or service not known
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,552 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] GigaChat::initialize
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,552 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,552 - gigachatAPI - [0;32mINFO[0m - [operation_completed] GigaChat::initialize - OK (0.49ms)
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,553 - gigachatAPI - [0;32mINFO[0m - LLM Service bootstrapped with 5 workers
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,553 - gigachatAPI - [0;32mINFO[0m - Bootstrap successful
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,553 - gigachatAPI - [0;32mINFO[0m - LLM Service started, initializing workers...
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,553 - gigachatAPI - [0;32mINFO[0m - Token refresh scheduled in 394 seconds
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,553 - gigachatAPI - [0;32mINFO[0m - Starting Kafka consumer...
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,553 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::subscribe
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,553 - gigachatAPI - [0;32mINFO[0m - Worker LLM_worker_1 started
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,553 - gigachatAPI - [0;32mINFO[0m - Worker LLM_worker_2 started
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,553 - gigachatAPI - [0;32mINFO[0m - Worker LLM_worker_3 started
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,553 - gigachatAPI - [0;32mINFO[0m - Worker LLM_worker_4 started
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,553 - gigachatAPI - [0;32mINFO[0m - Worker LLM_worker_5 started
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,554 - gigachatAPI - [0;31mERROR[0m - [operation_failed] Kafka::subscribe - FAILED (0.89ms) - KafkaConnectionError: Unable to bootstrap from [('localhost', 9092, <AddressFamily.AF_UNSPEC: 0>)]
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,554 - gigachatAPI - [0;31mERROR[0m - Kafka consumer error: KafkaConnectionError: Unable to bootstrap from [('localhost', 9092, <AddressFamily.AF_UNSPEC: 0>)]
+Traceback (most recent call last):
+  File "/home/progger/proj/prod_worker/services/service.py", line 209, in _kafka_consumer_loop
+    await self.queue.subscribe(
+    ...<4 lines>...
+    )
+  File "/home/progger/proj/prod_worker/interface/queue.py", line 124, in subscribe
+    await self._execute_with_tracking(
+    ...<6 lines>...
+    )
+  File "/home/progger/proj/prod_worker/core/base_class/base_interface.py", line 135, in _execute_with_tracking
+    result = await operation(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/progger/proj/prod_worker/connectors/kafka_connector.py", line 183, in subscribe
+    await self._consumer.start()
+  File "/home/progger/proj/prod_worker/.venv/lib/python3.14t/site-packages/aiokafka/consumer/consumer.py", line 364, in start
+    await self._client.bootstrap()
+  File "/home/progger/proj/prod_worker/.venv/lib/python3.14t/site-packages/aiokafka/client.py", line 232, in bootstrap
+    raise KafkaConnectionError(f"Unable to bootstrap from {self.hosts}")
+aiokafka.errors.KafkaConnectionError: KafkaConnectionError: Unable to bootstrap from [('localhost', 9092, <AddressFamily.AF_UNSPEC: 0>)]
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,556 - gigachatAPI - [0;32mINFO[0m - Shutting down LLM Service...
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] GigaChat::shutdown
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [0;32mINFO[0m - GigaChat HTTP client closed
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [0;32mINFO[0m - [operation_completed] GigaChat::shutdown - OK (0.36ms)
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [0;32mINFO[0m - LLM interface shutdown complete
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] GigaChat::shutdown
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [0;32mINFO[0m - GigaChat HTTP client closed
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [0;32mINFO[0m - [operation_completed] GigaChat::shutdown - OK (0.09ms)
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [0;32mINFO[0m - Shutdown interface: GigaChat
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::shutdown
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [0;32mINFO[0m - Kafka producer closed
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [0;32mINFO[0m - [operation_completed] Kafka::shutdown - OK (0.09ms)
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [0;32mINFO[0m - Shutdown interface: Kafka
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::shutdown
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [0;32mINFO[0m - MinIO client closed
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [0;32mINFO[0m - [operation_completed] Kafka::shutdown - OK (0.07ms)
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [0;32mINFO[0m - Shutdown interface: Minio
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,657 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Postgres::shutdown
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,658 - gigachatAPI - [0;32mINFO[0m - [operation_completed] Postgres::shutdown - OK (0.04ms)
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,658 - gigachatAPI - [0;32mINFO[0m - Shutdown interface: Postgres
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,658 - gigachatAPI - [0;32mINFO[0m - Service container shutdown complete
+1.0.0 - Logger - _log - 2026-02-03 21:18:27,658 - gigachatAPI - [0;32mINFO[0m - LLM Service shutdown complete
+1.0.0 - Logger - _log - 2026-02-03 21:21:07,362 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['GigaChat', 'Kafka', 'Minio', 'Postgres']
+1.0.0 - Logger - _log - 2026-02-03 21:21:07,362 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] GigaChat::initialize
+1.0.0 - Logger - _log - 2026-02-03 21:21:07,683 - gigachatAPI - [0;32mINFO[0m - ✅ Access token refreshed
+1.0.0 - Logger - _log - 2026-02-03 21:21:07,683 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2026-02-03 21:21:07,683 - gigachatAPI - [0;32mINFO[0m - [operation_completed] GigaChat::initialize - OK (320.68ms)
+1.0.0 - Logger - _log - 2026-02-03 21:21:07,683 - gigachatAPI - [0;32mINFO[0m - Initialized interface: GigaChat
+1.0.0 - Logger - _log - 2026-02-03 21:21:07,683 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::initialize
+1.0.0 - Logger - _log - 2026-02-03 21:21:07,685 - gigachatAPI - [0;31mERROR[0m - [operation_failed] Kafka::initialize - FAILED (1.63ms) - KafkaConnectionError: Unable to bootstrap from [('localhost', 9092, <AddressFamily.AF_UNSPEC: 0>)]
+1.0.0 - Logger - _log - 2026-02-03 21:21:07,685 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface Kafka: KafkaConnectionError: Unable to bootstrap from [('localhost', 9092, <AddressFamily.AF_UNSPEC: 0>)]
+1.0.0 - Logger - _log - 2026-02-03 21:21:07,685 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::initialize
+1.0.0 - Logger - _log - 2026-02-03 21:21:13,690 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: HTTPConnectionPool(host='localhost', port=9000): Max retries exceeded with url: /documents?location= (Caused by NewConnectionError("HTTPConnection(host='localhost', port=9000): Failed to establish a new connection: [Errno 111] Connection refused"))
+1.0.0 - Logger - _log - 2026-02-03 21:21:13,690 - gigachatAPI - [0;31mERROR[0m - [operation_failed] Kafka::initialize - FAILED (6005.39ms) - HTTPConnectionPool(host='localhost', port=9000): Max retries exceeded with url: /documents?location= (Caused by NewConnectionError("HTTPConnection(host='localhost', port=9000): Failed to establish a new connection: [Errno 111] Connection refused"))
+1.0.0 - Logger - _log - 2026-02-03 21:21:13,690 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface Minio: HTTPConnectionPool(host='localhost', port=9000): Max retries exceeded with url: /documents?location= (Caused by NewConnectionError("HTTPConnection(host='localhost', port=9000): Failed to establish a new connection: [Errno 111] Connection refused"))
+1.0.0 - Logger - _log - 2026-02-03 21:21:13,690 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Postgres::initialize
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,552 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: [Errno -2] Name or service not known
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,552 - gigachatAPI - [0;31mERROR[0m - [operation_failed] Postgres::initialize - FAILED (3861.51ms) - [Errno -2] Name or service not known
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,552 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface Postgres: [Errno -2] Name or service not known
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,552 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] GigaChat::initialize
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,552 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,552 - gigachatAPI - [0;32mINFO[0m - [operation_completed] GigaChat::initialize - OK (0.45ms)
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,552 - gigachatAPI - [0;32mINFO[0m - LLM Service bootstrapped with 5 workers
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,553 - gigachatAPI - [0;32mINFO[0m - Bootstrap successful
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,553 - gigachatAPI - [0;32mINFO[0m - LLM Service started, initializing workers...
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,553 - gigachatAPI - [0;32mINFO[0m - Token refresh scheduled in 860 seconds
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,553 - gigachatAPI - [0;32mINFO[0m - Starting Kafka consumer...
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,553 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::subscribe
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,553 - gigachatAPI - [0;32mINFO[0m - Worker LLM_worker_1 started
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,553 - gigachatAPI - [0;32mINFO[0m - Worker LLM_worker_2 started
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,553 - gigachatAPI - [0;32mINFO[0m - Worker LLM_worker_3 started
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,553 - gigachatAPI - [0;32mINFO[0m - Worker LLM_worker_4 started
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,553 - gigachatAPI - [0;32mINFO[0m - Worker LLM_worker_5 started
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,554 - gigachatAPI - [0;31mERROR[0m - [operation_failed] Kafka::subscribe - FAILED (0.99ms) - KafkaConnectionError: Unable to bootstrap from [('localhost', 9092, <AddressFamily.AF_UNSPEC: 0>)]
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,554 - gigachatAPI - [0;31mERROR[0m - Kafka consumer error: KafkaConnectionError: Unable to bootstrap from [('localhost', 9092, <AddressFamily.AF_UNSPEC: 0>)]
+Traceback (most recent call last):
+  File "/home/progger/proj/prod_worker/services/service.py", line 209, in _kafka_consumer_loop
+    await self.queue.subscribe(
+    ...<4 lines>...
+    )
+  File "/home/progger/proj/prod_worker/interface/queue.py", line 124, in subscribe
+    await self._execute_with_tracking(
+    ...<6 lines>...
+    )
+  File "/home/progger/proj/prod_worker/core/base_class/base_interface.py", line 135, in _execute_with_tracking
+    result = await operation(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/progger/proj/prod_worker/connectors/kafka_connector.py", line 183, in subscribe
+    await self._consumer.start()
+  File "/home/progger/proj/prod_worker/.venv/lib/python3.14t/site-packages/aiokafka/consumer/consumer.py", line 364, in start
+    await self._client.bootstrap()
+  File "/home/progger/proj/prod_worker/.venv/lib/python3.14t/site-packages/aiokafka/client.py", line 232, in bootstrap
+    raise KafkaConnectionError(f"Unable to bootstrap from {self.hosts}")
+aiokafka.errors.KafkaConnectionError: KafkaConnectionError: Unable to bootstrap from [('localhost', 9092, <AddressFamily.AF_UNSPEC: 0>)]
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,557 - gigachatAPI - [0;32mINFO[0m - Shutting down LLM Service...
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,657 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] GigaChat::shutdown
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,658 - gigachatAPI - [0;32mINFO[0m - GigaChat HTTP client closed
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,658 - gigachatAPI - [0;32mINFO[0m - [operation_completed] GigaChat::shutdown - OK (0.42ms)
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,658 - gigachatAPI - [0;32mINFO[0m - LLM interface shutdown complete
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,658 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] GigaChat::shutdown
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,658 - gigachatAPI - [0;32mINFO[0m - GigaChat HTTP client closed
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,658 - gigachatAPI - [0;32mINFO[0m - [operation_completed] GigaChat::shutdown - OK (0.11ms)
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,658 - gigachatAPI - [0;32mINFO[0m - Shutdown interface: GigaChat
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,658 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::shutdown
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,658 - gigachatAPI - [0;32mINFO[0m - Kafka producer closed
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,658 - gigachatAPI - [0;32mINFO[0m - [operation_completed] Kafka::shutdown - OK (0.17ms)
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,658 - gigachatAPI - [0;32mINFO[0m - Shutdown interface: Kafka
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,658 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::shutdown
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,658 - gigachatAPI - [0;32mINFO[0m - MinIO client closed
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,659 - gigachatAPI - [0;32mINFO[0m - [operation_completed] Kafka::shutdown - OK (0.14ms)
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,659 - gigachatAPI - [0;32mINFO[0m - Shutdown interface: Minio
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,659 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Postgres::shutdown
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,659 - gigachatAPI - [0;32mINFO[0m - [operation_completed] Postgres::shutdown - OK (0.08ms)
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,659 - gigachatAPI - [0;32mINFO[0m - Shutdown interface: Postgres
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,659 - gigachatAPI - [0;32mINFO[0m - Service container shutdown complete
+1.0.0 - Logger - _log - 2026-02-03 21:21:17,659 - gigachatAPI - [0;32mINFO[0m - LLM Service shutdown complete
+1.0.0 - Logger - _log - 2026-02-03 21:44:05,005 - gigachatAPI - [0;32mINFO[0m - Registered 4 interfaces: ['GigaChat', 'Kafka', 'Minio', 'Postgres']
+1.0.0 - Logger - _log - 2026-02-03 21:44:05,005 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] GigaChat::initialize
+1.0.0 - Logger - _log - 2026-02-03 21:44:05,330 - gigachatAPI - [0;32mINFO[0m - ✅ Access token refreshed
+1.0.0 - Logger - _log - 2026-02-03 21:44:05,330 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2026-02-03 21:44:05,330 - gigachatAPI - [0;32mINFO[0m - [operation_completed] GigaChat::initialize - OK (324.63ms)
+1.0.0 - Logger - _log - 2026-02-03 21:44:05,330 - gigachatAPI - [0;32mINFO[0m - Initialized interface: GigaChat
+1.0.0 - Logger - _log - 2026-02-03 21:44:05,330 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::initialize
+1.0.0 - Logger - _log - 2026-02-03 21:44:05,331 - gigachatAPI - [0;31mERROR[0m - [operation_failed] Kafka::initialize - FAILED (1.50ms) - KafkaConnectionError: Unable to bootstrap from [('localhost', 9092, <AddressFamily.AF_UNSPEC: 0>)]
+1.0.0 - Logger - _log - 2026-02-03 21:44:05,331 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface Kafka: KafkaConnectionError: Unable to bootstrap from [('localhost', 9092, <AddressFamily.AF_UNSPEC: 0>)]
+1.0.0 - Logger - _log - 2026-02-03 21:44:05,332 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::initialize
+1.0.0 - Logger - _log - 2026-02-03 21:44:11,338 - gigachatAPI - [0;31mERROR[0m - Failed to initialize MinIO: HTTPConnectionPool(host='localhost', port=9000): Max retries exceeded with url: /documents?location= (Caused by NewConnectionError("HTTPConnection(host='localhost', port=9000): Failed to establish a new connection: [Errno 111] Connection refused"))
+1.0.0 - Logger - _log - 2026-02-03 21:44:11,338 - gigachatAPI - [0;31mERROR[0m - [operation_failed] Kafka::initialize - FAILED (6006.46ms) - HTTPConnectionPool(host='localhost', port=9000): Max retries exceeded with url: /documents?location= (Caused by NewConnectionError("HTTPConnection(host='localhost', port=9000): Failed to establish a new connection: [Errno 111] Connection refused"))
+1.0.0 - Logger - _log - 2026-02-03 21:44:11,338 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface Minio: HTTPConnectionPool(host='localhost', port=9000): Max retries exceeded with url: /documents?location= (Caused by NewConnectionError("HTTPConnection(host='localhost', port=9000): Failed to establish a new connection: [Errno 111] Connection refused"))
+1.0.0 - Logger - _log - 2026-02-03 21:44:11,338 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Postgres::initialize
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,052 - gigachatAPI - [0;31mERROR[0m - Failed to initialize PostgreSQL pool: [Errno -2] Name or service not known
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,052 - gigachatAPI - [0;31mERROR[0m - [operation_failed] Postgres::initialize - FAILED (3713.59ms) - [Errno -2] Name or service not known
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,052 - gigachatAPI - [0;31mERROR[0m - Failed to initialize interface Postgres: [Errno -2] Name or service not known
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,052 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] GigaChat::initialize
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,052 - gigachatAPI - [0;32mINFO[0m - GigaChat initialized with model GigaChat-Max, scope GIGACHAT_API_B2B
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,052 - gigachatAPI - [0;32mINFO[0m - [operation_completed] GigaChat::initialize - OK (0.52ms)
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,053 - gigachatAPI - [0;32mINFO[0m - LLM Service bootstrapped with 5 workers
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,053 - gigachatAPI - [0;32mINFO[0m - Bootstrap successful
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,053 - gigachatAPI - [0;32mINFO[0m - LLM Service started, initializing workers...
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,053 - gigachatAPI - [0;32mINFO[0m - Token refresh scheduled in 780 seconds
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,053 - gigachatAPI - [0;32mINFO[0m - Starting Kafka consumer...
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,053 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::subscribe
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,053 - gigachatAPI - [0;32mINFO[0m - Worker LLM_worker_1 started
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,053 - gigachatAPI - [0;32mINFO[0m - Worker LLM_worker_2 started
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,053 - gigachatAPI - [0;32mINFO[0m - Worker LLM_worker_3 started
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,053 - gigachatAPI - [0;32mINFO[0m - Worker LLM_worker_4 started
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,053 - gigachatAPI - [0;32mINFO[0m - Worker LLM_worker_5 started
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,054 - gigachatAPI - [0;31mERROR[0m - [operation_failed] Kafka::subscribe - FAILED (0.90ms) - KafkaConnectionError: Unable to bootstrap from [('localhost', 9092, <AddressFamily.AF_UNSPEC: 0>)]
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,054 - gigachatAPI - [0;31mERROR[0m - Kafka consumer error: KafkaConnectionError: Unable to bootstrap from [('localhost', 9092, <AddressFamily.AF_UNSPEC: 0>)]
+Traceback (most recent call last):
+  File "/home/progger/proj/prod_worker/services/service.py", line 209, in _kafka_consumer_loop
+    await self.queue.subscribe(
+    ...<4 lines>...
+    )
+  File "/home/progger/proj/prod_worker/interface/queue.py", line 124, in subscribe
+    await self._execute_with_tracking(
+    ...<6 lines>...
+    )
+  File "/home/progger/proj/prod_worker/core/base_class/base_interface.py", line 135, in _execute_with_tracking
+    result = await operation(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/progger/proj/prod_worker/connectors/kafka_connector.py", line 183, in subscribe
+    await self._consumer.start()
+  File "/home/progger/proj/prod_worker/.venv/lib/python3.14t/site-packages/aiokafka/consumer/consumer.py", line 364, in start
+    await self._client.bootstrap()
+  File "/home/progger/proj/prod_worker/.venv/lib/python3.14t/site-packages/aiokafka/client.py", line 232, in bootstrap
+    raise KafkaConnectionError(f"Unable to bootstrap from {self.hosts}")
+aiokafka.errors.KafkaConnectionError: KafkaConnectionError: Unable to bootstrap from [('localhost', 9092, <AddressFamily.AF_UNSPEC: 0>)]
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,057 - gigachatAPI - [0;32mINFO[0m - Shutting down LLM Service...
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,157 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] GigaChat::shutdown
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,157 - gigachatAPI - [0;32mINFO[0m - GigaChat HTTP client closed
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,157 - gigachatAPI - [0;32mINFO[0m - [operation_completed] GigaChat::shutdown - OK (0.56ms)
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,157 - gigachatAPI - [0;32mINFO[0m - LLM interface shutdown complete
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] GigaChat::shutdown
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [0;32mINFO[0m - GigaChat HTTP client closed
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [0;32mINFO[0m - [operation_completed] GigaChat::shutdown - OK (0.12ms)
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [0;32mINFO[0m - Shutdown interface: GigaChat
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::shutdown
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [0;32mINFO[0m - Kafka producer closed
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [0;32mINFO[0m - [operation_completed] Kafka::shutdown - OK (0.13ms)
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [0;32mINFO[0m - Shutdown interface: Kafka
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Kafka::shutdown
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [0;32mINFO[0m - MinIO client closed
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [0;32mINFO[0m - [operation_completed] Kafka::shutdown - OK (0.08ms)
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [0;32mINFO[0m - Shutdown interface: Minio
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [2;36mDEBUG[0m - [operation_started] Postgres::shutdown
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [0;32mINFO[0m - [operation_completed] Postgres::shutdown - OK (0.05ms)
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [0;32mINFO[0m - Shutdown interface: Postgres
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [0;32mINFO[0m - Service container shutdown complete
+1.0.0 - Logger - _log - 2026-02-03 21:44:15,158 - gigachatAPI - [0;32mINFO[0m - LLM Service shutdown complete
