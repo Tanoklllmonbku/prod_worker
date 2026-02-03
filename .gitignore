@@ -1,0 +1,6 @@
+*.log
+*.pdf
+*.mp3
+*.idea
+*.venv
+build/
