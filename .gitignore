@@ -244,6 +244,7 @@ _site/
 *.dump
 *.heapdump
 *.pid
+*.mp3
 
 # Файлы тестового покрытия
 coverage/
