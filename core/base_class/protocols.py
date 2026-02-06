@@ -204,3 +204,24 @@ class IDBConnector(Protocol):
     async def execute(self, query: str, *args: Any) -> Any:
         """Execute DML (INSERT/UPDATE/DELETE)"""
         ...
+
+
+class IHTTPProtocol(Protocol):
+        
+    @property
+    def name(self) -> str:
+        """Connector name identifier"""
+        ...
+        
+    def start(self):
+        """"""
+        ...
+        
+    async def health(self):
+        """"""
+        ...
+    
+    async def status(self):
+        """"""
+        ...
+        

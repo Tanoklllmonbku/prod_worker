@@ -1,3 +1,0 @@
-1.0.0 - Logger - _log - 2026-01-11 05:00:50,512 - gigachatAPI - [0;32mINFO[0m - LLM Service bootstrapped with 2 workers
-1.0.0 - Logger - _log - 2026-01-11 05:00:50,513 - gigachatAPI - [0;32mINFO[0m - Token refresh scheduled in 713 seconds
-1.0.0 - Logger - _log - 2026-01-11 05:00:50,513 - gigachatAPI - [0;32mINFO[0m - Token refresh task cancelled

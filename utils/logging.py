@@ -23,6 +23,9 @@ class ColoredFormatter(logging.Formatter):
 
     def format(self, record):
         log_color = self.COLORS.get(record.levelname, self.RESET)
+        # Форматируем место вызова
+        location = f"{record.filename}:{record.lineno} in {record.funcName}"
+        record.location = location
         record.levelname = f"{log_color}{record.levelname}{self.RESET}"
         return super().format(record)
 
@@ -67,8 +70,9 @@ class AsyncPGHandler(logging.Handler):
                 created_at TIMESTAMPTZ DEFAULT NOW(),
                 level VARCHAR(10) NOT NULL,
                 logger_name VARCHAR(255) NOT NULL,
-                cls VARCHAR(255),
-                func VARCHAR(255),
+                file_name VARCHAR(255) NOT NULL,
+                line_number INTEGER NOT NULL,
+                function_name VARCHAR(255) NOT NULL,
                 message TEXT NOT NULL
             );
             """)
@@ -83,8 +87,9 @@ class AsyncPGHandler(logging.Handler):
                 'created_at': datetime.utcnow(),
                 'level': record.levelname,
                 'logger_name': record.name,
-                'cls': getattr(record, 'cls', None),
-                'func': getattr(record, 'func', None),
+                'file_name': record.filename,
+                'line_number': record.lineno,
+                'function_name': record.funcName,
                 'message': formatted_msg
             }
             
@@ -135,8 +140,8 @@ class AsyncPGHandler(logging.Handler):
                 # Prepare the insert query
                 query = f"""
                 INSERT INTO {self.table}
-                (created_at, level, logger_name, cls, func, message)
-                VALUES ($1, $2, $3, $4, $5, $6)
+                (created_at, level, logger_name, file_name, line_number, function_name, message)
+                VALUES ($1, $2, $3, $4, $5, $6, $7)
                 """
                 
                 # Prepare data for batch insert
@@ -145,8 +150,9 @@ class AsyncPGHandler(logging.Handler):
                         entry['created_at'],
                         entry['level'],
                         entry['logger_name'],
-                        entry['cls'],
-                        entry['func'],
+                        entry['file_name'],
+                        entry['line_number'],
+                        entry['function_name'],
                         entry['message']
                     )
                     for entry in batch
@@ -174,22 +180,7 @@ class AsyncPGHandler(logging.Handler):
         super().close()
 
 
-class ContextFilter(logging.Filter):
-    def filter(self, record):
-        frame = inspect.currentframe()
-        frame = frame.f_back.f_back.f_back
-
-        record.cls = None
-        record.func = None
-
-        if 'self' in frame.f_locals:
-            record.cls = frame.f_locals['self'].__class__.__name__
-
-        if frame.f_code:
-            record.func = frame.f_code.co_name
-
-        return True
-
+# УДАЛЯЕМ ContextFilter - он больше не нужен!
 
 def setup_logger(
         version: str,
@@ -202,16 +193,17 @@ def setup_logger(
     if logger.hasHandlers():
         return logger
 
+    # Обновлённый формат с местом вызова
     file_formatter = logging.Formatter(
-        f'{version} - %(cls)s - %(func)s - %(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        f'{version} - %(location)s - %(asctime)s - %(name)s - %(levelname)s - %(message)s'
     )
     console_formatter = ColoredFormatter(
-        f'{version} - %(cls)s - %(func)s - %(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        f'{version} - %(location)s - %(asctime)s - %(name)s - %(levelname)s - %(message)s'
     )
 
     logger.setLevel(level)
 
-    logger.addFilter(ContextFilter())
+    # УБИРАЕМ ContextFilter - стандартные атрибуты record уже содержат нужную информацию
 
     console_handler = logging.StreamHandler()
     console_handler.setFormatter(console_formatter)
@@ -297,6 +289,7 @@ def get_logger_from_config(config) -> logging.Logger:
         name="gigachatAPI",
         log_file=config.log_file,
         level=level,
-        pg_dsn=getattr(config, 'log_pg_dsn', None),  # Can be added to config if needed
+        pg_dsn=getattr(config, 'log_pg_dsn', None),
         enable_debug=config.log_enable_debug,
     )
+    

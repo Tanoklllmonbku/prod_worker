@@ -14,12 +14,14 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import Any, Dict, Optional
 
 from config.config import Settings, get_settings
+from core.base_class.registry import DIContainer, ConnectorType
 from core.factories import create_all_interfaces
 from core.task_deduplication_queue import TaskDeduplicationQueue
 from interface.db import DBInterface
 from interface.llm import LLMInterface
 from interface.queue import QueueInterface
 from interface.storage import StorageInterface
+from interface.http import HTTPInterface
 from utils.logging import get_logger_from_config
 from utils.observer import (
     EventPublisher,
@@ -58,6 +60,9 @@ class ServiceContainer:
         """
         self.config: Settings = config or get_settings()
         self._executor: Optional[ThreadPoolExecutor] = None
+
+        # Internal DI container for managing connectors
+        self._di_container = DIContainer()
 
         # Event publisher with observers
         self._event_publisher = EventPublisher()
@@ -125,10 +130,26 @@ class ServiceContainer:
         self._executor = ThreadPoolExecutor(max_workers=20)
 
         interfaces = create_all_interfaces(
-            config=self.config,
-            event_publisher=self._event_publisher,
-            executor=self._executor,
-        )
+                config=self.config,
+                event_publisher=self._event_publisher,
+                executor=self._executor,
+            )
+
+        # Register connectors in the internal DI container
+        for name, interface in interfaces.items():
+            if hasattr(interface, 'worker') and interface.worker is not None:
+                # Determine connector type based on interface type
+                if isinstance(interface, LLMInterface):
+                    self._di_container.register(interface.worker, ConnectorType.LLM, f"{name}_connector")
+                elif isinstance(interface, QueueInterface):
+                    self._di_container.register(interface.worker, ConnectorType.QUEUE, f"{name}_connector")
+                elif isinstance(interface, StorageInterface):
+                    self._di_container.register(interface.worker, ConnectorType.STORAGE, f"{name}_connector")
+                elif isinstance(interface, DBInterface):
+                    self._di_container.register(interface.worker, ConnectorType.DB, f"{name}_connector")
+                elif isinstance(interface, HTTPInterface):  # ← ДОБАВЛЕНО
+                    self._di_container.register(interface.worker, ConnectorType.HTTP, f"{name}_connector")
+
 
         self._interfaces.update(interfaces)
 
@@ -156,6 +177,10 @@ class ServiceContainer:
                 results[name] = False
                 self._logger.error("Failed to initialize interface %s: %s", name, e)
 
+        # Also initialize connectors through DI container
+        di_results = await self._di_container.initialize_all()
+        results.update({"di_container": di_results})
+
         return results
 
     async def shutdown_all(self) -> None:
@@ -166,6 +191,9 @@ class ServiceContainer:
                 self._logger.info("Shutdown interface: %s", name)
             except Exception as e:
                 self._logger.error("Error shutting down interface %s: %s", name, e)
+
+        # Also shutdown connectors through DI container
+        await self._di_container.shutdown_all()
 
         if self._executor:
             self._executor.shutdown(wait=True)
@@ -185,6 +213,10 @@ class ServiceContainer:
                 results[name] = await interface.health_check()
             except Exception:
                 results[name] = False
+
+        # Also check health of connectors through DI container
+        di_health = await self._di_container.health_check_all()
+        results.update({"di_container": di_health})
 
         return results
 
@@ -225,7 +257,16 @@ class ServiceContainer:
         if not isinstance(interface, DBInterface):
             raise TypeError(f"Interface '{name}' is not a DBInterface")
         return interface
-
+    
+    def get_http(self, name: str = "fastapi") -> HTTPInterface:
+        """Get HTTP interface by name"""
+        interface = self._interfaces.get(name)
+        if interface is None:
+            raise KeyError(f"HTTP interface '{name}' not found")
+        if not isinstance(interface, HTTPInterface):
+            raise TypeError(f"Interface '{name}' is not a HTTPInterface")
+        return interface
+    
     # Observer access
 
     @property
@@ -264,6 +305,32 @@ class ServiceContainer:
         if self._task_deduplication_queue:
             return self._task_deduplication_queue.is_duplicate(task_id)
         return False
+
+    # DI Container access methods
+
+    def get_di_container(self):
+        """Get access to the internal DI container if needed"""
+        return self._di_container
+
+    def get_connector(self, connector_type: ConnectorType, name: str):
+        """Get connector directly from DI container by type and name"""
+        return self._di_container.get(connector_type, name)
+
+    def get_llm_connector(self, name: str):
+        """Get LLM connector directly from DI container"""
+        return self._di_container.get_llm(name)
+
+    def get_queue_connector(self, name: str):
+        """Get queue connector directly from DI container"""
+        return self._di_container.get_queue(name)
+
+    def get_storage_connector(self, name: str):
+        """Get storage connector directly from DI container"""
+        return self._di_container.get_storage(name)
+
+    def get_db_connector(self, name: str):
+        """Get DB connector directly from DI container"""
+        return self._di_container.get_db(name)
 
 
 async def get_container(

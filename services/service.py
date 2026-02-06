@@ -39,6 +39,7 @@ class LLMService:
         self.queue = None  # QueueInterface
         self.db = None  # DBInterface
         self.storage = None  # StorageInterface
+        self.http = None # HTTPInterface
 
         # Configuration
         self.max_workers: int = 0
@@ -50,7 +51,6 @@ class LLMService:
         self._consumer_running = False
         self._processing_queue = asyncio.Queue()
         self._worker_semaphore = None
-        self._task_processing_lock = Lock()
         self._processed_tasks: Set[str] = set()
 
         # Worker management
@@ -105,6 +105,18 @@ class LLMService:
             self.queue = self.container.get_queue("Kafka")
             self.db = self.container.get_db("Postgres")
             self.storage = self.container.get_storage("Minio")
+            self.http = None
+            
+            #Initialize HTTP server
+            if self.container.config.http.enabled:
+                try:
+                    self.http = self.container.get_http("FastApi")
+                    # Инициализируем HTTP-приложение с callback'ами
+                    self.http.worker.start()
+                except KeyError:
+                    self.logger.warning("HTTP interface 'FastApi' not found in container")
+                except Exception as e:
+                    self.logger.error(f"Failed to initialize HTTP interface: {e}")
 
             # Initialize LLM
             await self.llm.initialize()
@@ -166,6 +178,24 @@ class LLMService:
         print("Press Ctrl+C to stop.")
         print("=" * 60 + "\n")
 
+        http_task = None
+        if self.http:
+            try:
+                import uvicorn
+                app = self.http.worker.app
+                config = uvicorn.Config(
+                    app=app,
+                    host=self.container.config.http.host,
+                    port=self.container.config.http.port,
+                    log_level="warning",
+                    access_log=False,
+                )
+                self._http_server = uvicorn.Server(config)
+                http_task = asyncio.create_task(self._http_server.serve())
+                self.logger.info(f"HTTP monitor started on {self.container.config.http.host}:{self.container.config.http.port}")
+            except Exception as e:
+                self.logger.error(f"Failed to start HTTP server: {e}")
+        
         try:
             # Start Kafka consumer
             kafka_task = asyncio.create_task(self._kafka_consumer_loop())
@@ -179,9 +209,13 @@ class LLMService:
             # Wait for shutdown
             shutdown_task = asyncio.create_task(self._shutdown_event.wait())
 
-            # Wait for any task to complete (should be shutdown)
+            # Include HTTP task in wait set
+            all_tasks = [kafka_task, shutdown_task] + worker_tasks
+            if http_task:
+                all_tasks.append(http_task)
+
             done, pending = await asyncio.wait(
-                [kafka_task, shutdown_task] + worker_tasks,
+                all_tasks,
                 return_when=asyncio.FIRST_COMPLETED,
             )
 
@@ -668,6 +702,11 @@ class LLMService:
         # Signal shutdown
         self._shutdown_event.set()
 
+        # Shutdown HTTP server first
+        if hasattr(self, '_http_server') and self._http_server:
+            self._http_server.should_exit = True
+            self.logger.info("HTTP server shutdown initiated")
+
         # Wait a bit for graceful shutdown
         await asyncio.sleep(0.1)
 
@@ -700,3 +739,35 @@ class LLMService:
             self.logger.info("Service container shutdown complete")
 
         self.logger.info("LLM Service shutdown complete")
+
+    async def _http_health_callback(self) -> dict:
+        """Callback для HTTP health-check."""
+        if self._shutdown_event.is_set():
+            return {"status": "shutting_down"}
+        if not self.container or not self.llm or not self.queue:
+            return {"status": "degraded"}
+        return {"status": "ok"}
+    
+    async def _http_status_callback(self) -> dict:
+        """Callback для HTTP status."""
+        if not self.container:
+            return {"error": "not_bootstrapped"}
+        
+        queue_size = self._processing_queue.qsize()
+        active_workers = self.max_workers - self._worker_semaphore._value
+        dedup_queue = self.container.get_task_deduplication_queue()
+        dedup_size = len(dedup_queue) if dedup_queue else 0
+        
+        return {
+            "service": "LLMService",
+            "workers": {
+                "max": self.max_workers,
+                "active": active_workers,
+            },
+            "queues": {
+                "processing": queue_size,
+                "deduplication": dedup_size,
+            },
+            "bootstrap_success": True,
+            "shutdown_in_progress": self._shutdown_event.is_set(),
+        }

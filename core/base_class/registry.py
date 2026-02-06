@@ -25,6 +25,7 @@ class ConnectorType(str, Enum):
     QUEUE = "queue"
     STORAGE = "storage"
     DB = "db"
+    HTTP = "http" 
 
 
 class ConnectorRegistry(Generic[T]):
@@ -137,12 +138,14 @@ class DIContainer:
         self._queue_registry = ConnectorRegistry[BaseConnector]()
         self._storage_registry = ConnectorRegistry[BaseConnector]()
         self._db_registry = ConnectorRegistry[BaseConnector]()
+        self._http_registry = ConnectorRegistry[BaseConnector]() 
 
         self._type_to_registry: Dict[ConnectorType, ConnectorRegistry] = {
             ConnectorType.LLM: self._llm_registry,
             ConnectorType.QUEUE: self._queue_registry,
             ConnectorType.STORAGE: self._storage_registry,
             ConnectorType.DB: self._db_registry,
+            ConnectorType.HTTP: self._http_registry,  
         }
 
     def register(
@@ -192,6 +195,10 @@ class DIContainer:
         """Get DB connector by name"""
         return self._db_registry.get(name)
 
+    def get_http(self, name: str) -> BaseConnector:
+        """Get HTTP connector by name"""
+        return self._http_registry.get(name)
+    
     async def initialize_all(self) -> Dict[ConnectorType, Dict[str, bool]]:
         """
         Initialize all connectors across all registries.

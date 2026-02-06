@@ -132,6 +132,23 @@ class Settings(BaseSettings):
     )
 
     # ========================================================================
+    # HTTP SERVER CONFIGURATION
+    # ========================================================================
+
+    http_enabled: bool = Field(
+        default=True,
+        description="Enable HTTP monitoring server"
+    )
+    http_ip: str = Field(
+        default="127.0.0.1",
+        description="IP for HTTP server (Default - localhost)"
+    )
+    http_port: int = Field(
+        default=8000,
+        description="Port for HTTP server (Default - 8000)"
+    )
+    
+    # ========================================================================
     # WORKER CONFIGURATION
     # ========================================================================
     worker_max_concurrent_tasks: int = Field(
@@ -242,6 +259,16 @@ class Settings(BaseSettings):
 
         return PostgresConfig(self)
 
+    @property
+    def http(self):
+        """HTTP config object (for backwards compatibility)"""
+        class HttpConfig:
+            def __init__(self, settings):
+                self.enabled = settings.http_enabled
+                self.host = settings.http_ip
+                self.port = settings.http_port
+
+        return HttpConfig(self)
 
 # ============================================================================
 # SINGLETON INSTANCE

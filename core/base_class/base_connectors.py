@@ -4,6 +4,7 @@ Base connector abstractions for core services:
 - Queue/broker connectors
 - File storage connectors
 - Database connectors
+- HTTP connectors
 
 These classes define a minimal, consistent lifecycle and health-check API.
 Concrete implementations live in `connectors/` and should subclass the
@@ -160,4 +161,19 @@ class DBConnector(BaseConnector, abc.ABC):
     @abc.abstractmethod
     async def health_check(self) -> bool:
         """Check DB connectivity."""
+    
+class HTTPConnector(BaseConnector, abc.ABC):
+    """Base abs class for http services."""
+    
+    @abc.abstractmethod
+    def start(self, ip: str, port: int):
+        """Start http service"""
         
+    @abc.abstractmethod
+    async def health():
+        """Method for check health of module"""
+        
+    @abc.abstractmethod
+    async def status(status):
+        """Method for check current operation in container"""
+    
