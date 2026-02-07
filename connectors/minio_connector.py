@@ -11,8 +11,10 @@ from minio import Minio
 from minio.error import S3Error
 
 from core.base_class.base_connectors import FileStorageConnector
+from core.registry import register_connector
 
 
+@register_connector("Minio")
 class MinIOConnector(FileStorageConnector):
     """
     MinIO connector with no-GIL compatibility

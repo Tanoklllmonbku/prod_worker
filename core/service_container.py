@@ -15,7 +15,7 @@ from typing import Any, Dict, Optional
 
 from config.config import Settings, get_settings
 from core.base_class.registry import DIContainer, ConnectorType
-from core.factories import create_all_interfaces
+from core.factories import ConnectorRegistryFactory
 from core.task_deduplication_queue import TaskDeduplicationQueue
 from interface.db import DBInterface
 from interface.llm import LLMInterface
@@ -129,8 +129,9 @@ class ServiceContainer:
         """
         self._executor = ThreadPoolExecutor(max_workers=20)
 
-        interfaces = create_all_interfaces(
-                config=self.config,
+        # Create factory and use it to create all interfaces
+        factory = ConnectorRegistryFactory(self.config)
+        interfaces = factory.interface_factory.create_all_interfaces(
                 event_publisher=self._event_publisher,
                 executor=self._executor,
             )

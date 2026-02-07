@@ -1,274 +1,215 @@
 """
-Configuration module using Pydantic Settings.
+Main Configuration Module - Modular Configuration System
 
-Reads from .env file and environment variables.
-All fields are optional with sensible defaults.
-
-Structure is flat - backwards compatible with existing code.
+This module provides a modular configuration system with separate settings
+for each subsystem of the application.
 """
 
 from typing import Optional
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import Field
 
+from .logging_config import LoggingSettings
+from .gigachat_config import GigaChatSettings
+from .kafka_config import KafkaSettings
+from .minio_config import MinIOSettings
+from .postgres_config import PostgreSettings
+from .http_config import HttpSettings
+from .worker_config import WorkerSettings
+
 
 class Settings(BaseSettings):
-    """Main application settings - flat structure for backwards compatibility"""
+    """Main application settings - modular structure"""
     model_config = SettingsConfigDict(
         env_file=".env",
         case_sensitive=False,
         extra="ignore"  # Ignore extra fields
     )
 
-    # ========================================================================
-    # LOGGING
-    # ========================================================================
-    log_level: str = Field(default="INFO", description="Logging level")
-    log_format: str = Field(default="json", description="Log format: json or text")
-    log_enable_debug: bool = Field(default=False, description="Enable debug logging")
-    log_file: Optional[str] = Field(default=None, description="Log file path")
+    # Include all subsystem configurations
+    logging: LoggingSettings = LoggingSettings()
+    gigachat: GigaChatSettings = GigaChatSettings()
+    kafka: KafkaSettings = KafkaSettings()
+    minio: MinIOSettings = MinIOSettings()
+    postgres: PostgreSettings = PostgreSettings()
+    http: HttpSettings = HttpSettings()
+    worker: WorkerSettings = WorkerSettings()
 
-    # ========================================================================
-    # GIGACHAT / LLM
-    # ========================================================================
-    gigachat_access_token: Optional[str] = Field(default=None, description="GigaChat access token")
-    gigachat_model: str = Field(default="GigaChat-Max", description="Model name")
-    gigachat_scope: str = Field(default="GIGACHAT_API_B2B", description="API scope")
-    gigachat_verify_ssl: bool = Field(default=False, description="Verify SSL certificates")
-    gigachat_request_timeout_seconds: int = Field(default=30, description="Request timeout")
-    gigachat_max_connections: int = Field(default=100, description="Max connections")
-    gigachat_base_url: str = Field(
-        default="https://gigachat.devices.sberbank.ru",
-        description="Base URL"
-    )
-    gigachat_api_version: str = Field(
-        default="api/v1",
-        description="API version"
-    )
-    gigachat_oauth_url: str = Field(default="https://ngw.devices.sberbank.ru:9443/api/v2/oauth", description="OAuth URL")
+    # Backwards compatibility properties
+    @property
+    def log_level(self) -> str:
+        return self.logging.log_level
 
-    # ========================================================================
-    # KAFKA
-    # ========================================================================
-    kafka_bootstrap_servers: str = Field(
-        default="localhost:9092",
-        description="Kafka bootstrap servers"
-    )
-    kafka_group_id: str = Field(
-        default="llm-worker-group",
-        description="Consumer group ID"
-    )
-    kafka_auto_offset_reset: str = Field(
-        default="earliest",
-        description="Auto offset reset policy"
-    )
-    kafka_consumer_poll_timeout: float = Field(
-        default=1.0,
-        description="Consumer poll timeout"
-    )
+    @property
+    def log_format(self) -> str:
+        return self.logging.log_format
 
-    # ========================================================================
-    # MINIO
-    # ========================================================================
-    minio_endpoint: str = Field(
-        default="localhost:9000",
-        description="MinIO endpoint"
-    )
-    minio_access_key: str = Field(
-        default="minioadmin",
-        description="MinIO access key"
-    )
-    minio_secret_key: str = Field(
-        default="minioadmin",
-        description="MinIO secret key"
-    )
-    minio_bucket_name: str = Field(
-        default="documents",
-        description="Bucket name"
-    )
-    minio_use_ssl: bool = Field(
-        default=False,
-        description="Use SSL"
-    )
-    minio_enabled: bool = Field(
-        default=True,
-        description="Enable MinIO"
-    )
+    @property
+    def log_enable_debug(self) -> bool:
+        return self.logging.log_enable_debug
 
-    # ========================================================================
-    # POSTGRESQL
-    # ========================================================================
-    postgres_host: str = Field(
-        default="localhost",
-        description="Database host"
-    )
-    postgres_port: int = Field(
-        default=5432,
-        description="Database port"
-    )
-    postgres_database: str = Field(
-        default="worker_db",
-        description="Database name"
-    )
-    postgres_user: str = Field(
-        default="postgres",
-        description="Database user"
-    )
-    postgres_password: str = Field(
-        default="postgres",
-        description="Database password"
-    )
-    postgres_pool_min_size: int = Field(
-        default=1,
-        description="Pool min size"
-    )
-    postgres_pool_max_size: int = Field(
-        default=20,
-        description="Pool max size"
-    )
-    postgres_enabled: bool = Field(
-        default=True,
-        description="Enable PostgreSQL"
-    )
+    @property
+    def log_file(self) -> Optional[str]:
+        return self.logging.log_file
 
-    # ========================================================================
-    # HTTP SERVER CONFIGURATION
-    # ========================================================================
+    # GigaChat backwards compatibility
+    @property
+    def gigachat_access_token(self) -> Optional[str]:
+        return self.gigachat.access_token
 
-    http_enabled: bool = Field(
-        default=True,
-        description="Enable HTTP monitoring server"
-    )
-    http_ip: str = Field(
-        default="127.0.0.1",
-        description="IP for HTTP server (Default - localhost)"
-    )
-    http_port: int = Field(
-        default=8000,
-        description="Port for HTTP server (Default - 8000)"
-    )
-    
-    # ========================================================================
-    # WORKER CONFIGURATION
-    # ========================================================================
-    worker_max_concurrent_tasks: int = Field(
-        default=10,
-        description="Max concurrent tasks"
-    )
-    executor_max_workers: int = Field(
-        default=20,
-        description="Max executor workers"
-    )
+    @property
+    def gigachat_model(self) -> str:
+        return self.gigachat.model
 
-    # Circuit breaker
-    circuit_breaker_failure_threshold: int = Field(
-        default=5,
-        description="Failure threshold"
-    )
-    circuit_breaker_timeout_sec: float = Field(
-        default=30.0,
-        description="Timeout in seconds"
-    )
+    @property
+    def gigachat_scope(self) -> str:
+        return self.gigachat.scope
 
-    # Retry settings
-    llm_max_retries: int = Field(
-        default=3,
-        description="Max retries"
-    )
-    llm_retry_initial_delay: float = Field(
-        default=2.0,
-        description="Initial delay"
-    )
-    llm_retry_max_delay: float = Field(
-        default=10.0,
-        description="Max delay"
-    )
-    python_gil_enabled: bool = Field(
-        default=False,
-        description="Enable GIL"
-    )
+    @property
+    def gigachat_verify_ssl(self) -> bool:
+        return self.gigachat.verify_ssl
 
-    # ========================================================================
-    # HELPER PROPERTIES
-    # ========================================================================
+    @property
+    def gigachat_request_timeout_seconds(self) -> int:
+        return self.gigachat.request_timeout_seconds
+
+    @property
+    def gigachat_max_connections(self) -> int:
+        return self.gigachat.max_connections
+
+    @property
+    def gigachat_base_url(self) -> str:
+        return self.gigachat.base_url
+
+    @property
+    def gigachat_api_version(self) -> str:
+        return self.gigachat.api_version
+
+    @property
+    def gigachat_oauth_url(self) -> str:
+        return self.gigachat.oauth_url
+
+    # Kafka backwards compatibility
+    @property
+    def kafka_bootstrap_servers(self) -> str:
+        return self.kafka.bootstrap_servers
+
+    @property
+    def kafka_group_id(self) -> str:
+        return self.kafka.group_id
+
+    @property
+    def kafka_auto_offset_reset(self) -> str:
+        return self.kafka.auto_offset_reset
+
+    @property
+    def kafka_consumer_poll_timeout(self) -> float:
+        return self.kafka.consumer_poll_timeout
+
+    # MinIO backwards compatibility
+    @property
+    def minio_endpoint(self) -> str:
+        return self.minio.endpoint
+
+    @property
+    def minio_access_key(self) -> str:
+        return self.minio.access_key
+
+    @property
+    def minio_secret_key(self) -> str:
+        return self.minio.secret_key
+
+    @property
+    def minio_bucket_name(self) -> str:
+        return self.minio.bucket_name
+
+    @property
+    def minio_use_ssl(self) -> bool:
+        return self.minio.use_ssl
+
+    @property
+    def minio_enabled(self) -> bool:
+        return self.minio.enabled
+
+    # PostgreSQL backwards compatibility
+    @property
+    def postgres_host(self) -> str:
+        return self.postgres.host
+
+    @property
+    def postgres_port(self) -> int:
+        return self.postgres.port
+
+    @property
+    def postgres_database(self) -> str:
+        return self.postgres.database
+
+    @property
+    def postgres_user(self) -> str:
+        return self.postgres.user
+
+    @property
+    def postgres_password(self) -> str:
+        return self.postgres.password
+
+    @property
+    def postgres_pool_min_size(self) -> int:
+        return self.postgres.pool_min_size
+
+    @property
+    def postgres_pool_max_size(self) -> int:
+        return self.postgres.pool_max_size
 
     @property
     def postgres_dsn(self) -> str:
-        """PostgreSQL connection string"""
-        return (
-            f"postgresql+asyncpg://{self.postgres_user}:{self.postgres_password}@"
-            f"{self.postgres_host}:{self.postgres_port}/{self.postgres_database}"
-        )
+        return self.postgres.dsn
+
+    # HTTP backwards compatibility
+    @property
+    def http_enabled(self) -> bool:
+        return self.http.enabled
 
     @property
-    def kafka(self):
-        """Kafka config object (for backwards compatibility)"""
-        class KafkaConfig:
-            def __init__(self, settings):
-                self.bootstrap_servers = settings.kafka_bootstrap_servers
-                self.group_id = settings.kafka_group_id
-                self.auto_offset_reset = settings.kafka_auto_offset_reset
-                self.consumer_poll_timeout = settings.kafka_consumer_poll_timeout
-
-        return KafkaConfig(self)
+    def http_ip(self) -> str:
+        return self.http.host
 
     @property
-    def gigachat(self):
-        """GigaChat config object (for backwards compatibility)"""
-        class GigaChatConfig:
-            def __init__(self, settings):
-                self.access_token = settings.gigachat_access_token
-                self.model = settings.gigachat_model
-                self.scope = settings.gigachat_scope
-                self.verify_ssl = settings.gigachat_verify_ssl
-                self.request_timeout_seconds = settings.gigachat_request_timeout_seconds
-                self.max_connections = settings.gigachat_max_connections
-                self.base_url = settings.gigachat_base_url
-                self.api_version = settings.gigachat_api_version
-                self.oauth_url = settings.gigachat_oauth_url
+    def http_port(self) -> int:
+        return self.http.port
 
-        return GigaChatConfig(self)
+    # Worker backwards compatibility
+    @property
+    def worker_max_concurrent_tasks(self) -> int:
+        return self.worker.max_concurrent_tasks
 
     @property
-    def minio(self):
-        """MinIO config object (for backwards compatibility)"""
-        class MinIOConfig:
-            def __init__(self, settings):
-                self.endpoint = settings.minio_endpoint
-                self.access_key = settings.minio_access_key
-                self.secret_key = settings.minio_secret_key
-                self.bucket_name = settings.minio_bucket_name
-                self.use_ssl = settings.minio_use_ssl
-                self.enabled = settings.minio_enabled
-
-        return MinIOConfig(self)
+    def executor_max_workers(self) -> int:
+        return self.worker.executor_max_workers
 
     @property
-    def postgres(self):
-        """PostgreSQL config object (for backwards compatibility)"""
-        class PostgresConfig:
-            def __init__(self, settings):
-                self.host = settings.postgres_host
-                self.port = settings.postgres_port
-                self.database = settings.postgres_database
-                self.user = settings.postgres_user
-                self.password = settings.postgres_password
-                self.pool_min_size = settings.postgres_pool_min_size
-                self.pool_max_size = settings.postgres_pool_max_size
-                self.enabled = settings.postgres_enabled
-
-        return PostgresConfig(self)
+    def circuit_breaker_failure_threshold(self) -> int:
+        return self.worker.circuit_breaker_failure_threshold
 
     @property
-    def http(self):
-        """HTTP config object (for backwards compatibility)"""
-        class HttpConfig:
-            def __init__(self, settings):
-                self.enabled = settings.http_enabled
-                self.host = settings.http_ip
-                self.port = settings.http_port
+    def circuit_breaker_timeout_sec(self) -> float:
+        return self.worker.circuit_breaker_timeout_sec
 
-        return HttpConfig(self)
+    @property
+    def llm_max_retries(self) -> int:
+        return self.worker.max_retries
+
+    @property
+    def llm_retry_initial_delay(self) -> float:
+        return self.worker.retry_initial_delay
+
+    @property
+    def llm_retry_max_delay(self) -> float:
+        return self.worker.retry_max_delay
+
+    @property
+    def python_gil_enabled(self) -> bool:
+        return self.worker.python_gil_enabled
+
 
 # ============================================================================
 # SINGLETON INSTANCE

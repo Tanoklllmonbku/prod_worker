@@ -21,18 +21,19 @@ from threading import Lock
 from typing import Any, Dict, List, Optional, Set
 
 from config.config import get_settings
-from core.service_container import ServiceContainer
+from core.base_service import BaseService
+from core.service_factory import register_service
 from models.kafka_model import TaskStatus
 from models.prompt_model import PromptService
 from utils.logging import get_logger_from_config
 
 
-class LLMService:
+@register_service('llm')
+class LLMService(BaseService):
     """Main LLM service with multi-worker load distribution"""
 
-    def __init__(self):
-        self.logger: Optional[logging.Logger] = None
-        self.container: Optional[ServiceContainer] = None
+    def __init__(self, config=None):
+        super().__init__(name="LLMService", config=config)
 
         # Interfaces
         self.llm = None  # LLMInterface
@@ -47,7 +48,6 @@ class LLMService:
 
         # State management
         self._active_tasks: Dict[str, asyncio.Task] = {}
-        self._shutdown_event = asyncio.Event()
         self._consumer_running = False
         self._processing_queue = asyncio.Queue()
         self._worker_semaphore = None
@@ -59,46 +59,24 @@ class LLMService:
         # Token refresh management
         self._token_refresh_task: Optional[asyncio.Task] = None
 
-    async def bootstrap(self, config_override=None) -> bool:
-        """Bootstrap service with retry logic"""
-        if config_override is None:
-            config = get_settings()
-            self.max_workers = (
-                config.worker_max_concurrent_tasks
-            )  # From config WORKER_MAX_CONCURRENT_TASKS
-        else:
-            # For testing purposes
-            self.max_workers = getattr(
-                config_override, "worker_max_concurrent_tasks", 5
-            )
+    async def _initialize_service(self) -> bool:
+        """
+        Initialize the service components.
 
-        # Initialize logger early
-        self.logger = logging.getLogger(__name__)
-
-        print(f"\n{'=' * 60}")
-        print(f"LLM Service Bootstrap")
-        print(f"Max Workers: {self.max_workers}")
-        print(f"{'=' * 60}")
-
+        Returns:
+            True if initialization was successful, False otherwise
+        """
         try:
-            # Initialize container
-            config_to_use = config_override if config_override is not None else config
-            self.container = await ServiceContainer.from_config(
-                config=config_to_use,
-                auto_initialize=True,
-                enable_logging=True,
-                enable_metrics=True,
-                enable_tracing=False,
-            )
+            # Get configuration
+            config = self.config
+            self.max_workers = config.worker_max_concurrent_tasks
+
+            # Initialize container if not already done
+            if self.container is None:
+                await self.initialize_container(auto_initialize=True)
 
             # Initialize task deduplication queue with 50 max entries
             self.container.initialize_task_deduplication_queue(max_size=50)
-
-            # Use the container's logger if available, otherwise keep the basic logger
-            try:
-                self.logger = get_logger_from_config(self.container.config)
-            except:
-                pass  # Keep basic logger
 
             # Get interfaces
             self.llm = self.container.get_llm("GigaChat")
@@ -106,17 +84,17 @@ class LLMService:
             self.db = self.container.get_db("Postgres")
             self.storage = self.container.get_storage("Minio")
             self.http = None
-            
-            #Initialize HTTP server
+
+            # Initialize HTTP server
             if self.container.config.http.enabled:
                 try:
                     self.http = self.container.get_http("FastApi")
                     # Инициализируем HTTP-приложение с callback'ами
                     self.http.worker.start()
                 except KeyError:
-                    self.logger.warning("HTTP interface 'FastApi' not found in container")
+                    self._logger.warning("HTTP interface 'FastApi' not found in container")
                 except Exception as e:
-                    self.logger.error(f"Failed to initialize HTTP interface: {e}")
+                    self._logger.error(f"Failed to initialize HTTP interface: {e}")
 
             # Initialize LLM
             await self.llm.initialize()
@@ -130,48 +108,32 @@ class LLMService:
             # Start token refresh task
             await self._start_token_refresh_task()
 
-            if self.logger:
-                self.logger.info(
-                    f"LLM Service bootstrapped with {self.max_workers} workers"
-                )
+            self._logger.info(
+                f"LLM Service initialized with {self.max_workers} workers"
+            )
             return True
 
+        except ImportError as e:
+            self._logger.critical(f"Initialization failed due to import error: {e}", exc_info=True)
+            return False
+        except AttributeError as e:
+            self._logger.critical(f"Initialization failed due to attribute error: {e}", exc_info=True)
+            return False
         except Exception as e:
-            if self.logger:
-                self.logger.error(f"Bootstrap failed: {e}", exc_info=True)
-            else:
-                print(f"Bootstrap failed: {e}")
+            self._logger.error(f"Initialization failed: {e}", exc_info=True)
             return False
 
-    async def start(self) -> None:
-        """Start the main service loop with retry logic on bootstrap failure"""
-        # Try bootstrap with retry logic
-        bootstrap_success = False
-        retry_count = 0
-        max_retries = 5
-        retry_delay = 5  # seconds
+    async def _startup_impl(self) -> None:
+        """
+        Implementation method for service-specific startup logic.
+        This overrides the method from BaseService.
+        """
+        # Initialize service components
+        success = await self._initialize_service()
+        if not success:
+            raise RuntimeError("Failed to initialize LLM Service")
 
-        while not bootstrap_success and retry_count < max_retries:
-            try:
-                bootstrap_success = await self.bootstrap()
-                if bootstrap_success:
-                    self.logger.info("Bootstrap successful")
-                    break
-            except Exception as e:
-                self.logger.error(
-                    f"Bootstrap attempt {retry_count + 1} failed: {e}", exc_info=True
-                )
-                retry_count += 1
-                if retry_count < max_retries:
-                    self.logger.info(
-                        f"Retrying bootstrap in {retry_delay} seconds... (attempt {retry_count + 1}/{max_retries})"
-                    )
-                    await asyncio.sleep(retry_delay)
-                else:
-                    self.logger.critical(f"All {max_retries} bootstrap attempts failed")
-                    raise RuntimeError(f"Bootstrap failed after {max_retries} attempts")
-
-        self.logger.info("LLM Service started, initializing workers...")
+        self._logger.info("LLM Service started, initializing workers...")
 
         print("\n" + "=" * 60)
         print(f"LLM Service running with {self.max_workers} workers")
@@ -192,47 +154,84 @@ class LLMService:
                 )
                 self._http_server = uvicorn.Server(config)
                 http_task = asyncio.create_task(self._http_server.serve())
-                self.logger.info(f"HTTP monitor started on {self.container.config.http.host}:{self.container.config.http.port}")
+                self._logger.info(f"HTTP monitor started on {self.container.config.http.host}:{self.container.config.http.port}")
             except Exception as e:
-                self.logger.error(f"Failed to start HTTP server: {e}")
-        
-        try:
-            # Start Kafka consumer
-            kafka_task = asyncio.create_task(self._kafka_consumer_loop())
+                self._logger.error(f"Failed to start HTTP server: {e}")
 
-            # Start worker processors
-            worker_tasks = []
-            for i in range(self.max_workers):
-                worker_task = asyncio.create_task(self._worker_processor(i))
-                worker_tasks.append(worker_task)
+        # Start Kafka consumer
+        kafka_task = asyncio.create_task(self._kafka_consumer_loop())
 
-            # Wait for shutdown
-            shutdown_task = asyncio.create_task(self._shutdown_event.wait())
+        # Start worker processors
+        worker_tasks = []
+        for i in range(self.max_workers):
+            worker_task = asyncio.create_task(self._worker_processor(i))
+            worker_tasks.append(worker_task)
 
-            # Include HTTP task in wait set
-            all_tasks = [kafka_task, shutdown_task] + worker_tasks
-            if http_task:
-                all_tasks.append(http_task)
+        # Wait for shutdown
+        shutdown_task = asyncio.create_task(self.get_shutdown_event().wait())
 
-            done, pending = await asyncio.wait(
-                all_tasks,
-                return_when=asyncio.FIRST_COMPLETED,
-            )
+        # Include HTTP task in wait set
+        all_tasks = [kafka_task, shutdown_task] + worker_tasks
+        if http_task:
+            all_tasks.append(http_task)
 
-            # Cancel remaining tasks
-            for task in pending:
-                task.cancel()
-                try:
-                    await task
-                except asyncio.CancelledError:
-                    pass
+        done, pending = await asyncio.wait(
+            all_tasks,
+            return_when=asyncio.FIRST_COMPLETED,
+        )
 
-        except KeyboardInterrupt:
-            self.logger.info("Received Ctrl+C signal")
-        except Exception as e:
-            self.logger.error(f"Service error: {e}", exc_info=True)
-        finally:
-            await self.shutdown()
+        # Cancel remaining tasks
+        for task in pending:
+            task.cancel()
+            try:
+                await task
+            except asyncio.CancelledError:
+                pass
+
+    async def _perform_shutdown(self) -> None:
+        """Perform the actual shutdown of the service."""
+        self._logger.info("Shutting down LLM Service...")
+
+        # Shutdown HTTP server first
+        if hasattr(self, '_http_server') and self._http_server:
+            self._http_server.should_exit = True
+            self._logger.info("HTTP server shutdown initiated")
+
+        # Wait a bit for graceful shutdown
+        await asyncio.sleep(0.1)
+
+        # Cancel all active tasks
+        for task in self._active_tasks.values():
+            task.cancel()
+
+        # Wait for worker tasks to complete
+        for task in self._worker_tasks:
+            task.cancel()
+
+        # Cancel token refresh task
+        if self._token_refresh_task:
+            self._token_refresh_task.cancel()
+            try:
+                await self._token_refresh_task
+            except asyncio.CancelledError:
+                pass
+
+        # Shutdown interfaces
+        if self.llm:
+            try:
+                await self.llm.shutdown()
+                self._logger.info("LLM interface shutdown complete")
+            except Exception as e:
+                self._logger.error(f"Error shutting down LLM: {e}")
+
+        self._logger.info("LLM Service shutdown complete")
+
+    async def _shutdown_impl(self) -> None:
+        """
+        Implementation method for service-specific shutdown logic.
+        This overrides the method from BaseService.
+        """
+        await self._perform_shutdown()
 
     async def _kafka_consumer_loop(self) -> None:
         """Continuously consume messages from Kafka"""
@@ -697,15 +696,15 @@ class LLMService:
 
     async def shutdown(self) -> None:
         """Graceful shutdown"""
-        self.logger.info("Shutting down LLM Service...")
+        self._logger.info("Shutting down LLM Service...")
 
         # Signal shutdown
-        self._shutdown_event.set()
+        self.get_shutdown_event().set()
 
         # Shutdown HTTP server first
         if hasattr(self, '_http_server') and self._http_server:
             self._http_server.should_exit = True
-            self.logger.info("HTTP server shutdown initiated")
+            self._logger.info("HTTP server shutdown initiated")
 
         # Wait a bit for graceful shutdown
         await asyncio.sleep(0.1)
@@ -730,19 +729,19 @@ class LLMService:
         if self.llm:
             try:
                 await self.llm.shutdown()
-                self.logger.info("LLM interface shutdown complete")
+                self._logger.info("LLM interface shutdown complete")
             except Exception as e:
-                self.logger.error(f"Error shutting down LLM: {e}")
+                self._logger.error(f"Error shutting down LLM: {e}")
 
         if self.container:
             await self.container.shutdown_all()
-            self.logger.info("Service container shutdown complete")
+            self._logger.info("Service container shutdown complete")
 
-        self.logger.info("LLM Service shutdown complete")
+        self._logger.info("LLM Service shutdown complete")
 
     async def _http_health_callback(self) -> dict:
         """Callback для HTTP health-check."""
-        if self._shutdown_event.is_set():
+        if self.get_shutdown_event().is_set():
             return {"status": "shutting_down"}
         if not self.container or not self.llm or not self.queue:
             return {"status": "degraded"}

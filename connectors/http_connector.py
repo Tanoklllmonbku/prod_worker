@@ -7,9 +7,11 @@ import logging
 
 from core.base_class.base_connectors import HTTPConnector
 from models.http_model import HealthResponse, StatusResponse
+from core.registry import register_connector
 
 
-class FastApiConnector:
+@register_connector("FastApi")
+class FastApiConnector(HTTPConnector):
     """
     Универсальный HTTP-коннектор, реализующий полный интерфейс коннектора.
     """
@@ -22,9 +24,9 @@ class FastApiConnector:
         health_callback: Optional[Callable[[], Awaitable[dict]]] = None,
         status_callback: Optional[Callable[[], Awaitable[dict]]] = None,
     ):
+        super().__init__("FastApi")  # Call parent constructor with name
         self.host = host
         self.port = port
-        self.name = "FastApi"
         self._logger = get_logger() if get_logger else logging.getLogger(__name__)
         self._health_callback = health_callback
         self._status_callback = status_callback

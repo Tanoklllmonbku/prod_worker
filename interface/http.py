@@ -3,8 +3,10 @@ from core.base_class.base_interface import BaseInterface
 from core.base_class.protocols import IHTTPProtocol
 from models.http_model import HealthResponse, StatusResponse
 from utils.observer import EventPublisher
+from core.registry import register_interface
 
 
+@register_interface("FastApi")
 class HTTPInterface(BaseInterface):
 
     def __init__(

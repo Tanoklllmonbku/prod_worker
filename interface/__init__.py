@@ -1,11 +1,17 @@
+"""
+Interface module exports - Centralized imports for interface functionality.
+"""
+
 from .db import DBInterface
 from .llm import LLMInterface
 from .queue import QueueInterface
 from .storage import StorageInterface
+from .http import HTTPInterface
 
 __all__ = [
-    "LLMInterface",
-    "QueueInterface",
-    "StorageInterface",
-    "DBInterface",
+    'DBInterface',
+    'LLMInterface',
+    'QueueInterface',
+    'StorageInterface',
+    'HTTPInterface',
 ]

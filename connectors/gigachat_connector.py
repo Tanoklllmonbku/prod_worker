@@ -12,8 +12,10 @@ from datetime import datetime, timedelta, timezone
 import httpx
 
 from core.base_class.base_connectors import LLMConnector
+from core.registry import register_connector
 
 
+@register_connector("GigaChat")
 class GigaChatConnector(LLMConnector):
     """GigaChat REST API wrapper using httpx (Pure async implementation)"""
 

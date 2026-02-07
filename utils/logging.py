@@ -180,8 +180,6 @@ class AsyncPGHandler(logging.Handler):
         super().close()
 
 
-# УДАЛЯЕМ ContextFilter - он больше не нужен!
-
 def setup_logger(
         version: str,
         name: str = 'GUI',

@@ -10,8 +10,10 @@ from typing import Any, AsyncGenerator, Optional
 from utils.observer import EventPublisher
 from core.base_class.protocols import IFileStorageConnector
 from core.base_class.base_interface import BaseInterface
+from core.registry import register_interface
 
 
+@register_interface("Minio")
 class StorageInterface(BaseInterface):
     """
     High-level interface for file storage operations.

@@ -9,8 +9,10 @@ from typing import Any, Dict, List, Optional
 from aiokafka import AIOKafkaProducer, AIOKafkaConsumer
 
 from core.base_class.base_connectors import QueueConnector
+from core.registry import register_connector
 
 
+@register_connector("Kafka")
 class KafkaConnector(QueueConnector):
     """
     Native asyncio-friendly Kafka connector using aiokafka.

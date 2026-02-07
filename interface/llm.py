@@ -10,8 +10,10 @@ from typing import Any, AsyncIterator, Dict, List, Optional
 from core.base_class.base_interface import BaseInterface
 from core.base_class.protocols import ILLMConnector
 from utils.observer import EventPublisher
+from core.registry import register_interface
 
 
+@register_interface("GigaChat")
 class LLMInterface(BaseInterface):
     """
     High-level interface for LLM operations.

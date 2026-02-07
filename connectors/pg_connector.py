@@ -9,8 +9,10 @@ from functools import partial
 import logging
 
 from core.base_class.base_connectors import DBConnector
+from core.registry import register_connector
 
 
+@register_connector("Postgres")
 class PGConnector(DBConnector):
     """PostgreSQL async connector with connection pooling and concurrent operations"""
 

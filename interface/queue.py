@@ -11,8 +11,10 @@ from typing import Any, Dict, List, Optional
 from core.base_class.base_interface import BaseInterface
 from core.base_class.protocols import IQueueConnector
 from utils.observer import EventPublisher
+from core.registry import register_interface
 
 
+@register_interface("Kafka")
 class QueueInterface(BaseInterface):
     """
     High-level interface for message queue operations.

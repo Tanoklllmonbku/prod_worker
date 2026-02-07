@@ -10,8 +10,10 @@ from typing import Any, Dict, List, Optional
 from utils.observer import EventPublisher
 from core.base_class.protocols import IDBConnector
 from core.base_class.base_interface import BaseInterface
+from core.registry import register_interface
 
 
+@register_interface("Postgres")
 class DBInterface(BaseInterface):
     """
     High-level interface for database operations.
